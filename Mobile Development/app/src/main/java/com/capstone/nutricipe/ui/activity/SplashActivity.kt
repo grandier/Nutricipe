@@ -4,21 +4,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.capstone.nutricipe.R
-import com.capstone.nutricipe.databinding.ActivityRegisterBinding
+import com.capstone.nutricipe.databinding.ActivitySplashBinding
 
-class RegisterActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var binding: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //Uji Coba Doang
-        binding.registerButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-        binding.tvLogin.setOnClickListener {
+        binding.btnStart.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
         }
     }

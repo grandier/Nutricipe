@@ -21,4 +21,16 @@
     <string name="password_hint">12345678</string>
     <string name="name_hint">Insert Your Full Name</string>
     <string name="title_ingredient">Title</string>
+    <string name="profile">Profile</string>
+    <string name="todo">TODO</string>
+
+    <string name="add_photo">Add Photo</string>
+    <string name="title_descriptiom">Description</string>
+    <string name="type_here">Type here...</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="title_name">Title Name...</string>
+    <string name="back">Back</string>
+    <string name="title_add_new_photo">Add New Photo</string>
+    <string name="title_profile">Profile</string>
 </resources>

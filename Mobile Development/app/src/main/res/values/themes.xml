@@ -22,4 +22,8 @@
         <item name="cornerSizeBottomLeft">5dp</item>
         <item name="cornerSizeBottomRight">5dp</item>
     </style>
+
+    <style name="Base.TextAppearance.AppCompat.Button" parent="ShapeAppearanceOverlay.Material3.Button">
+
+    </style>
 </resources>
