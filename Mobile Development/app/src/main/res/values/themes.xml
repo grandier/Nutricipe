@@ -14,4 +14,12 @@
     </style>
 
     <style name="Theme.Nutricipe" parent="Base.Theme.Nutricipe" />
+
+    <style name="roundedImageStyle" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">5dp</item>
+        <item name="cornerSizeTopRight">5dp</item>
+        <item name="cornerSizeBottomLeft">5dp</item>
+        <item name="cornerSizeBottomRight">5dp</item>
+    </style>
 </resources>
