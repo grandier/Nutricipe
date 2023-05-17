@@ -5,4 +5,16 @@
     <string name="text_about_app">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="title_history">History</string>
     <string name="add_your_ingredient_photo">Add Your Ingredient Photo</string>
+    <string name="register">Register</string>
+    <string name="hint_name">Tom Holland</string>
+    <string name="min_name">Name Minimum Length is 4</string>
+    <string name="password_min_length">Password Minimum Length is 8</string>
+    <string name="invalid_email">Invalid Email Addresss</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="dont_hv_acc">Don\'t have an Account?</string>
+    <string name="hv_acc">Have an Account?</string>
+    <string name="name">Name</string>
+    <string name="logo">this is logo</string>
 </resources>
