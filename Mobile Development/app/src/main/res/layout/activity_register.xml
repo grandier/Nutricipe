@@ -17,7 +17,7 @@
             android:layout_height="153dp"
             android:layout_marginTop="32dp"
             android:contentDescription="@string/logo"
-            android:src="@drawable/applogo"
+            android:src="@drawable/logo_app"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-
             android:text="@string/register"
             android:textColor="@color/mint"
             android:textSize="30sp"
@@ -36,150 +35,147 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_applogo" />
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/form_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
             android:layout_marginTop="25dp"
-
-            android:fontFamily="@font/montserrat_light"
-            android:textColor="@color/mint"
-            android:text="@string/name"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_login" />
-
-        <com.capstone.nutricipe.ui.customview.NameEditText
-            android:id="@+id/et_name"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-
-            android:background="@drawable/edt_bg"
-            android:drawableLeft="@drawable/baseline_person_24"
-            android:drawablePadding="5dp"
-            android:gravity="start|center_vertical"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="@color/black"
+            android:orientation="vertical"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_login">
 
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="16dp"
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/montserrat_light"
+                android:textColor="@color/mint"
+                android:text="@string/name"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_login" />
 
-            android:text="@string/email"
-            android:fontFamily="@font/montserrat_light"
-            android:textColor="@color/mint"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_name" />
+            <com.capstone.nutricipe.ui.customview.NameEditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_bg"
+                android:drawableStart="@drawable/baseline_person_24"
+                android:drawablePadding="5dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:hint="@string/name_hint"
+                android:textColor="@color/black" />
 
-        <com.capstone.nutricipe.ui.customview.EmailEditText
-            android:id="@+id/et_email"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/email"
+                android:fontFamily="@font/montserrat_light"
+                android:textColor="@color/mint"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            android:background="@drawable/edt_bg"
-            android:drawableLeft="@drawable/baseline_email_24"
-            android:drawablePadding="5dp"
-            android:gravity="start|center_vertical"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+            <com.capstone.nutricipe.ui.customview.EmailEditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_bg"
+                android:drawableStart="@drawable/baseline_email_24"
+                android:drawablePadding="5dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:hint="@string/email_hint"
+                android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/tv_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="16dp"
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/password"
+                android:fontFamily="@font/montserrat_light"
+                android:textColor="@color/mint"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            android:text="@string/password"
-            android:fontFamily="@font/montserrat_light"
-            android:textColor="@color/mint"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+            <com.capstone.nutricipe.ui.customview.PasswordEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edt_bg"
+                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawablePadding="5dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:hint="@string/password_hint"
+                android:textColor="@color/black" />
 
-        <com.capstone.nutricipe.ui.customview.PasswordEditText
-            android:id="@+id/et_password"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-
-            android:background="@drawable/edt_bg"
-            android:drawableLeft="@drawable/baseline_lock_24"
-            android:drawablePadding="5dp"
-            android:gravity="start|center_vertical"
-            android:paddingLeft="15dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+        </LinearLayout>
 
         <com.capstone.nutricipe.ui.customview.ButtonRegister
             android:id="@+id/register_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="100dp"
-
             android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_password" />
+            app:layout_constraintTop_toBottomOf="@id/form_container" />
 
-        <TextView
-            android:id="@+id/tv_account"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:textColor="@color/mint"
-            android:text="@string/dont_hv_acc"
-            app:layout_constraintEnd_toStartOf="@id/tv_loginreg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/register_button" />
-
-        <TextView
-            android:id="@+id/tv_loginreg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/mint"
-            android:text="@string/login"
-            android:textStyle="bold"
-            android:clickable="true"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_account"
-            app:layout_constraintTop_toBottomOf="@id/register_button"
-            app:layout_constraintBaseline_toBaselineOf="@id/tv_account" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/register_button">
+
+            <TextView
+                android:id="@+id/tv_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/hv_acc"
+                android:textColor="@color/mint" />
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/login"
+                android:textColor="@color/mint"
+                android:textStyle="bold"
+                tools:ignore="KeyboardInaccessibleWidget" />
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"

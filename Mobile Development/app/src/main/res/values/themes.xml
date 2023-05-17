@@ -6,7 +6,7 @@
         <item name="colorPrimaryVariant">@color/mint</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondary">@color/mint_200</item>
         <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
@@ -21,5 +21,9 @@
         <item name="cornerSizeTopRight">5dp</item>
         <item name="cornerSizeBottomLeft">5dp</item>
         <item name="cornerSizeBottomRight">5dp</item>
+    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Button" parent="ShapeAppearanceOverlay.Material3.Button">
+
     </style>
 </resources>
