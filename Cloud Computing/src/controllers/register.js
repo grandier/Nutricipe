@@ -20,7 +20,6 @@ async function registerUser(req, res) {
             password: hashed
         }
         const result = await register.addUser(data);
-        console.log(result)
         if(!result.id) {
             return res.status(500).json({error: true, message: 'add data failed'});
         }
