@@ -1,7 +1,8 @@
-package com.capstone.nutricipe
+package com.capstone.nutricipe.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.capstone.nutricipe.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
