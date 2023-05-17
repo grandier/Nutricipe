@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="122dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/bg_rectangle_rd5_white"
+            android:background="@drawable/edt_bg"
             android:fontFamily="@font/montserrat_regular"
             android:gravity="top|start"
             android:hint="@string/type_here"
