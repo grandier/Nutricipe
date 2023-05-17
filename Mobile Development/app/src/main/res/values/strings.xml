@@ -17,4 +17,8 @@
     <string name="hv_acc">Have an Account?</string>
     <string name="name">Name</string>
     <string name="logo">this is logo</string>
+    <string name="email_hint">name@email.com</string>
+    <string name="password_hint">12345678</string>
+    <string name="name_hint">Insert Your Full Name</string>
+    <string name="title_ingredient">Title</string>
 </resources>
