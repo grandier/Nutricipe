@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,13 +12,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Nutricipe"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.Recipe.DetailActivity"
+            android:name=".ui.activity.recipe.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.Recipe.RecommendedActivity"
+            android:name=".ui.activity.recipe.RecommendedActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.SplashActivity"
@@ -28,13 +31,13 @@
             android:name=".ui.activity.AddPhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.authentication.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.authentication.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
