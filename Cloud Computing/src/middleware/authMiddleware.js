@@ -11,8 +11,7 @@ async function authMiddleware(req, res, next) {
             if(!user) {
                 return res.status(401).json({error: true, message: 'Unauthorized, no user'});
             }
-            req.userID = decoded
-            console.log(req.userID)
+            req.userId = decoded
             next();
         }
         catch(error) {
