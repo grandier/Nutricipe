@@ -12,6 +12,7 @@ async function authMiddleware(req, res, next) {
                 return res.status(401).json({error: true, message: 'Unauthorized, no user'});
             }
             req.userID = decoded
+            console.log(req.userID)
             next();
         }
         catch(error) {

@@ -1,4 +1,4 @@
-const uploadImages = require('../db/dbStorage');
+const imgUpload = require('../db/dbStorage');
 
 
 async function handleUpload(req, res, next) {
