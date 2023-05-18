@@ -4,10 +4,12 @@ const path = require('path');
 const pathKey = path.resolve('./keyFile.json');
 const idProject = process.env.PROJECT_ID || 'nutricipe-coba';
 
+
 const db = new Firestore({
-  projectId: idProject,
-  keyFilename: pathKey,
+    projectId: idProject,
+    keyFilename: pathKey,
 });
+
 
 async function addUser(data) {
     try {
@@ -19,11 +21,21 @@ async function addUser(data) {
     }
 }
 
+async function readUser(data) {
+    try {
+        const snapshot = await db.collection('users').where('email', '==', data.email).limit(1).get();
+        return snapshot;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
 async function checkEmail(email) {
     try {
         let isUsed = false;
         const res = await db.collection('users').where('email', '==', email).get();
-        if(!res.empty) {
+        if (!res.empty) {
             isUsed = true;
         }
         return isUsed;
@@ -35,5 +47,6 @@ async function checkEmail(email) {
 
 module.exports = {
     addUser,
+    readUser,
     checkEmail
 }
