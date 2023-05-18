@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const compare = require('../helpers/hashPw');
 const login = require('../db/dbConfig');
-const { hash } = require('bcrypt');
 
 
 async function loginUser(req, res) {

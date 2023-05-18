@@ -11,6 +11,17 @@ async function hashPw(password) {
     }
 }
 
+async function comparePw(password, hashed) {
+    try {
+        const result = await bcrypt.compareSync(password, hashed);
+        return result;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
 module.exports = {
-    hashPw
+    hashPw,
+    comparePw
 }
