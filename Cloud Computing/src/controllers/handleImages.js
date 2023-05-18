@@ -1,14 +1,13 @@
 const uploadImages = require('../db/dbStorage');
 
 
-async function handleUpload(req, res) {
-    let { image } = req.body;
-    if (!image) {
-        return res.status(400).send('Bad Request');
-    }
+async function handleUpload(req, res, next) {
     try {
         // Call the uploadImage function
-        const resultImage = await uploadImages.uploadImage(image);
+        console.log('handler'+ req.userID)
+        const resultImage = await imgUpload.uploadToGcs(req, res, next);
+        const linkImage =  req.file.cloudStoragePublicUrl;
+        console.log(linkImage);
 
         // Send a success response
         res.status(200).json({ message: 'Image uploaded successfully', resultImage });

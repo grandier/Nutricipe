@@ -23,10 +23,12 @@ function getPublicUrl(filename) {
 
 let ImgUpload = {}
 
-ImgUpload.uploadToGcs = (req, res, next) => {
+ImgUpload.uploadToGcs = (req, res, next) =>{
+    console.log(req.userID)
     if (!req.file) return next()
 
     const gcsname = new Date.getTime();
+    console.log(gcsname)
     const file = bucket.file(gcsname)
 
     const stream = file.createWriteStream({
