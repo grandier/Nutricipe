@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Nutricipe"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.Recipe.DetailActivity"
+            android:name=".ui.activity.recipe.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.Recipe.RecommendedActivity"
+            android:name=".ui.activity.recipe.RecommendedActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.SplashActivity"
@@ -28,10 +28,10 @@
             android:name=".ui.activity.AddPhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.RegisterActivity"
+            android:name=".ui.activity.authentication.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.authentication.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.MainActivity"

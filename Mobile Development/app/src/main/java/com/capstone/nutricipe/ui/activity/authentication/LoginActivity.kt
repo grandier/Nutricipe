@@ -1,10 +1,10 @@
-package com.capstone.nutricipe.ui.activity
+package com.capstone.nutricipe.ui.activity.authentication
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.capstone.nutricipe.R
 import com.capstone.nutricipe.databinding.ActivityLoginBinding
+import com.capstone.nutricipe.ui.activity.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
