@@ -5,7 +5,6 @@ async function handleUpload(req, res, next) {
     try {
         // Call the uploadImage function
         const resultImage = await imgUpload.uploadToGcs(req, res, next);
-        const linkImage =  req.file.cloudStoragePublicUrl;
 
         // Send a success response
         res.status(200).json({ message: 'Image uploaded successfully', resultImage });

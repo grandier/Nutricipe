@@ -1,6 +1,7 @@
 'use strict'
 const { Storage } = require('@google-cloud/storage')
-const fs = require('fs')
+const fs = require('fs');
+const { get } = require('http');
 const path = require('path');
 
 const pathKey = path.resolve('./keyFile.json');
@@ -49,6 +50,13 @@ ImgUpload.uploadToGcs = (req, res, next) =>{
     })
 
     stream.end(req.file.buffer)
+    {
+        const data = {
+            url: getPublicUrl(gcsname),
+            cloudStorageObject: gcsname,
+        }
+        return data;
+    }
 }
 
 module.exports = ImgUpload
