@@ -37,6 +37,7 @@
     <!-- Profile -->
     <string name="title_profile">Profile</string>
     <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 
     <!-- Recommended Recipe -->
     <string name="recommended_recipe">Recommended Recipe</string>
