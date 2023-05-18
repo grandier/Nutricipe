@@ -2,13 +2,13 @@ const uploadImages = require('../db/dbStorage');
 
 
 async function handleUpload(req, res) {
-    let { Filename } = req.body;
-    if (!Filename) {
+    let { image } = req.body;
+    if (!image) {
         return res.status(400).send('Bad Request');
     }
     try {
         // Call the uploadImage function
-        const resultImage = await uploadImages.uploadImage(Filename);
+        const resultImage = await uploadImages.uploadImage(image);
 
         // Send a success response
         res.status(200).json({ message: 'Image uploaded successfully', resultImage });
