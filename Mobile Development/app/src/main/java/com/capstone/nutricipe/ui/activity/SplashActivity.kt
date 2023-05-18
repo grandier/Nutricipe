@@ -3,8 +3,8 @@ package com.capstone.nutricipe.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.capstone.nutricipe.R
 import com.capstone.nutricipe.databinding.ActivitySplashBinding
+import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 
