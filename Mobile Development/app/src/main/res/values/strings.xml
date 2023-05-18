@@ -25,7 +25,7 @@
     <string name="todo">TODO</string>
 
     <string name="add_photo">Add Photo</string>
-    <string name="title_descriptiom">Description</string>
+    <string name="title_description">Description</string>
     <string name="type_here">Type here...</string>
     <string name="take_picture">Take Picture</string>
     <string name="open_gallery">Open Gallery</string>
@@ -33,4 +33,10 @@
     <string name="back">Back</string>
     <string name="title_add_new_photo">Add New Photo</string>
     <string name="title_profile">Profile</string>
+    <string name="recommended_recipe">Recommended Recipe</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="simple_explanation">Simple Explanation</string>
+    <string name="foodstuff">Foodstuff</string>
+    <string name="food_recommendation">Food Recipe Recommendation</string>
+    <string name="recipe_detail">Recipe Detail</string>
 </resources>
