@@ -75,9 +75,13 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginViewModel.message.observe(this) {
-            if (it == "Failure") {
-                Toast.makeText(this, R.string.login_error, Toast.LENGTH_SHORT).show()
-            } else {
+            if (it == "Invalid Password") {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+            else if (it == "Email Not Found") {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+            else{
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             }
         }

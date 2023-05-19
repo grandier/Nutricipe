@@ -22,7 +22,7 @@
     <string name="email_hint">name@email.com</string>
     <string name="password_hint">12345678</string>
     <string name="name_hint">Insert Your Full Name</string>
-    <string name="login_error">Error Login</string>
+    <string name="login_error_email">Error Login</string>
 
     <!-- Add Photo -->
     <string name="add_photo">Add Photo</string>

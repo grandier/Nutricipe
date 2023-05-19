@@ -1,5 +1,6 @@
 package com.capstone.nutricipe.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,8 @@ import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.data.remote.api.ApiConfig
 import com.capstone.nutricipe.data.remote.model.Register
 import kotlinx.coroutines.launch
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,9 +37,9 @@ class RegisterViewModel(private val pref: Session) : ViewModel() {
 
     init {
         _acceptance.value = false
-        if (pref.getToken().asLiveData().value != null) {
-            _acceptance.value = true
-        }
+//        if (pref.getToken().asLiveData().value != null) {
+//            _acceptance.value = true
+//        }
     }
 
     fun register(name: String, email: String, password: String) {
@@ -48,10 +51,28 @@ class RegisterViewModel(private val pref: Session) : ViewModel() {
                     _isLoading.value = false
 
                     if (response.isSuccessful) {
-                        _message.value = response.message()
-                        _acceptance.value = true
+                        if (response.body()?.message.equals("User added successfully")){
+                            _message.value = response.body()?.message.toString()
+                            _acceptance.value = true
+                        }
+                        else {
+                            _message.value = response.body()?.message.toString()
+                            _acceptance.value = false
+                        }
                     } else {
-                        _message.value = response.message()
+                        val errorBody = response.errorBody()?.string()
+                        if (errorBody != null) {
+                            try {
+                                val json = JSONObject(errorBody)
+                                val errorMessage = json.getString("message")
+                                _message.value = errorMessage
+                                Log.e("errorMessage", errorMessage)
+                            } catch (e: JSONException) {
+                                _message.value = response.message()
+                            }
+                        } else {
+                            _message.value = response.message()
+                        }
                         _acceptance.value = false
                     }
                 }
@@ -62,5 +83,6 @@ class RegisterViewModel(private val pref: Session) : ViewModel() {
                 }
             })
     }
+
 
 }

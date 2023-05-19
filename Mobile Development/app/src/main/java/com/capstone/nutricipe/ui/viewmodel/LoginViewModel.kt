@@ -11,6 +11,7 @@ import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.data.remote.api.ApiConfig
 import com.capstone.nutricipe.data.remote.model.Login
 import kotlinx.coroutines.launch
+import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,15 +53,27 @@ class LoginViewModel(private val pref: Session) : ViewModel() {
 
                 if (response.isSuccessful) {
                     if (response.body()?.message.equals("Success")) {
-                        _message.value = response.message()
+                        _message.value = response.body()?.message.toString()
                         _acceptance.value = true
                         saveToken(response.body()?.loginResult?.token.toString())
                     }
+                    else {
+                        _message.value = response.body()?.message.toString()
+                    }
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    val errorMessage =
-                        if (errorBody != null) JSONObject(errorBody).getString("message") else response.message()
-                    _message.value = response.message()
+                    if (errorBody != null) {
+                        try {
+                            val json = JSONObject(errorBody)
+                            val errorMessage = json.getString("message")
+                            _message.value = errorMessage
+                        } catch (e: JSONException) {
+                            _message.value = response.message()
+                        }
+                    } else {
+                        _message.value = response.message()
+                    }
+                    Log.e("message", response.body()?.message.toString())
                 }
             }
 
@@ -71,6 +84,5 @@ class LoginViewModel(private val pref: Session) : ViewModel() {
                 Log.e(ContentValues.TAG, "onFailure: ${t.message}")
             }
         })
-
     }
 }

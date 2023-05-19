@@ -2,6 +2,7 @@
 <resources>
     <color name="mint_200">#B7E8D6</color>
     <color name="mint">#3EB489</color>
+    <color name="red">#FF0000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparant">#00FFFFFF</color>

@@ -47,12 +47,32 @@ class EmailEditText : AppCompatEditText, View.OnTouchListener {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!s.isNullOrEmpty() && !emailRegex.matches(s.toString())) {
                     error = resources.getString(R.string.invalid_email)
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.baseline_email_24_error, 0, 0, 0
+                    )
+                    setBackgroundResource(R.drawable.edt_bg_error)
+                } else {
+                    error = null
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.baseline_email_24, 0, 0, 0
+                    )
+                    setBackgroundResource(R.drawable.edt_bg)
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {
                 if (s?.let { isValid(it) } == false && s.isNotEmpty()) {
                     error = resources.getString(R.string.invalid_email)
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.baseline_email_24_error, 0, 0, 0
+                    )
+                    setBackgroundResource(R.drawable.edt_bg_error)
+                } else {
+                    error = null
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.baseline_email_24, 0, 0, 0
+                    )
+                    setBackgroundResource(R.drawable.edt_bg)
                 }
             }
         })
@@ -61,5 +81,6 @@ class EmailEditText : AppCompatEditText, View.OnTouchListener {
     override fun onTouch(v: View?, event: MotionEvent): Boolean {
         return false
     }
+
 
 }

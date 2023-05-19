@@ -55,10 +55,19 @@ class NameEditText : AppCompatEditText, View.OnTouchListener {
     private fun validateName(s: CharSequence?) {
         if (!s.isNullOrBlank() && s.length < 4) {
             error = resources.getString(R.string.min_name)
+            setCompoundDrawablesRelativeWithIntrinsicBounds(
+                R.drawable.baseline_person_24_error, 0, 0, 0
+            )
+            setBackgroundResource(R.drawable.edt_bg_error)
         } else {
             error = null
+            setCompoundDrawablesRelativeWithIntrinsicBounds(
+                R.drawable.baseline_person_24, 0, 0, 0
+            )
+            setBackgroundResource(R.drawable.edt_bg)
         }
     }
+
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean {
         return false
