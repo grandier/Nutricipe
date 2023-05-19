@@ -34,10 +34,11 @@
             android:name=".ui.activity.authentication.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.activity.authentication.LoginActivity"
+            android:exported="false"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

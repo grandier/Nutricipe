@@ -74,16 +74,13 @@ class LoginActivity : AppCompatActivity() {
             loginViewModel.login(emailEditText.text.toString(), passwordEditText.text.toString())
         }
 
-        loginViewModel.message.observe(this) {
-            if (it == "Invalid Password") {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        loginViewModel.message.observe(this) { message ->
+            val toastMessage = when (message) {
+                "Invalid Password" -> message
+                "Email Not Found" -> message
+                else -> message
             }
-            else if (it == "Email Not Found") {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
+            Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
         }
 
         loginViewModel.isLoading.observe(this) {
