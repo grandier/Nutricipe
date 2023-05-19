@@ -94,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
         }
-        // fadel
+        
 
         binding.tvRegister.setOnClickListener {
             val i = Intent(this, RegisterActivity::class.java)
