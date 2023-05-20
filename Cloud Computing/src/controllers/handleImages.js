@@ -11,6 +11,7 @@ async function handleUpload(req, res, next) {
         resultImage = await imgUpload.uploadToGcs(req, res, next);
         // Send a success response
         //res.status(200).json({ error: false,  message: 'success'});
+
     } catch (error) {
         // Send an error response
         res.status(500).json({ error: 'Error uploading image' });

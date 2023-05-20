@@ -5,6 +5,7 @@ const register = require('../controllers/register');
 const login = require('../controllers/login');
 const authMiddleware = require('../middleware/authMiddleware')
 const handleImages = require('../controllers/handleImages');
+const {getProfile} = require('../controllers/profile');
 
 const multer = Multer({
     storage: Multer.MemoryStorage,
@@ -14,5 +15,7 @@ const multer = Multer({
 router.post('/register', register.registerUser);
 router.post('/login', login.loginUser);
 router.post('/uploadImage', authMiddleware.authMiddleware, multer.single('image'), handleImages.handleUpload);
+
+router.get('/profile', authMiddleware.authMiddleware, getProfile);
 
 module.exports = router;
