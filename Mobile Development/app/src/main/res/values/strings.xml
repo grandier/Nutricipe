@@ -60,4 +60,6 @@
     <string name="failed_camera">Failed Camera</string>
     <string name="choose_picture">Choose Picture</string>
     <string name="fill_in">Fill In</string>
+    <string name="success_upload">Success Upload</string>
+
 </resources>

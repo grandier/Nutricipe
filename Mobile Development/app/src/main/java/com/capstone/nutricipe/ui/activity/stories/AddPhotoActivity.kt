@@ -17,12 +17,25 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
+import com.capstone.nutricipe.data.remote.api.ApiConfig
+import com.capstone.nutricipe.data.remote.model.AddImage
 import com.capstone.nutricipe.databinding.ActivityAddPhotoBinding
 import com.capstone.nutricipe.ui.activity.dataStore
+import com.capstone.nutricipe.ui.activity.recipe.RecommendedActivity
+import com.capstone.nutricipe.ui.utils.reduceFileImage
 import com.capstone.nutricipe.ui.utils.rotateBitmap
+import com.capstone.nutricipe.ui.utils.rotateFile
 import com.capstone.nutricipe.ui.utils.uriToFile
 import com.capstone.nutricipe.ui.viewmodel.AddPhotoViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 
 class AddPhotoActivity : AppCompatActivity() {
@@ -135,7 +148,7 @@ class AddPhotoActivity : AppCompatActivity() {
         }
 
         binding.findRecipe.setOnClickListener {
-            //TODO
+            findRecipe()
         }
     }
 
@@ -150,6 +163,69 @@ class AddPhotoActivity : AppCompatActivity() {
         intent.type = "image/*"
         val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
         launcherIntentGallery.launch(chooser)
+    }
+
+    private fun findRecipe() {
+        showLoading(true)
+        val file = getFile ?: run {
+            Toast.makeText(this, getString(R.string.choose_picture), Toast.LENGTH_SHORT).show()
+            return
+        }
+        reduceFileImage(file)
+        val text = binding.edDescription.text.toString().takeIf { it.isNotEmpty() } ?: " "
+        val description = text.toRequestBody("text/plain".toMediaType())
+
+        // Rotate the file before uploading
+        rotateFile(file, isBackCamera = true)
+
+        // Create a MultipartBody.Part for uploading the image
+        val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "image",
+            file.name,
+            requestImageFile
+        )
+
+        addStoryViewModel.getToken().observe(this) { token ->
+            val service = ApiConfig.getApiService()
+                .uploadImage("Bearer $token", imageMultipart)
+            service.enqueue(object : Callback<AddImage> {
+                override fun onResponse(
+                    call: Call<AddImage>,
+                    response: Response<AddImage>
+                ) {
+                    showLoading(false)
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        responseBody?.let {
+                            Toast.makeText(
+                                this@AddPhotoActivity,
+                                getString(R.string.success_upload),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            val intent = Intent(this@AddPhotoActivity, RecommendedActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@AddPhotoActivity,
+                            response.message(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<AddImage>, t: Throwable) {
+                    showLoading(false)
+                    Toast.makeText(
+                        this@AddPhotoActivity,
+                        getString(R.string.failed_retrofit),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {

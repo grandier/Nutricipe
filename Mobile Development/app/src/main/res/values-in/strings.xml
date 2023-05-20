@@ -61,4 +61,5 @@
     <string name="failed_camera">Gagal Mengambil Gambar</string>
     <string name="choose_picture">Pilih Gambar</string>
     <string name="fill_in">Isi</string>
+    <string name="success_upload">Berhasil Mengunggah Gambar</string>
 </resources>
