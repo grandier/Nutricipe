@@ -1,6 +1,7 @@
 package com.capstone.nutricipe.ui.activity.stories
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -33,6 +35,8 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -172,7 +176,9 @@ class AddPhotoActivity : AppCompatActivity() {
             return
         }
         reduceFileImage(file)
+        val text1= binding.edTitle.text.toString().takeIf { it.isNotEmpty() } ?: " "
         val text = binding.edDescription.text.toString().takeIf { it.isNotEmpty() } ?: " "
+        val title = text1.toRequestBody("text/plain".toMediaType())
         val description = text.toRequestBody("text/plain".toMediaType())
 
         // Rotate the file before uploading
@@ -187,25 +193,46 @@ class AddPhotoActivity : AppCompatActivity() {
         )
 
         addStoryViewModel.getToken().observe(this) { token ->
-            val service = ApiConfig.getApiService()
-                .uploadImage("Bearer $token", imageMultipart)
+            val service = ApiConfig.getApiService().uploadImage("Bearer $token", imageMultipart, title, description)
             service.enqueue(object : Callback<AddImage> {
-                override fun onResponse(
-                    call: Call<AddImage>,
-                    response: Response<AddImage>
-                ) {
+                override fun onResponse(call: Call<AddImage>, response: Response<AddImage>) {
                     showLoading(false)
                     if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        responseBody?.let {
+                        val addImage = response.body()
+
+                        if (addImage != null && addImage.error == false && addImage.message == "success") {
+                            val idHistory = addImage.idHistory
+
                             Toast.makeText(
                                 this@AddPhotoActivity,
                                 getString(R.string.success_upload),
                                 Toast.LENGTH_SHORT
                             ).show()
-                            val intent = Intent(this@AddPhotoActivity, RecommendedActivity::class.java)
-                            startActivity(intent)
-                            finish()
+
+                            // Save the idHistory to SharedPreferences or wherever you want
+                            // For example, using SharedPreferences:
+                            val sharedPref = getSharedPreferences("YOUR_PREF_NAME", Context.MODE_PRIVATE)
+                            sharedPref.edit().putString("idHistory", idHistory).apply()
+
+                            if (idHistory != null) {
+                                val intent = Intent(this@AddPhotoActivity, RecommendedActivity::class.java)
+                                intent.putExtra("idHistory", idHistory) // Pass idHistory as an extra
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                // Handle the case when idHistory is null
+                                Toast.makeText(
+                                    this@AddPhotoActivity,
+                                    "idHistory is null",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            Toast.makeText(
+                                this@AddPhotoActivity,
+                                "Upload failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     } else {
                         Toast.makeText(

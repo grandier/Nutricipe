@@ -25,6 +25,9 @@ class ViewModelFactory(private val pref: Session, private val context: Context) 
             modelClass.isAssignableFrom(AddPhotoViewModel::class.java) -> {
                 AddPhotoViewModel(pref) as T
             }
+            modelClass.isAssignableFrom(RecommendedViewModel::class.java) -> {
+                RecommendedViewModel(pref) as T
+            }
             else -> throw IllegalArgumentException("Unknown Viewmodel Class: " + modelClass.name)
         }
     }
