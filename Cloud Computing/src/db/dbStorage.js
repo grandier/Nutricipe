@@ -28,6 +28,7 @@ ImgUpload.uploadToGcs = (req, res, next) =>{
     
     if (!req.file) return next()
 
+
     const date = new Date()
     const gcsname = date.getTime();
     const file = bucket.file(gcsname)
@@ -44,15 +45,15 @@ ImgUpload.uploadToGcs = (req, res, next) =>{
     })
 
     stream.on('finish', () => {
-        req.file.cloudStorageObject = gcsname
-        req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
+        // req.file.cloudStorageObject = gcsname
+        // req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
         next()
     })
 
     stream.end(req.file.buffer)
     {
         const data = {
-            url: getPublicUrl(gcsname),
+            imageUrl: getPublicUrl(gcsname),
             cloudStorageObject: gcsname,
         }
         return data;
