@@ -66,7 +66,6 @@ class RecommendedActivity : AppCompatActivity() {
 
         recommendedViewModel.uploaded.observe(this) { uploaded ->
             if (uploaded != null) {
-                Log.e("uploaded", uploaded.toString())
                 binding.tvTitle.text = uploaded.title
                 binding.tvDescription.text = uploaded.description
 

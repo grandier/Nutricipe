@@ -54,7 +54,6 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
         service.enqueue(object : Callback<GetUploaded> {
             override fun onResponse(call: Call<GetUploaded>, response: Response<GetUploaded>) {
                 _isLoading.value = false
-                Log.e("TAG", "onResponse: ${response.body()?.temp}")
 
                 if (response.isSuccessful) {
                     if (response.body()?.message.equals("success")){
@@ -64,7 +63,6 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
                             _message.value = response.body()?.message.toString()
                             _acceptance.value = true
                             _uploaded.value = uploadedData
-                            Log.e("TAG", "nyoba: $uploadedData")
                         } else {
                             _message.value = "Invalid data"
                             _acceptance.value = false
