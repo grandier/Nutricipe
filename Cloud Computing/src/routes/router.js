@@ -18,6 +18,6 @@ router.post('/login', login.loginUser);
 router.post('/uploadImage', authMiddleware.authMiddleware, multer.single('image'), handleImages.handleUpload);
 
 router.get('/profile', authMiddleware.authMiddleware, getProfile);
-router.get('/getUploaded?:idHistory', authMiddleware.authMiddleware, getRecipeUploaded);
+router.post('/getUploaded', authMiddleware.authMiddleware, getRecipeUploaded);
 
 module.exports = router;

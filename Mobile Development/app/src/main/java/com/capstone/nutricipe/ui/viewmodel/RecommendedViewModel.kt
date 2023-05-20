@@ -53,7 +53,6 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
         val service = ApiConfig.getApiService().getUploaded("Bearer $token", idHistory)
         service.enqueue(object : Callback<GetUploaded> {
             override fun onResponse(call: Call<GetUploaded>, response: Response<GetUploaded>) {
-                _isLoading.value = false
 
                 if (response.isSuccessful) {
                     if (response.body()?.message.equals("success")){
@@ -63,6 +62,7 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
                             _message.value = response.body()?.message.toString()
                             _acceptance.value = true
                             _uploaded.value = uploadedData
+                            _isLoading.value = false
                         } else {
                             _message.value = "Invalid data"
                             _acceptance.value = false

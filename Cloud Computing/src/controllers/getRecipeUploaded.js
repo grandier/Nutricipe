@@ -2,7 +2,7 @@ const {getHistoryUpload} = require('../db/dbConfig');
 
 async function getRecipeUploaded(req, res) {
     try{
-        const id = req.query.idHistory;
+        const id = req.body.idHistory;
         const result = await getHistoryUpload(id);
         const temp = result.data();
         return res.status(200).json({error: false, message: 'success', temp});
