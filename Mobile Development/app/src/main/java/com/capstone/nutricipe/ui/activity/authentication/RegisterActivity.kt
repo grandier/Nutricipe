@@ -9,12 +9,11 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.databinding.ActivityRegisterBinding
-import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.dataStore
-import com.capstone.nutricipe.ui.customview.ButtonRegister
-import com.capstone.nutricipe.ui.customview.EmailEditText
-import com.capstone.nutricipe.ui.customview.NameEditText
-import com.capstone.nutricipe.ui.customview.PasswordEditText
+import com.capstone.nutricipe.ui.customview.button.ButtonRegister
+import com.capstone.nutricipe.ui.customview.text.EmailEditText
+import com.capstone.nutricipe.ui.customview.text.NameEditText
+import com.capstone.nutricipe.ui.customview.text.PasswordEditText
 import com.capstone.nutricipe.ui.viewmodel.RegisterViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
 

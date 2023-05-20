@@ -60,7 +60,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <com.capstone.nutricipe.ui.customview.EmailEditText
+            <com.capstone.nutricipe.ui.customview.text.EmailEditText
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -88,7 +88,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <com.capstone.nutricipe.ui.customview.PasswordEditText
+            <com.capstone.nutricipe.ui.customview.text.PasswordEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -105,7 +105,7 @@
                 android:textColor="@color/black" />
         </LinearLayout>
 
-        <com.capstone.nutricipe.ui.customview.ButtonLogin
+        <com.capstone.nutricipe.ui.customview.button.ButtonLogin
             android:id="@+id/login_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

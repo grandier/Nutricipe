@@ -1,17 +1,16 @@
-package com.capstone.nutricipe.ui.activity
+package com.capstone.nutricipe.ui.activity.profile
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
-import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
-import com.capstone.nutricipe.databinding.ActivityAddPhotoBinding
 import com.capstone.nutricipe.databinding.ActivityProfileBinding
 import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
-import com.capstone.nutricipe.ui.viewmodel.MainViewModel
 import com.capstone.nutricipe.ui.viewmodel.ProfileViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
+import androidx.lifecycle.ViewModelProvider
+import com.capstone.nutricipe.ui.activity.dataStore
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -37,6 +36,23 @@ class ProfileActivity : AppCompatActivity() {
         binding.logout.setOnClickListener {
             logout();
         }
+
+        profileViewModel.getToken().observe(this) { token ->
+            if (token.isNotEmpty()) {
+                profileViewModel.getProfile(token)
+            } else {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        profileViewModel.profile.observe(this) { profile ->
+            if (profile != null) {
+                binding.tvEmail.text = profile.email
+                binding.tvName.text = profile.name
+            }
+        }
     }
 
     fun logout() {
@@ -45,4 +61,5 @@ class ProfileActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
 }

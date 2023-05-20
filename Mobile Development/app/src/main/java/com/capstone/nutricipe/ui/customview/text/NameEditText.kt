@@ -1,4 +1,4 @@
-package com.capstone.nutricipe.ui.customview
+package com.capstone.nutricipe.ui.customview.text
 
 import android.content.Context
 import android.graphics.Canvas

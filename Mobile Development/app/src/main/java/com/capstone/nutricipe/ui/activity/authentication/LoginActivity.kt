@@ -3,19 +3,17 @@ package com.capstone.nutricipe.ui.activity.authentication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
-import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.databinding.ActivityLoginBinding
 import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.dataStore
-import com.capstone.nutricipe.ui.customview.ButtonLogin
-import com.capstone.nutricipe.ui.customview.EmailEditText
-import com.capstone.nutricipe.ui.customview.PasswordEditText
+import com.capstone.nutricipe.ui.customview.button.ButtonLogin
+import com.capstone.nutricipe.ui.customview.text.EmailEditText
+import com.capstone.nutricipe.ui.customview.text.PasswordEditText
 import com.capstone.nutricipe.ui.viewmodel.LoginViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
 
