@@ -29,4 +29,12 @@ interface ApiService {
     fun getProfile(
         @Header("Authorization") token: String
     ): Call<Profile>
+
+//    @Multipart
+//    @POST("uploadImage")
+//    fun uploadImage(
+//        @Header("Authorization") token: String,
+//        @Part file: MultipartBody.Part,
+//    ): Call<AddPhoto>
+
 }

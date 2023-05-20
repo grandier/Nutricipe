@@ -15,6 +15,7 @@ import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.databinding.ActivityMainBinding
 import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 import com.capstone.nutricipe.ui.activity.profile.ProfileActivity
+import com.capstone.nutricipe.ui.activity.stories.AddPhotoActivity
 import com.capstone.nutricipe.ui.viewmodel.MainViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
 

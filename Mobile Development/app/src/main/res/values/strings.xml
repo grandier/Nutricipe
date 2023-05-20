@@ -25,7 +25,7 @@
     <string name="email_hint">name@email.com</string>
     <string name="password_hint">12345678</string>
     <string name="name_hint">Insert Your Full Name</string>
-    <string name="login_error_email">Error Login</string>
+    <string name="login_error">Error Login</string>
 
     <!-- Add Photo -->
     <string name="add_photo">Add Photo</string>
@@ -53,4 +53,11 @@
     <string name="ingredient_recipe">Ingredient &amp; Recipe</string>
     <string name="todo">TODO</string>
     <string name="title_ingredient">Title</string>
+
+    <!-- Camera -->
+    <string name="camera_x">Camera X</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="failed_camera">Failed Camera</string>
+    <string name="choose_picture">Choose Picture</string>
+    <string name="fill_in">Fill In</string>
 </resources>
