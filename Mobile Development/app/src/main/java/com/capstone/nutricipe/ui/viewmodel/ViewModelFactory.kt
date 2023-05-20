@@ -22,6 +22,9 @@ class ViewModelFactory(private val pref: Session, private val context: Context) 
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
                 ProfileViewModel(pref) as T
             }
+            modelClass.isAssignableFrom(AddPhotoViewModel::class.java) -> {
+                AddPhotoViewModel(pref) as T
+            }
             else -> throw IllegalArgumentException("Unknown Viewmodel Class: " + modelClass.name)
         }
     }

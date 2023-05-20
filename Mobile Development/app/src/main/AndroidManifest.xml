@@ -25,7 +25,7 @@
             android:name=".ui.activity.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.ProfileActivity"
+            android:name=".ui.activity.profile.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.AddPhotoActivity"
