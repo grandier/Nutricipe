@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import coil.Coil
+import coil.request.ImageRequest
 import com.bumptech.glide.Glide
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
@@ -66,12 +68,21 @@ class RecommendedActivity : AppCompatActivity() {
 
         recommendedViewModel.uploaded.observe(this) { uploaded ->
             if (uploaded != null) {
+                Log.e("uploaded", uploaded.toString())
                 binding.tvTitle.text = uploaded.title
                 binding.tvDescription.text = uploaded.description
 
-                Glide.with(this)
-                    .load(uploaded.imageUrl)
-                    .into(binding.previewImageView)
+                showLoading(true) // Set isLoading to true before starting image loading
+
+                val request = ImageRequest.Builder(this)
+                    .data(uploaded.imageUrl)
+                    .target { drawable ->
+                        binding.previewImageView.setImageDrawable(drawable)
+                        showLoading(false) // Set isLoading to false when image loading is completed
+                    }
+                    .build()
+
+                Coil.imageLoader(this).enqueue(request)
             }
         }
 
@@ -79,9 +90,9 @@ class RecommendedActivity : AppCompatActivity() {
 
     private fun showLoading(state: Boolean) {
         if (state) {
-            binding.progressBar.visibility = View.VISIBLE
+            binding.progressBar2.visibility = View.VISIBLE
         } else {
-            binding.progressBar.visibility = View.GONE
+            binding.progressBar2.visibility = View.GONE
         }
     }
 }
