@@ -1,4 +1,4 @@
-package com.capstone.nutricipe.ui.customview
+package com.capstone.nutricipe.ui.customview.text
 
 import android.content.Context
 import android.graphics.Canvas
@@ -49,16 +49,37 @@ class PasswordEditText : AppCompatEditText, View.OnTouchListener {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!s.isNullOrEmpty() && s.length < 8) {
                     error = resources.getString(R.string.password_min_length)
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.baseline_lock_24_error, 0, 0, 0
+                    )
+                    setBackgroundResource(R.drawable.edt_bg_error)
+                } else {
+                    error = null
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.baseline_lock_24, 0, 0, 0
+                    )
+                    setBackgroundResource(R.drawable.edt_bg)
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {
                 if (s?.let { isValid(it) } == false && s.isNotEmpty()) {
                     error = resources.getString(R.string.password_min_length)
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.baseline_lock_24_error, 0, 0, 0
+                    )
+                    setBackgroundResource(R.drawable.edt_bg_error)
+                } else {
+                    error = null
+                    setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.baseline_lock_24, 0, 0, 0
+                    )
+                    setBackgroundResource(R.drawable.edt_bg)
                 }
             }
         })
     }
+
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean {
         return false

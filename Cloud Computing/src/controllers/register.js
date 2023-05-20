@@ -23,10 +23,10 @@ async function registerUser(req, res) {
         if(!result.id) {
             return res.status(500).json({error: true, message: 'add data failed'});
         }
-        return res.status(200).json({error: false, message: 'User added successfully', data: result});
+        return res.status(200).json({error: false, message: 'User added successfully'});
     }
     catch(error) {
-        return res.status(500).json({error: true, message: 'Internal Server Error', data: error});
+        return res.status(500).json({error: true, message: 'Internal Server Error'});
     }
 }
 

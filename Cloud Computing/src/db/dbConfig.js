@@ -45,8 +45,48 @@ async function checkEmail(email) {
     }
 }
 
+async function checkUser(id) {
+    try {
+        const result = await db.collection('users').doc(id).get();
+        if(result.empty) {
+            return res.status(404).json({error: true, message: 'User Not Found'});
+        }
+        return result;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+async function saveHistory(data) {
+    try {
+        const res = await db.collection('history').add(data);
+        return res;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+async function getHistoryUpload(id){
+    try{
+        const snapshot = await db.collection('history').doc(id).get();
+        if(snapshot.empty) {
+            return res.status(404).json({error: true, message: 'Not Found'});
+        }
+        return snapshot;
+    }
+    catch(error){
+        return error;
+    }
+}
+
+
 module.exports = {
     addUser,
     readUser,
-    checkEmail
+    checkEmail,
+    checkUser,
+    saveHistory,
+    getHistoryUpload
 }

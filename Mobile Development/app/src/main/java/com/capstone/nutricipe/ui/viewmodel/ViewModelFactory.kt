@@ -10,11 +10,23 @@ class ViewModelFactory(private val pref: Session, private val context: Context) 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                MainViewModel(pref) as T
+            }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(pref) as T
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(AddPhotoViewModel::class.java) -> {
+                AddPhotoViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(RecommendedViewModel::class.java) -> {
+                RecommendedViewModel(pref) as T
             }
             else -> throw IllegalArgumentException("Unknown Viewmodel Class: " + modelClass.name)
         }
