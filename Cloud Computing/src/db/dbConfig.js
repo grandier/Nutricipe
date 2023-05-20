@@ -58,9 +58,21 @@ async function checkUser(id) {
     }
 }
 
+async function saveHistory(data) {
+    try {
+        const res = await db.collection('history').add(data);
+        return res;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+
 module.exports = {
     addUser,
     readUser,
     checkEmail,
-    checkUser
+    checkUser,
+    saveHistory
 }
