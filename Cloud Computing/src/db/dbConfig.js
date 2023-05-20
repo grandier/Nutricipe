@@ -45,8 +45,22 @@ async function checkEmail(email) {
     }
 }
 
+async function checkUser(id) {
+    try {
+        const result = await db.collection('users').doc(id).get();
+        if(result.empty) {
+            return res.status(404).json({error: true, message: 'User Not Found'});
+        }
+        return result;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
 module.exports = {
     addUser,
     readUser,
-    checkEmail
+    checkEmail,
+    checkUser
 }
