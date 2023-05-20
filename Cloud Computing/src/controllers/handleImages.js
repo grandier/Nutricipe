@@ -38,10 +38,12 @@ async function handleUpload(req, res, next) {
         }
     }
     const saveData = await saveHistory(data);
+    console.log(data);
     if(saveData.error) {
         return res.status(500).json({ error: true, message: 'Internal Server Error'});
     }
     return res.status(200).json({ error: false, message: 'success', idHistory: saveData.id});
+    console.log(saveData.id);
 }
 
 module.exports = {

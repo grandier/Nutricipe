@@ -7,7 +7,7 @@
     android:paddingStart="16dp"
     android:paddingTop="16dp"
     android:paddingEnd="16dp"
-    tools:context=".ui.activity.AddPhotoActivity">
+    tools:context=".ui.activity.stories.AddPhotoActivity">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -30,6 +30,15 @@
         android:textSize="28sp"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_exit_to_app_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/profile" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"

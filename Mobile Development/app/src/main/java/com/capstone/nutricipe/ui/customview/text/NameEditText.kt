@@ -1,8 +1,9 @@
-package com.capstone.nutricipe.ui.customview
+package com.capstone.nutricipe.ui.customview.text
 
 import android.content.Context
 import android.graphics.Canvas
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -10,7 +11,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import com.capstone.nutricipe.R
 
-class EmailEditText : AppCompatEditText, View.OnTouchListener {
+class NameEditText : AppCompatEditText, View.OnTouchListener {
 
     constructor(context: Context) : super(context) {
         init()
@@ -26,15 +27,12 @@ class EmailEditText : AppCompatEditText, View.OnTouchListener {
         init()
     }
 
-    private val emailRegex: Regex = Regex("^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+\$")
-
-    private fun isValid(s: CharSequence): Boolean {
-        return emailRegex.matches(s)
-    }
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "email@email.com"
+        hint = resources.getString(R.string.hint_name)
+        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+        maxLines = 1
+        inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
     }
 
     private fun init() {
@@ -45,21 +43,33 @@ class EmailEditText : AppCompatEditText, View.OnTouchListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.isNullOrEmpty() && !emailRegex.matches(s.toString())) {
-                    error = resources.getString(R.string.invalid_email)
-                }
+                validateName(s)
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if (s?.let { isValid(it) } == false && s.isNotEmpty()) {
-                    error = resources.getString(R.string.invalid_email)
-                }
+                validateName(s)
             }
         })
     }
 
+    private fun validateName(s: CharSequence?) {
+        if (!s.isNullOrBlank() && s.length < 4) {
+            error = resources.getString(R.string.min_name)
+            setCompoundDrawablesRelativeWithIntrinsicBounds(
+                R.drawable.baseline_person_24_error, 0, 0, 0
+            )
+            setBackgroundResource(R.drawable.edt_bg_error)
+        } else {
+            error = null
+            setCompoundDrawablesRelativeWithIntrinsicBounds(
+                R.drawable.baseline_person_24, 0, 0, 0
+            )
+            setBackgroundResource(R.drawable.edt_bg)
+        }
+    }
+
+
     override fun onTouch(v: View?, event: MotionEvent): Boolean {
         return false
     }
-
 }
