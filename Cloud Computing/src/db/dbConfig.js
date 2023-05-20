@@ -58,9 +58,35 @@ async function checkUser(id) {
     }
 }
 
+async function saveHistory(data) {
+    try {
+        const res = await db.collection('history').add(data);
+        return res;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+async function getHistoryUpload(id){
+    try{
+        const snapshot = await db.collection('history').doc(id).get();
+        if(snapshot.empty) {
+            return res.status(404).json({error: true, message: 'Not Found'});
+        }
+        return snapshot;
+    }
+    catch(error){
+        return error;
+    }
+}
+
+
 module.exports = {
     addUser,
     readUser,
     checkEmail,
-    checkUser
+    checkUser,
+    saveHistory,
+    getHistoryUpload
 }
