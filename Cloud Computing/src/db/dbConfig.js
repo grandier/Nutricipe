@@ -109,8 +109,11 @@ async function readHistory(req) {
       const historyList = [];
       snapshot.forEach((doc) => {
         const historyData = doc.data();
+        // Add the document ID to the historyData object
+        historyData.id = doc.id;
         historyList.push(historyData);
       });
+  
       const list = historyList.slice(start, start + size);
       return list;
     } catch (error) {
@@ -120,7 +123,7 @@ async function readHistory(req) {
       };
     }
   }
-
+  
 
 module.exports = {
     addUser,
