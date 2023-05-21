@@ -81,6 +81,19 @@ async function getHistoryUpload(id){
     }
 }
 
+async function editName(id, name) {
+    try {
+        const res = await db.collection('users').doc(id).update(name);
+        if(res.empty) {
+            return res.status(400).json({error: true, message: 'Update failed, please try again'});
+        }
+        return res;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
 
 module.exports = {
     addUser,
@@ -88,5 +101,6 @@ module.exports = {
     checkEmail,
     checkUser,
     saveHistory,
-    getHistoryUpload
+    getHistoryUpload,
+    editName
 }
