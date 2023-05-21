@@ -86,6 +86,38 @@ class ProfileViewModel(private val pref: Session) :
             })
     }
 
+    fun updateProfile(token: String, newName: String){
+        _isLoading.value = true
+        ApiConfig.getApiService().updateName("Bearer $token", newName)
+            .enqueue(object : Callback<Profile> {
+                override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
+                    if (response.isSuccessful) {
+                        // Handle the successful response
+                        val updatedProfile = response.body()?.data
+                        if (updatedProfile != null) {
+                            // Update the name in the UI and ViewModel
+                            _profile.value = updatedProfile
+                            _message.value = response.body()?.message.toString()
+                        }
+                    } else {
+                        // Handle the error response
+                        // Show an error message or perform error handling
+                        val errorBody = response.errorBody()?.string()
+                        val errorMessage =
+                            if (errorBody != null) JSONObject(errorBody).getString("message") else response.message()
+                        _message.value = errorMessage
+                    }
+                    _isLoading.value = false
+                }
+                override fun onFailure(call: Call<Profile>, t: Throwable) {
+                    // Handle the failure case
+                    // Show an error message or perform error handling
+                    _isLoading.value = false
+                    _message.value = t.message
+                }
+            })
+    }
+
     private fun clearToken() {
         viewModelScope.launch {
             pref.clearToken()

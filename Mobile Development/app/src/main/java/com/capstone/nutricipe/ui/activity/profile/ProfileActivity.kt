@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
 import com.capstone.nutricipe.data.local.Session
@@ -71,6 +72,16 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
+        profileViewModel.isLoading.observe(this) { isLoading ->
+            showLoading(isLoading)
+        }
+
+        profileViewModel.message.observe(this) {
+            if (it.isNotEmpty()) {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
         binding.editButton.setOnClickListener {
             val dialogBinding = DialogRenameBinding.inflate(layoutInflater)
             val dialogView = dialogBinding.root
@@ -87,30 +98,7 @@ class ProfileActivity : AppCompatActivity() {
 
                 profileViewModel.getToken().observe(this) { token ->
                     if (token.isNotEmpty()) {
-                        showLoading(true)
-                        ApiConfig.getApiService().updateName("Bearer $token", newName)
-                            .enqueue(object : Callback<Profile> {
-                                override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
-                                    if (response.isSuccessful) {
-                                        // Handle the successful response
-                                        val updatedProfile = response.body()?.data
-                                        if (updatedProfile != null) {
-                                            // Update the name in the UI and ViewModel
-                                            binding.tvName.text = updatedProfile.name
-                                        }
-                                    } else {
-                                        // Handle the error response
-                                        // Show an error message or perform error handling
-                                    }
-                                    showLoading(false)
-                                }
-
-                                override fun onFailure(call: Call<Profile>, t: Throwable) {
-                                    // Handle the failure case
-                                    // Show an error message or perform error handling
-                                    showLoading(false)
-                                }
-                            })
+                        profileViewModel.updateProfile(token, newName)
                     } else {
                         val intent = Intent(this, LoginActivity::class.java)
                         startActivity(intent)
