@@ -74,7 +74,11 @@ async function getHistoryUpload(id){
         if(snapshot.empty) {
             return res.status(404).json({error: true, message: 'Not Found'});
         }
-        return snapshot;
+        console.log(snapshot.data())
+        const result = [];
+        const temp = snapshot.data();
+        result.push(temp);
+        return result;
     }
     catch(error){
         return error;
@@ -109,8 +113,11 @@ async function readHistory(req) {
       const historyList = [];
       snapshot.forEach((doc) => {
         const historyData = doc.data();
+        // Add the document ID to the historyData object
+        historyData.id = doc.id;
         historyList.push(historyData);
       });
+  
       const list = historyList.slice(start, start + size);
       return list;
     } catch (error) {
@@ -120,7 +127,7 @@ async function readHistory(req) {
       };
     }
   }
-
+  
 
 module.exports = {
     addUser,
