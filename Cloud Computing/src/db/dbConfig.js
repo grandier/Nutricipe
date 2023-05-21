@@ -74,7 +74,6 @@ async function getHistoryUpload(id){
         if(snapshot.empty) {
             return res.status(404).json({error: true, message: 'Not Found'});
         }
-        console.log(snapshot.data())
         const result = [];
         const temp = snapshot.data();
         result.push(temp);
