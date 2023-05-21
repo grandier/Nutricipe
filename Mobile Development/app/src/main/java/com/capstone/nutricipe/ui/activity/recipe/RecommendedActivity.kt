@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.data.remote.api.ApiConfig
+import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.ActivityProfileBinding
 import com.capstone.nutricipe.databinding.ActivityRecommendedBinding
 import com.capstone.nutricipe.databinding.ActivitySplashBinding
@@ -35,14 +36,14 @@ class RecommendedActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val idHistory = intent.getStringExtra("idHistory")
+        val recommendedHistory = intent.getParcelableExtra<ResultItem>("Photo")
 
-        // Uji Coba Doang
+
         binding.btnBack.setOnClickListener {
+            onBackPressed()
             finish()
         }
-
         val pref = Session.getInstance(dataStore)
-
         recommendedViewModel = ViewModelProvider(
             this, ViewModelFactory(pref, this)
         )[RecommendedViewModel::class.java]
@@ -55,9 +56,15 @@ class RecommendedActivity : AppCompatActivity() {
             if (token.isNotEmpty()) {
                 if (!idHistory.isNullOrEmpty()) {
                     recommendedViewModel.getUploaded(token, idHistory)
+                } else if (recommendedHistory != null) {
+                    binding.tvTitle.text = recommendedHistory.title
+                    binding.tvDescription.text = recommendedHistory.description
+                    Glide.with(this)
+                        .load(recommendedHistory.imageUrl)
+                        .into(binding.previewImageView)
                 } else {
-                    // Handle the case where idHistory is not available
-                    Toast.makeText(this, "idHistory is not available", Toast.LENGTH_SHORT).show()
+                    // Handle the case where both idHistory and recommendedHistory are not available
+                    Toast.makeText(this, "No data available", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 val intent = Intent(this, LoginActivity::class.java)
@@ -68,23 +75,28 @@ class RecommendedActivity : AppCompatActivity() {
 
         recommendedViewModel.uploaded.observe(this) { uploaded ->
             if (uploaded != null) {
-                binding.tvTitle.text = uploaded.title
-                binding.tvDescription.text = uploaded.description
-
-                showLoading(true) // Set isLoading to true before starting image loading
-
-                val request = ImageRequest.Builder(this)
-                    .data(uploaded.imageUrl)
-                    .target { drawable ->
-                        binding.previewImageView.setImageDrawable(drawable)
-                        showLoading(false) // Set isLoading to false when image loading is completed
-                    }
-                    .build()
-
-                Coil.imageLoader(this).enqueue(request)
+                bindRecommendedData(uploaded)
             }
         }
     }
+
+    private fun bindRecommendedData(recommendedData: ResultItem) {
+        binding.tvTitle.text = recommendedData.title
+        binding.tvDescription.text = recommendedData.description
+
+        showLoading(true) // Set isLoading to true before starting image loading
+
+        val request = ImageRequest.Builder(this)
+            .data(recommendedData.imageUrl)
+            .target { drawable ->
+                binding.previewImageView.setImageDrawable(drawable)
+                showLoading(false) // Set isLoading to false when image loading is completed
+            }
+            .build()
+
+        Coil.imageLoader(this).enqueue(request)
+    }
+
 
     private fun showLoading(state: Boolean) {
         if (state) {

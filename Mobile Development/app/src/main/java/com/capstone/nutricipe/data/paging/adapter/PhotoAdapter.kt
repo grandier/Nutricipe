@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.CardHistoryBinding
 import com.capstone.nutricipe.ui.activity.profile.ProfileActivity
+import com.capstone.nutricipe.ui.activity.recipe.RecommendedActivity
 
 class PhotoAdapter :
     PagingDataAdapter<ResultItem, PhotoAdapter.ListViewHolder>(DIFF_CALLBACK) {
@@ -43,8 +44,8 @@ class PhotoAdapter :
             Glide.with(itemView.context).load(photo.imageUrl).into(photoView)
 
             itemView.setOnClickListener {
-//                val intent = Intent(itemView.context, ProfileActivity::class.java)
-//                intent.putExtra("Story", stories)
+                val intent = Intent(itemView.context, RecommendedActivity::class.java)
+                intent.putExtra("Photo", photo) //
 //
 //
 //                val optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -52,8 +53,7 @@ class PhotoAdapter :
 //                    Pair.create(photo, "profile"),
 //                    Pair.create(name, "name"),
 //                )
-//                itemView.context.startActivity(intent, optionsCompat.toBundle())
-                Toast.makeText(itemView.context, "${itemView.context}", Toast.LENGTH_SHORT).show()
+                itemView.context.startActivity(intent)
             }
         }
     }
