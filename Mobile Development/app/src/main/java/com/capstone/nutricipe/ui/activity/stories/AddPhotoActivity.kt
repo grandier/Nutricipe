@@ -124,6 +124,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
         binding.btnBack.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
         binding.edDescription.addTextChangedListener(object : TextWatcher {
