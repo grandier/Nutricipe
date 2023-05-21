@@ -94,6 +94,25 @@ async function editName(id, name) {
     }
 }
 
+async function readHistory(req) {
+    try {
+      const id = req.userId;
+      const page = req.query.page;
+      const size = parseInt(req.query.size)
+      const start = (page - 1) * size;
+      console.log(id, page, size, start);
+  
+      const snapshot = await db.collection('history')
+        .orderBy('createdAt')
+        .where('owner', '==', id)
+        .limit(size)
+        .get();
+      return snapshot;
+    } catch (error) {
+      return error;
+    }
+  }
+
 
 module.exports = {
     addUser,
@@ -102,5 +121,6 @@ module.exports = {
     checkUser,
     saveHistory,
     getHistoryUpload,
-    editName
+    editName,
+    readHistory
 }
