@@ -76,6 +76,7 @@ async function getHistoryUpload(id){
         }
         const result = [];
         const temp = snapshot.data();
+        temp.id = snapshot.id;
         result.push(temp);
         return result;
     }
