@@ -68,7 +68,6 @@ class RecommendedActivity : AppCompatActivity() {
 
         recommendedViewModel.uploaded.observe(this) { uploaded ->
             if (uploaded != null) {
-                Log.e("uploaded", uploaded.toString())
                 binding.tvTitle.text = uploaded.title
                 binding.tvDescription.text = uploaded.description
 
@@ -85,7 +84,6 @@ class RecommendedActivity : AppCompatActivity() {
                 Coil.imageLoader(this).enqueue(request)
             }
         }
-
     }
 
     private fun showLoading(state: Boolean) {
