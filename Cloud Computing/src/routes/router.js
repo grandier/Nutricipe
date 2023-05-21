@@ -7,6 +7,7 @@ const authMiddleware = require('../middleware/authMiddleware')
 const handleImages = require('../controllers/handleImages');
 const {getProfile} = require('../controllers/profile');
 const {getRecipeUploaded} = require('../controllers/getRecipeUploaded');
+const {updateName} = require('../controllers/updateName');
 
 const multer = Multer({
     storage: Multer.MemoryStorage,
@@ -19,5 +20,8 @@ router.post('/uploadImage', authMiddleware.authMiddleware, multer.single('image'
 
 router.get('/profile', authMiddleware.authMiddleware, getProfile);
 router.post('/getUploaded', authMiddleware.authMiddleware, getRecipeUploaded);
+
+
+router.put('/updateName',authMiddleware.authMiddleware, updateName)
 
 module.exports = router;
