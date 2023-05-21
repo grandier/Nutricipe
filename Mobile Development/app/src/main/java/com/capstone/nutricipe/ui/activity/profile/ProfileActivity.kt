@@ -3,6 +3,7 @@ package com.capstone.nutricipe.ui.activity.profile
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -17,7 +18,10 @@ import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 import com.capstone.nutricipe.ui.viewmodel.ProfileViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.nutricipe.R
+import com.capstone.nutricipe.data.paging.adapter.LoadingStateAdapter
+import com.capstone.nutricipe.data.paging.adapter.PhotoAdapter
 import com.capstone.nutricipe.data.remote.api.ApiConfig
 import com.capstone.nutricipe.data.remote.model.AddImage
 import com.capstone.nutricipe.data.remote.model.Profile
@@ -58,6 +62,7 @@ class ProfileActivity : AppCompatActivity() {
         profileViewModel.getToken().observe(this) { token ->
             if (token.isNotEmpty()) {
                 profileViewModel.getProfile(token)
+                getPhotoPage(token)
             } else {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
@@ -125,6 +130,22 @@ class ProfileActivity : AppCompatActivity() {
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
     }
+
+    private fun getPhotoPage(token: String) {
+        val adapter = PhotoAdapter()
+        binding.rvHistory.layoutManager =
+            LinearLayoutManager(this@ProfileActivity) // Set the LinearLayoutManager
+        binding.rvHistory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+        profileViewModel.getPhoto(token)
+            .observe(this) { photoData ->
+                adapter.submitData(lifecycle, photoData)
+            }
+    }
+
 
     fun logout() {
         profileViewModel.logout()

@@ -6,17 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.bumptech.glide.Glide.init
 import com.capstone.nutricipe.data.local.Session
+import com.capstone.nutricipe.data.paging.PhotoRepository
 import com.capstone.nutricipe.data.remote.api.ApiConfig
 import com.capstone.nutricipe.data.remote.model.Data
 import com.capstone.nutricipe.data.remote.model.Profile
+import com.capstone.nutricipe.data.remote.model.ResultItem
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileViewModel(private val pref: Session) :
+class ProfileViewModel(private val pref: Session, private val photoRepository: PhotoRepository) :
     ViewModel() {
 
     fun getToken(): LiveData<String> {
@@ -117,6 +122,11 @@ class ProfileViewModel(private val pref: Session) :
                 }
             })
     }
+
+    fun getPhoto(token: String): LiveData<PagingData<ResultItem>> {
+        return photoRepository.getPhoto(token).cachedIn(viewModelScope)
+    }
+
 
     private fun clearToken() {
         viewModelScope.launch {

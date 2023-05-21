@@ -10,8 +10,11 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
+import com.capstone.nutricipe.data.paging.adapter.LoadingStateAdapter
+import com.capstone.nutricipe.data.paging.adapter.PhotoAdapter
 import com.capstone.nutricipe.databinding.ActivityMainBinding
 import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 import com.capstone.nutricipe.ui.activity.profile.ProfileActivity
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.getToken().observe(this) { token: String ->
             if (token.isNotEmpty()) {
-                //TODO
+                getPhotoPage(token)
 
             } else if (token.isEmpty()) {
                 val intent = Intent(this, LoginActivity::class.java)
@@ -87,6 +90,21 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.progressBar.visibility = View.GONE
         }
+    }
+
+    private fun getPhotoPage(token: String) {
+        val adapter = PhotoAdapter()
+        binding.rvHistory.layoutManager =
+            LinearLayoutManager(this@MainActivity) // Set the LinearLayoutManager
+        binding.rvHistory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+        mainViewModel.getPhoto(token)
+            .observe(this) { photoData ->
+                adapter.submitData(lifecycle, photoData)
+            }
     }
 
     override fun onBackPressed() {
