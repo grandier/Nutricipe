@@ -98,18 +98,26 @@ async function readHistory(req) {
     try {
       const id = req.userId;
       const page = req.query.page;
-      const size = parseInt(req.query.size)
+      const size = parseInt(req.query.size);
       const start = (page - 1) * size;
-      console.log(id, page, size, start);
   
-      const snapshot = await db.collection('history')
-        .orderBy('createdAt')
-        .where('owner', '==', id)
-        .limit(size)
+      const snapshot = await db.collection("history")
+        .where("owner", "==", id)
+        .orderBy("createdAt", "desc")
         .get();
-      return snapshot;
+  
+      const historyList = [];
+      snapshot.forEach((doc) => {
+        const historyData = doc.data();
+        historyList.push(historyData);
+      });
+      const list = historyList.slice(start, start + size);
+      return list;
     } catch (error) {
-      return error;
+      return {
+        error: true,
+        message: 'Internal server error',
+      };
     }
   }
 
