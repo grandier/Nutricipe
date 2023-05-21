@@ -48,4 +48,11 @@ interface ApiService {
         @Field("idHistory") idHistory: String
     ): Call<GetUploaded>
 
+    @FormUrlEncoded
+    @PUT("updateName")
+    fun updateName(
+        @Header("Authorization") token: String,
+        @Field("name") name: String
+    ): Call<Profile>
+
 }
