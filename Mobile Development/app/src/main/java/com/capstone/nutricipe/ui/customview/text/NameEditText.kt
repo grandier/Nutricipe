@@ -32,7 +32,6 @@ class NameEditText : AppCompatEditText, View.OnTouchListener {
         hint = resources.getString(R.string.hint_name)
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
         maxLines = 1
-        inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
     }
 
     private fun init() {

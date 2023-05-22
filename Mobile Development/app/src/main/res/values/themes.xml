@@ -10,10 +10,10 @@
         <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
     </style>
 
-    <style name="Theme.Nutricipe" parent="Base.Theme.Nutricipe" />
+    <style name="Theme.Nutricipe" parent="Base.Theme.Nutricipe"/>
 
     <style name="roundedImageStyle" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>

@@ -13,10 +13,6 @@ class SharedPreference(context: Context) {
         editor = sharedPref.edit()
     }
 
-    fun put (key: String, value: String){
-        editor.putString(key, value).apply()
-    }
-
     fun getString(key: String): String?{
         return sharedPref.getString(key, null)
     }
@@ -29,7 +25,4 @@ class SharedPreference(context: Context) {
         return sharedPref.getBoolean(key, false)
     }
 
-    fun clearAll(){
-        editor.clear().apply()
-    }
 }
