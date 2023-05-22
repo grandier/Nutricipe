@@ -61,5 +61,7 @@
     <string name="choose_picture">Choose Picture</string>
     <string name="fill_in">Fill In</string>
     <string name="success_upload">Success Upload</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
