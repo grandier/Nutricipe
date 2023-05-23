@@ -48,8 +48,8 @@ async function checkEmail(email) {
 async function checkUser(id) {
     try {
         const result = await db.collection('users').doc(id).get();
-        if(result.empty) {
-            return res.status(404).json({error: true, message: 'User Not Found'});
+        if (result.empty) {
+            return res.status(404).json({ error: true, message: 'User Not Found' });
         }
         return result;
     }
@@ -68,11 +68,11 @@ async function saveHistory(data) {
     }
 }
 
-async function getHistoryUpload(id){
-    try{
+async function getHistoryUpload(id) {
+    try {
         const snapshot = await db.collection('history').doc(id).get();
-        if(snapshot.empty) {
-            return res.status(404).json({error: true, message: 'Not Found'});
+        if (snapshot.empty) {
+            return res.status(404).json({ error: true, message: 'Not Found' });
         }
         const result = [];
         const temp = snapshot.data();
@@ -80,7 +80,7 @@ async function getHistoryUpload(id){
         result.push(temp);
         return result;
     }
-    catch(error){
+    catch (error) {
         return error;
     }
 }
@@ -88,8 +88,8 @@ async function getHistoryUpload(id){
 async function editName(id, name) {
     try {
         const res = await db.collection('users').doc(id).update(name);
-        if(res.empty) {
-            return res.status(400).json({error: true, message: 'Update failed, please try again'});
+        if (res.empty) {
+            return res.status(400).json({ error: true, message: 'Update failed, please try again' });
         }
         return res;
     }
@@ -100,34 +100,46 @@ async function editName(id, name) {
 
 async function readHistory(req) {
     try {
-      const id = req.userId;
-      const page = req.query.page;
-      const size = parseInt(req.query.size);
-      const start = (page - 1) * size;
-  
-      const snapshot = await db.collection("history")
-        .where("owner", "==", id)
-        .orderBy("createdAt", "desc")
-        .get();
-  
-      const historyList = [];
-      snapshot.forEach((doc) => {
-        const historyData = doc.data();
-        // Add the document ID to the historyData object
-        historyData.id = doc.id;
-        historyList.push(historyData);
-      });
-  
-      const list = historyList.slice(start, start + size);
-      return list;
+        const id = req.userId;
+        const page = req.query.page;
+        const size = parseInt(req.query.size);
+        const start = (page - 1) * size;
+
+        const snapshot = await db.collection("history")
+            .where("owner", "==", id)
+            .orderBy("createdAt", "desc")
+            .get();
+
+        const historyList = [];
+        snapshot.forEach((doc) => {
+            const historyData = doc.data();
+            // Add the document ID to the historyData object
+            historyData.id = doc.id;
+            historyList.push(historyData);
+        });
+
+        const list = historyList.slice(start, start + size);
+        return list;
     } catch (error) {
-      return {
-        error: true,
-        message: 'Internal server error',
-      };
+        return {
+            error: true,
+            message: 'Internal server error',
+        };
     }
-  }
-  
+
+
+}
+async function deleteHistory(req) {
+    try {
+        const id = req.userId;
+        const res = await db.collection('history').doc(id).where("owner", "==", id).delete();
+        return res;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
 
 module.exports = {
     addUser,
@@ -137,5 +149,6 @@ module.exports = {
     saveHistory,
     getHistoryUpload,
     editName,
-    readHistory
+    readHistory,
+    deleteHistory
 }
