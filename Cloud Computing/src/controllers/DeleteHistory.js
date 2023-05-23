@@ -2,8 +2,7 @@ const { deleteHistory } = require('../db/dbConfig.js');
 
 async function DeleteHistory(req, res) {
     try {
-        const id = req.body.idHistory;
-        const result = await deleteHistory(id);
+        const result = await deleteHistory(req);
         if (result.empty) {
             return res.status(404).json({ error: true, message: 'Not Found' });
         }

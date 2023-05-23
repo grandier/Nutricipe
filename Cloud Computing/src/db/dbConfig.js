@@ -131,8 +131,8 @@ async function readHistory(req) {
 }
 async function deleteHistory(req) {
     try {
-        const id = req.userId;
-        const res = await db.collection('history').doc(id).where("owner", "==", id).delete();
+        const idHistory = req.body.idHistory;
+        const res = await db.collection('history').doc(idHistory).delete();
         return res;
     }
     catch (error) {
