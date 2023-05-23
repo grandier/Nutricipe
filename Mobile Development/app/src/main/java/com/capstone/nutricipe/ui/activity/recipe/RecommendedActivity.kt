@@ -123,11 +123,6 @@ class RecommendedActivity : AppCompatActivity() {
 
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.menu_edit -> {
-                    Log.e("yang masuk adalah id:", id)
-                    // Handle edit action
-                    true
-                }
                 R.id.menu_delete -> {
                     Log.e("yang masuk adalah id:", id)
                     // Handle delete action

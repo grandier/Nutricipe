@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_edit"
-        android:title="Edit"
-        app:showAsAction="ifRoom"
-        app:tooltipText="Edit" />
-
-    <item
         android:id="@+id/menu_delete"
         android:title="Delete"
         app:showAsAction="ifRoom"
