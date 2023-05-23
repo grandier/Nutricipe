@@ -5,6 +5,7 @@ async function getProfile(req,res) {
         const id = req.userId;
         const result = await checkUser(id);
         const temp = result.data();
+        if(!temp) return res.status(404).json({error: true, message: 'User not found'});
         const data = {
             name: temp.name,
             email: temp.email,
