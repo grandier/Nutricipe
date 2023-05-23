@@ -129,11 +129,28 @@ async function readHistory(req) {
 
 
 }
-async function deleteHistory(req) {
+async function deleteHistory(req, res) {
     try {
+        const userId = req.userId;
         const idHistory = req.body.idHistory;
-        const res = await db.collection('history').doc(idHistory).delete();
-        return res;
+        console.log(userId, idHistory)
+        if(!idHistory && !idHistory) {
+            return res.status(400).json({ error: true, message: 'Bad Request' });
+        }
+
+        const snapshot = await db.collection('history').doc(idHistory).get();
+        if (!snapshot.exists) {
+            return res.status(404).json({ error: true, message: 'Not Found' });
+        }
+        else if (snapshot.data().owner !== userId) {
+            return res.status(401).json({ error: true, message: 'Unauthorized' });
+        }
+        const result = await db.collection('history').doc(idHistory).delete();
+
+        if(!result){
+            return res.status(400).json({ error: true, message: 'Delete Failed' });
+        }
+        return res.status(200).json({ error: false, message: 'Delete Success' });
     }
     catch (error) {
         return error;
