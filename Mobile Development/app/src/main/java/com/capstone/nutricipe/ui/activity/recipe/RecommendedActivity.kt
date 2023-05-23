@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.ViewModelProvider
 import coil.Coil
 import coil.request.ImageRequest
@@ -19,6 +21,7 @@ import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.ActivityProfileBinding
 import com.capstone.nutricipe.databinding.ActivityRecommendedBinding
 import com.capstone.nutricipe.databinding.ActivitySplashBinding
+import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 import com.capstone.nutricipe.ui.activity.dataStore
 import com.capstone.nutricipe.ui.viewmodel.ProfileViewModel
@@ -42,6 +45,7 @@ class RecommendedActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             onBackPressed()
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
         val pref = Session.getInstance(dataStore)
         recommendedViewModel = ViewModelProvider(
@@ -78,6 +82,10 @@ class RecommendedActivity : AppCompatActivity() {
                 bindRecommendedData(uploaded)
             }
         }
+
+        binding.ivSetting.setOnClickListener {
+            showPopupMenu(it, recommendedHistory?.id ?: idHistory ?: "")
+        }
     }
 
     private fun bindRecommendedData(recommendedData: ResultItem) {
@@ -95,6 +103,45 @@ class RecommendedActivity : AppCompatActivity() {
             .build()
 
         Coil.imageLoader(this).enqueue(request)
+    }
+
+    private fun showPopupMenu(view: View, id: String) {
+        val popupMenu = PopupMenu(this, view)
+        popupMenu.inflate(R.menu.popup_menu)
+
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_edit -> {
+                    Log.e("yang masuk adalah id:", id)
+                    // Handle edit action
+                    true
+                }
+                R.id.menu_delete -> {
+                    Log.e("yang masuk adalah id:", id)
+                    // Handle delete action
+                    deleteHistory(id)
+                    true
+                }
+                else -> false
+            }
+        }
+        popupMenu.show()
+    }
+
+    private fun deleteHistory(idHistory: String) {
+        Log.e("history", idHistory)
+        recommendedViewModel.getToken().observe(this) { token ->
+            if (!token.isNullOrBlank()) {
+                recommendedViewModel.deleteHistory(token, idHistory)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 
 

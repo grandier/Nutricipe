@@ -1,6 +1,7 @@
 package com.capstone.nutricipe.data.remote.api
 
 import com.capstone.nutricipe.data.remote.model.AddImage
+import com.capstone.nutricipe.data.remote.model.DeleteHistory
 import com.capstone.nutricipe.data.remote.model.UploadedHistory
 import com.capstone.nutricipe.data.remote.model.Login
 import com.capstone.nutricipe.data.remote.model.Profile
@@ -62,4 +63,10 @@ interface ApiService {
         @Query("size") limit: Int
     ): UploadedHistory
 
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @HTTP(method = "DELETE", path = "deleteHistory", hasBody = true)
+    fun deleteHistory(
+        @Header("Authorization") token: String,
+        @Body requestBody: RequestBody
+    ): Call<DeleteHistory>
 }
