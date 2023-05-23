@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.ViewModelProvider
 import coil.Coil
 import coil.request.ImageRequest
@@ -42,6 +44,7 @@ class RecommendedActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             onBackPressed()
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
         val pref = Session.getInstance(dataStore)
         recommendedViewModel = ViewModelProvider(
@@ -78,6 +81,10 @@ class RecommendedActivity : AppCompatActivity() {
                 bindRecommendedData(uploaded)
             }
         }
+
+        binding.ivSetting.setOnClickListener {
+            showPopupMenu(it, recommendedHistory?.id ?: idHistory ?: "")
+        }
     }
 
     private fun bindRecommendedData(recommendedData: ResultItem) {
@@ -96,6 +103,30 @@ class RecommendedActivity : AppCompatActivity() {
 
         Coil.imageLoader(this).enqueue(request)
     }
+
+    private fun showPopupMenu(view: View, id: String) {
+        val popupMenu = PopupMenu(this, view)
+        popupMenu.inflate(R.menu.popup_menu)
+
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.menu_edit -> {
+                    Log.e("yang masuk adalah id:", id)
+                    // Handle edit action
+                    true
+                }
+                R.id.menu_delete -> {
+                    Log.e("yang masuk adalah id:", id)
+                    // Handle delete action
+                    true
+                }
+                else -> false
+            }
+        }
+
+        popupMenu.show()
+    }
+
 
 
     private fun showLoading(state: Boolean) {

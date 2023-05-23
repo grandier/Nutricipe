@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
@@ -51,30 +52,40 @@ class AddPhotoActivity : AppCompatActivity() {
     private val launcherIntentCameraX = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == CAMERA_X_RESULT) {
-            val myFile = result.data?.getSerializableExtra("picture") as File
-            getFile = myFile
+        if (result.resultCode == CAMERA_X_RESULT && result.data != null) {
+            val myFile = result.data?.getSerializableExtra("picture") as? File
+            if (myFile != null) {
+                getFile = myFile
 
-            val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true) as Boolean
-            val resultBitmap = rotateBitmap(
-                BitmapFactory.decodeFile(myFile.path), isBackCamera
-            )
+                val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true) as? Boolean
+                val resultBitmap = isBackCamera?.let {
+                    rotateBitmap(
+                        BitmapFactory.decodeFile(myFile.path), it
+                    )
+                }
 
-            // Set the captured image bitmap to the shapeableImageView
-            binding.shapeableImageView.setImageBitmap(resultBitmap)
-            binding.shapeableImageView.visibility = View.VISIBLE
+                // Set the captured image bitmap to the shapeableImageView
+                binding.shapeableImageView.setImageBitmap(resultBitmap)
+                binding.shapeableImageView.visibility = View.VISIBLE
+            } else {
+                // Handle the case when the captured image file is null or empty
+            }
         }
     }
 
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == RESULT_OK) {
+        if (result.resultCode == RESULT_OK && result.data != null) {
             val selectedImg: Uri = result.data?.data ?: return@registerForActivityResult
             val myFile = uriToFile(selectedImg, this@AddPhotoActivity)
-            getFile = myFile
-            binding.shapeableImageView.setImageURI(selectedImg)
-            binding.shapeableImageView.visibility = View.VISIBLE
+            if (myFile != null) {
+                getFile = myFile
+                binding.shapeableImageView.setImageURI(selectedImg)
+                binding.shapeableImageView.visibility = View.VISIBLE
+            } else {
+                // Handle the case when the selected image file is null or empty
+            }
         }
     }
 
@@ -127,22 +138,50 @@ class AddPhotoActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
+        binding.findRecipe.isEnabled = false
+
+        binding.edTitle.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                // Not needed for this case
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                // Not needed for this case
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                val isTitleEmpty = p0.isNullOrBlank()
+                val isDescriptionEmpty = binding.edDescription.text.isNullOrBlank()
+                binding.findRecipe.isEnabled = !isTitleEmpty && !isDescriptionEmpty
+                if (isTitleEmpty) {
+                    binding.edTitle.error = getString(R.string.fill_in)
+                } else {
+                    binding.edTitle.error = null
+                }
+            }
+        })
+
         binding.edDescription.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not needed for this case
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (!s.isNullOrBlank()) {
-                    binding.findRecipe.isEnabled = true
-                } else {
-                    binding.findRecipe.isEnabled = false
-                    binding.edDescription.error = getString(R.string.fill_in)
-                }
+                // Not needed for this case
             }
 
             override fun afterTextChanged(s: Editable?) {
+                val isDescriptionEmpty = s.isNullOrBlank()
+                val isTitleEmpty = binding.edTitle.text.isNullOrBlank()
+                binding.findRecipe.isEnabled = !isDescriptionEmpty && !isTitleEmpty
+                if (isDescriptionEmpty) {
+                    binding.edDescription.error = getString(R.string.fill_in)
+                } else {
+                    binding.edDescription.error = null
+                }
             }
         })
+
 
         binding.btnTakePicture.setOnClickListener {
             startCameraX()
@@ -153,8 +192,15 @@ class AddPhotoActivity : AppCompatActivity() {
         }
 
         binding.findRecipe.setOnClickListener {
-            findRecipe()
+            if (getFile != null) {
+                findRecipe()
+            } else {
+                binding.findRecipe.isEnabled = false
+                Toast.makeText(this, getString(R.string.choose_picture), Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
+
     }
 
     private fun startCameraX() {

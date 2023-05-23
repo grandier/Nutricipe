@@ -14,6 +14,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.CardHistoryBinding
 import com.capstone.nutricipe.ui.activity.profile.ProfileActivity
@@ -39,24 +40,26 @@ class PhotoAdapter :
         RecyclerView.ViewHolder(binding.root) {
         private val photoView: ImageView = binding.storyImage
         private val name: TextView = binding.storyTitle
+
         fun bind(photo: ResultItem) {
             name.text = photo.title
             Glide.with(itemView.context).load(photo.imageUrl).into(photoView)
 
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, RecommendedActivity::class.java)
-                intent.putExtra("Photo", photo) //
-//
-//
-//                val optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                    itemView.context as Activity,
-//                    Pair.create(photo, "profile"),
-//                    Pair.create(name, "name"),
-//                )
-                itemView.context.startActivity(intent)
+                intent.putExtra("Photo", photo)
+
+                val options = ActivityOptionsCompat.makeCustomAnimation(
+                    itemView.context,
+                    R.anim.slide_in_right, // Enter animation (slide from right)
+                    R.anim.slide_out_left // Exit animation (slide to left)
+                ).toBundle()
+
+                itemView.context.startActivity(intent, options)
             }
         }
     }
+
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ResultItem>() {
