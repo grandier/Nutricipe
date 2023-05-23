@@ -21,6 +21,7 @@ import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.ActivityProfileBinding
 import com.capstone.nutricipe.databinding.ActivityRecommendedBinding
 import com.capstone.nutricipe.databinding.ActivitySplashBinding
+import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 import com.capstone.nutricipe.ui.activity.dataStore
 import com.capstone.nutricipe.ui.viewmodel.ProfileViewModel
@@ -118,15 +119,30 @@ class RecommendedActivity : AppCompatActivity() {
                 R.id.menu_delete -> {
                     Log.e("yang masuk adalah id:", id)
                     // Handle delete action
+                    deleteHistory(id)
                     true
                 }
                 else -> false
             }
         }
-
         popupMenu.show()
     }
 
+    private fun deleteHistory(idHistory: String) {
+        Log.e("history", idHistory)
+        recommendedViewModel.getToken().observe(this) { token ->
+            if (!token.isNullOrBlank()) {
+                recommendedViewModel.deleteHistory(token, idHistory)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+    }
 
 
     private fun showLoading(state: Boolean) {
