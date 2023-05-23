@@ -86,6 +86,18 @@ class RecommendedActivity : AppCompatActivity() {
         binding.ivSetting.setOnClickListener {
             showPopupMenu(it, recommendedHistory?.id ?: idHistory ?: "")
         }
+
+        recommendedViewModel.messageDeleted.observe(this) { messageDeleted ->
+            if(messageDeleted == "Delete Success"){
+                Toast.makeText(this, messageDeleted, Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else {
+                Toast.makeText(this, messageDeleted, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun bindRecommendedData(recommendedData: ResultItem) {
@@ -133,9 +145,6 @@ class RecommendedActivity : AppCompatActivity() {
         recommendedViewModel.getToken().observe(this) { token ->
             if (!token.isNullOrBlank()) {
                 recommendedViewModel.deleteHistory(token, idHistory)
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
             } else {
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
