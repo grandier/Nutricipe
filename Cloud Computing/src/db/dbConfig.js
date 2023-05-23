@@ -68,17 +68,18 @@ async function saveHistory(data) {
     }
 }
 
-async function getHistoryUpload(id) {
+async function getHistoryUpload(id, res) {
     try {
         const snapshot = await db.collection('history').doc(id).get();
-        if (snapshot.empty) {
-            return res.status(404).json({ error: true, message: 'Not Found' });
+        if (snapshot.exists) {
+            const result = [];
+            const temp = snapshot.data();
+            temp.id = snapshot.id;
+            result.push(temp);
+            return res.status(200).json({error: false, message: 'success', result});
+            
         }
-        const result = [];
-        const temp = snapshot.data();
-        temp.id = snapshot.id;
-        result.push(temp);
-        return result;
+        return res.status(404).json({ error: true, message: 'Not Found' });
     }
     catch (error) {
         return error;
@@ -133,24 +134,22 @@ async function deleteHistory(req, res) {
     try {
         const userId = req.userId;
         const idHistory = req.body.idHistory;
-        console.log(userId, idHistory)
-        if(!idHistory && !idHistory) {
+        if(!userId && !idHistory) {
             return res.status(400).json({ error: true, message: 'Bad Request' });
         }
 
         const snapshot = await db.collection('history').doc(idHistory).get();
-        if (!snapshot.exists) {
-            return res.status(404).json({ error: true, message: 'Not Found' });
+        if(snapshot.exists){
+            if(snapshot.data().owner !== userId){
+                return res.status(401).json({ error: true, message: 'Unauthorized' });
+            }
+            const result = await db.collection('history').doc(idHistory).delete();
+            if(!result){
+                return res.status(400).json({ error: true, message: 'Delete Failed' });
+            }
+            return res.status(200).json({ error: false, message: 'Delete Success' });
         }
-        else if (snapshot.data().owner !== userId) {
-            return res.status(401).json({ error: true, message: 'Unauthorized' });
-        }
-        const result = await db.collection('history').doc(idHistory).delete();
-
-        if(!result){
-            return res.status(400).json({ error: true, message: 'Delete Failed' });
-        }
-        return res.status(200).json({ error: false, message: 'Delete Success' });
+        return res.status(404).json({ error: true, message: 'Not Found' });
     }
     catch (error) {
         return error;
