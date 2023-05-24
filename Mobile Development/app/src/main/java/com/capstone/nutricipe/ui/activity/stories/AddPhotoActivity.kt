@@ -152,7 +152,17 @@ class AddPhotoActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
                 val isTitleEmpty = p0.isNullOrBlank()
                 val isDescriptionEmpty = binding.edDescription.text.isNullOrBlank()
+                val isTitleExceeded = (p0?.length ?: 0) > 28
+
+                if (isTitleExceeded) {
+                    val maxLength = 28
+                    val truncatedText = p0?.subSequence(0, maxLength)
+                    binding.edTitle.setText(truncatedText)
+                    binding.edTitle.setSelection(maxLength)
+                }
+
                 binding.findRecipe.isEnabled = !isTitleEmpty && !isDescriptionEmpty
+
                 if (isTitleEmpty) {
                     binding.edTitle.error = getString(R.string.fill_in)
                 } else {
@@ -160,6 +170,7 @@ class AddPhotoActivity : AppCompatActivity() {
                 }
             }
         })
+
 
         binding.edDescription.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -171,9 +182,19 @@ class AddPhotoActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
+                val maxLines = 4
+                val lineCount = binding.edDescription.lineCount
+
+                if (lineCount > maxLines) {
+                    val lastLineIndex = binding.edDescription.layout.getLineForVertical(binding.edDescription.height) - 1
+                    val lastVisibleCharIndex = binding.edDescription.layout.getLineVisibleEnd(lastLineIndex)
+                    s?.delete(lastVisibleCharIndex, s.length)
+                }
+
                 val isDescriptionEmpty = s.isNullOrBlank()
                 val isTitleEmpty = binding.edTitle.text.isNullOrBlank()
                 binding.findRecipe.isEnabled = !isDescriptionEmpty && !isTitleEmpty
+
                 if (isDescriptionEmpty) {
                     binding.edDescription.error = getString(R.string.fill_in)
                 } else {
@@ -181,6 +202,7 @@ class AddPhotoActivity : AppCompatActivity() {
                 }
             }
         })
+
 
 
         binding.btnTakePicture.setOnClickListener {

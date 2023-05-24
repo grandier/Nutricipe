@@ -37,6 +37,7 @@
     <string name="back">Back</string>
     <string name="title_add_new_photo">Add New Photo</string>
     <string name="add_your_ingredient_photo">Add Your Ingredient Photo</string>
+    <string name="title_exceeded">Limit Exceeded 20</string>
 
     <!-- Profile -->
     <string name="title_profile">Profile</string>
@@ -61,7 +62,8 @@
     <string name="choose_picture">Choose Picture</string>
     <string name="fill_in">Fill In</string>
     <string name="success_upload">Success Upload</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- OnBoarding -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
