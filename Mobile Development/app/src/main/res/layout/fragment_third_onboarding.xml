@@ -19,9 +19,9 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="222dp"
-            android:layout_height="222dp"
-            android:src="@drawable/logo_app"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:src="@drawable/img_ilustrasi_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +31,7 @@
             android:id="@+id/app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:fontFamily="@font/montserrat_bold"
             android:textAlignment="center"
             android:text="Based on Your Ingredients"
