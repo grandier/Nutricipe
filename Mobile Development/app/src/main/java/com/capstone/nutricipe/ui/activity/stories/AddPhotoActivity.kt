@@ -288,6 +288,7 @@ class AddPhotoActivity : AppCompatActivity() {
                                 intent.putExtra("idHistory", idHistory) // Pass idHistory as an extra
                                 startActivity(intent)
                                 finish()
+                                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                             } else {
                                 // Handle the case when idHistory is null
                                 Toast.makeText(

@@ -93,6 +93,7 @@ class RecommendedActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
             }
             else {
                 Toast.makeText(this, messageDeleted, Toast.LENGTH_SHORT).show()
