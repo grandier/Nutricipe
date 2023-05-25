@@ -5,10 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.capstone.nutricipe.data.local.Session
+import com.capstone.nutricipe.data.paging.PhotoRepository
+import com.capstone.nutricipe.data.remote.model.ResultItem
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val pref: Session) :
+class MainViewModel(private val pref: Session, private val photoRepository: PhotoRepository) :
     ViewModel() {
 
     fun getToken(): LiveData<String> {
@@ -29,5 +33,9 @@ class MainViewModel(private val pref: Session) :
     val message: LiveData<String> = _message
     private val _acceptance = MutableLiveData<Boolean>()
     val acceptance: LiveData<Boolean> = _acceptance
+
+    fun getPhoto(token: String): LiveData<PagingData<ResultItem>> {
+        return photoRepository.getPhoto(token).cachedIn(viewModelScope)
+    }
 
 }
