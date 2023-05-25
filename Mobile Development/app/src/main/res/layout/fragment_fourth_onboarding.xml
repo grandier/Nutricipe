@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="350dp"
-            android:layout_height="350dp"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
             android:src="@drawable/img_ilustrasi_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
