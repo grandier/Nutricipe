@@ -16,9 +16,6 @@ class PhotoPagingSource(private val apiService: ApiService, private val token: S
         val position = params.key ?: INITIAL_PAGE_INDEX
         return try {
             val responseData = apiService.getHistory(token, position, params.loadSize)
-            Log.e("StoryPagingSource", "Response: ${responseData.result}")
-            Log.e("StoryPagingSource", "Position: $position")
-            Log.e("StoryPagingSource", "LoadSize: ${params.loadSize}")
             LoadResult.Page(
                 data = responseData.result,
                 prevKey = if (position == INITIAL_PAGE_INDEX) null else position - 1,
