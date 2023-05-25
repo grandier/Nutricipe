@@ -1,7 +1,7 @@
 import os
 
-folder_path = "C:/Users/fadel/Downloads/labels/carrot/train"  
-replacement_value = 6  
+folder_path = r"C:\Users\fadel\Downloads\Compressed\orange-ghulam\orange\train labels"  
+replacement_value = 8
 
 file_list = os.listdir(folder_path)
 
@@ -15,7 +15,7 @@ for file_name in file_list:
         modified_lines = []
         for line in lines:
             line_parts = line.split()
-            if line_parts[0] == '0':
+            if line_parts[0] == '2':
                 line_parts[0] = str(replacement_value)
             modified_line = ' '.join(line_parts)
             modified_lines.append(modified_line)
