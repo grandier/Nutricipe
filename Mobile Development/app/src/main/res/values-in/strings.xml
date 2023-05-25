@@ -38,6 +38,7 @@
     <string name="back">Kembali</string>
     <string name="title_add_new_photo">Tambahkan Foto Baru</string>
     <string name="add_your_ingredient_photo">Tambahkan Foto Bahan Kamu</string>
+    <string name="title_exceeded">Batas Maksimal 20</string>
 
     <!-- Profile -->
     <string name="title_profile">Profil</string>
@@ -62,4 +63,7 @@
     <string name="choose_picture">Pilih Gambar</string>
     <string name="fill_in">Isi</string>
     <string name="success_upload">Berhasil Mengunggah Gambar</string>
+
+    <!-- OnBoarding -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.databinding.ActivityLoginBinding
 import com.capstone.nutricipe.ui.activity.MainActivity
@@ -48,6 +49,17 @@ class LoginActivity : AppCompatActivity() {
             this, ViewModelFactory(pref, this)
         )[LoginViewModel::class.java]
 
+        loginViewModel.getToken().observe(this) { token: String ->
+            if (token.isNotEmpty()) {
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+            } else if (token.isEmpty()) {
+                loginButton.setOnClickListener {
+                    login()
+                }
+            }
+        }
+
         if (!intent.getStringExtra("email").isNullOrEmpty()) {
             emailEditText.setText(intent.getStringExtra("email"))
             correctEmail = true
@@ -65,11 +77,6 @@ class LoginActivity : AppCompatActivity() {
         passwordEditText.addTextChangedListener { text ->
             correctPassword = !text.isNullOrEmpty() && text.length >= 8
             setLoginButtonEnable()
-        }
-
-
-        loginButton.setOnClickListener {
-            loginViewModel.login(emailEditText.text.toString(), passwordEditText.text.toString())
         }
 
         loginViewModel.message.observe(this) { message ->
@@ -90,6 +97,7 @@ class LoginActivity : AppCompatActivity() {
                 val i = Intent(this, MainActivity::class.java)
                 startActivity(i)
                 finish()
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             }
         }
         
@@ -98,7 +106,14 @@ class LoginActivity : AppCompatActivity() {
             val i = Intent(this, RegisterActivity::class.java)
             startActivity(i)
             finish()
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
+    }
+
+    private fun login() {
+        val email = emailEditText.text.toString()
+        val password = passwordEditText.text.toString()
+        loginViewModel.login(email, password)
     }
 
     private fun setLoginButtonEnable() {

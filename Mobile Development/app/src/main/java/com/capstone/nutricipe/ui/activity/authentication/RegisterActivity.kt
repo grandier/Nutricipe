@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.databinding.ActivityRegisterBinding
 import com.capstone.nutricipe.ui.activity.dataStore
@@ -104,6 +105,7 @@ class RegisterActivity : AppCompatActivity() {
             val i = Intent(this, LoginActivity::class.java)
             startActivity(i)
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
     }

@@ -10,10 +10,10 @@
         <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
     </style>
 
-    <style name="Theme.Nutricipe" parent="Base.Theme.Nutricipe" />
+    <style name="Theme.Nutricipe" parent="Base.Theme.Nutricipe"/>
 
     <style name="roundedImageStyle" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
@@ -22,6 +22,15 @@
         <item name="cornerSizeBottomLeft">5dp</item>
         <item name="cornerSizeBottomRight">5dp</item>
     </style>
+
+    <style name="Theme.Nutricipe.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondary</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- Other theme attributes -->
+    </style>
+
 
     <style name="Base.TextAppearance.AppCompat.Button" parent="ShapeAppearanceOverlay.Material3.Button">
 
