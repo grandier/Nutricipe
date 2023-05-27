@@ -1,43 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.capstone.nutricipe">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_app_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Nutricipe"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.recipe.DetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.recipe.RecommendedActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.AddPhotoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.authentication.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.authentication.LoginActivity"
+            android:name=".ui.activity.intro.SplashActivity"
+            android:theme="@style/Theme.Nutricipe.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +30,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activity.intro.OnboardingActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.activity.stories.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.recipe.DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.recipe.RecommendedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.stories.AddPhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.authentication.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.authentication.LoginActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

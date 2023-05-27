@@ -1,3 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- App -->
+    <string name="app_name">Nutricipe</string>
+    <string name="welcome">Selamat Datang!</string>
+    <string name="tittle_about_app">Apa itu Nutricipe?</string>
+    <string name="text_about_app">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="title_history">Riwayat</string>
+    <string name="logo">ini logo</string>
+    <string name="success">Sukses</string>
+    <string name="error">Error</string>
+    <string name="failed_retrofit">Retrofit Gagal</string>
+
+    <!-- Authentication -->
+    <string name="register">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="dont_hv_acc">Tidak punya Akun?</string>
+    <string name="hv_acc">Sudah punya Akun?</string>
+    <string name="name">Nama</string>
+    <string name="hint_name">Iqbaal Ramadhan</string>
+    <string name="min_name">Nama Minimal 4 Karakter</string>
+    <string name="password_min_length">Kata Sandi Minimal 8 Karakter</string>
+    <string name="invalid_email">Alamat Email Tidak Valid!</string>
+    <string name="email_hint">nama@email.com</string>
+    <string name="password_hint">12345678</string>
+    <string name="name_hint">Masukan Nama Lengkap Anda</string>
+    <string name="login_error">Gagal Masuk</string>
+
+    <!-- Add Photo -->
+    <string name="add_photo">Tambahkan Foto</string>
+    <string name="title_description">Deskripsi</string>
+    <string name="type_here">Tulis disini...</string>
+    <string name="take_picture">Ambil Gambar</string>
+    <string name="open_gallery">Buka Galeri</string>
+    <string name="title_name">Nama Judul...</string>
+    <string name="back">Kembali</string>
+    <string name="title_add_new_photo">Tambahkan Foto Baru</string>
+    <string name="add_your_ingredient_photo">Tambahkan Foto Bahan Kamu</string>
+    <string name="title_exceeded">Batas Maksimal 20</string>
+
+    <!-- Profile -->
+    <string name="title_profile">Profil</string>
+    <string name="profile">Profil</string>
+    <string name="logout">Keluar</string>
+
+    <!-- Recommended Recipe -->
+    <string name="recommended_recipe">Rekomendasi Resep</string>
+    <string name="breakfast">Sarapan</string>
+    <string name="simple_explanation">Penjelasan Sederhana</string>
+    <string name="foodstuff">Bahan Makanan</string>
+    <string name="food_recommendation">Rekomendasi Resep Makanan</string>
+    <string name="recipe_detail">Detil Resep</string>
+    <string name="ingredient_recipe">Bahan &amp; Resep</string>
+    <string name="todo">TODO</string>
+    <string name="title_ingredient">Judul</string>
+
+    <!-- Camera -->
+    <string name="camera_x">Camera X</string>
+    <string name="switch_camera">Pindah Kamera</string>
+    <string name="failed_camera">Gagal Mengambil Gambar</string>
+    <string name="choose_picture">Pilih Gambar</string>
+    <string name="fill_in">Isi</string>
+    <string name="success_upload">Berhasil Mengunggah Gambar</string>
+
+    <!-- OnBoarding -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

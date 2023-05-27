@@ -3,7 +3,6 @@ package com.capstone.nutricipe.ui.activity.authentication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
@@ -13,9 +12,9 @@ import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.databinding.ActivityLoginBinding
 import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.dataStore
-import com.capstone.nutricipe.ui.customview.ButtonLogin
-import com.capstone.nutricipe.ui.customview.EmailEditText
-import com.capstone.nutricipe.ui.customview.PasswordEditText
+import com.capstone.nutricipe.ui.customview.button.ButtonLogin
+import com.capstone.nutricipe.ui.customview.text.EmailEditText
+import com.capstone.nutricipe.ui.customview.text.PasswordEditText
 import com.capstone.nutricipe.ui.viewmodel.LoginViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
 
@@ -50,6 +49,17 @@ class LoginActivity : AppCompatActivity() {
             this, ViewModelFactory(pref, this)
         )[LoginViewModel::class.java]
 
+        loginViewModel.getToken().observe(this) { token: String ->
+            if (token.isNotEmpty()) {
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+            } else if (token.isEmpty()) {
+                loginButton.setOnClickListener {
+                    login()
+                }
+            }
+        }
+
         if (!intent.getStringExtra("email").isNullOrEmpty()) {
             emailEditText.setText(intent.getStringExtra("email"))
             correctEmail = true
@@ -69,17 +79,13 @@ class LoginActivity : AppCompatActivity() {
             setLoginButtonEnable()
         }
 
-
-        loginButton.setOnClickListener {
-            loginViewModel.login(emailEditText.text.toString(), passwordEditText.text.toString())
-        }
-
-        loginViewModel.message.observe(this) {
-            if (it == "Failure") {
-                Toast.makeText(this, R.string.login_error, Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        loginViewModel.message.observe(this) { message ->
+            val toastMessage = when (message) {
+                "Invalid Password" -> message
+                "Email Not Found" -> message
+                else -> message
             }
+            Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show()
         }
 
         loginViewModel.isLoading.observe(this) {
@@ -91,14 +97,23 @@ class LoginActivity : AppCompatActivity() {
                 val i = Intent(this, MainActivity::class.java)
                 startActivity(i)
                 finish()
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             }
         }
+        
 
         binding.tvRegister.setOnClickListener {
             val i = Intent(this, RegisterActivity::class.java)
             startActivity(i)
             finish()
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
+    }
+
+    private fun login() {
+        val email = emailEditText.text.toString()
+        val password = passwordEditText.text.toString()
+        loginViewModel.login(email, password)
     }
 
     private fun setLoginButtonEnable() {

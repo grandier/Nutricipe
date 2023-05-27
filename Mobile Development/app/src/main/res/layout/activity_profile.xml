@@ -7,7 +7,7 @@
     android:paddingStart="16dp"
     android:paddingTop="16dp"
     android:paddingEnd="16dp"
-    tools:context=".ui.activity.AddPhotoActivity">
+    tools:context=".ui.activity.stories.AddPhotoActivity">
 
     <ImageView
         android:id="@+id/btn_back"
@@ -31,48 +31,110 @@
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/logout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/baseline_exit_to_app_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/profile" />
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/app_title">-->
+
+<!--        <de.hdodenhof.circleimageview.CircleImageView-->
+<!--            android:id="@+id/iv_profile"-->
+<!--            android:layout_width="88dp"-->
+<!--            android:layout_height="88dp"-->
+<!--            android:contentDescription="@string/profile"-->
+<!--            android:src="@drawable/ic_profile" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_name"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/name"-->
+<!--                android:fontFamily="@font/montserrat_semi_bold"-->
+<!--                android:textSize="22sp"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_email"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:text="@string/email_hint"-->
+<!--                android:fontFamily="@font/montserrat_regular"-->
+<!--                android:textSize="18sp"/>-->
+<!--            -->
+<!--        </LinearLayout>-->
+<!--        -->
+<!--    </LinearLayout>-->
+
+    <RelativeLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_title">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profile"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
             android:contentDescription="@string/profile"
             android:src="@drawable/ic_profile" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:layout_toEndOf="@id/iv_profile"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="@string/name"
+            android:textSize="22sp" />
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:fontFamily="@font/montserrat_semi_bold"
-                android:textSize="22sp"/>
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@id/iv_profile"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/email_hint"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/email_hint"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="18sp"/>
-        </LinearLayout>
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/editButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/baseline_edit_24" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView2"
