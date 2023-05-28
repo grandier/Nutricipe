@@ -1,5 +1,5 @@
 # Use a base image
-FROM python:3.9
+FROM python:3.7
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY best2.pt .
 COPY best.pt .
 
 # Expose a port
-EXPOSE 5000
+EXPOSE 8080
 
 # Run the Flask application
 CMD ["python", "app.py"]
