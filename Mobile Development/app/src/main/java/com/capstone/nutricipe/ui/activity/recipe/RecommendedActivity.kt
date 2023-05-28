@@ -9,7 +9,9 @@ import android.util.Log
 import android.view.View
 
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import coil.Coil
 import coil.request.ImageRequest
@@ -119,22 +121,27 @@ class RecommendedActivity : AppCompatActivity() {
     }
 
     private fun showPopupMenu(view: View, id: String) {
-        val popupMenu = PopupMenu(this, view)
-        popupMenu.inflate(R.menu.popup_menu)
-
-        popupMenu.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.menu_delete -> {
-                    Log.e("yang masuk adalah id:", id)
-                    // Handle delete action
-                    deleteHistory(id)
-                    true
-                }
-                else -> false
-            }
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle("Delete Confirmation")
+        alertDialogBuilder.setMessage("Are you sure you want to delete?")
+        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+            deleteHistory(id)
         }
-        popupMenu.show()
+        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.setOnShowListener {
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setTextColor(ContextCompat.getColor(this, R.color.red))
+
+            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            negativeButton.setTextColor(ContextCompat.getColor(this, R.color.black))
+        }
+        alertDialog.show()
     }
+
 
     private fun deleteHistory(idHistory: String) {
         Log.e("history", idHistory)
