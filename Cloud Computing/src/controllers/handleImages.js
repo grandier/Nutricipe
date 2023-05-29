@@ -1,5 +1,6 @@
 const imgUpload = require('../db/dbStorage');
 const {saveHistory} = require('../db/dbConfig');
+const axios = require('axios');
 
 let resultImage = '';
 /*
@@ -25,6 +26,25 @@ async function handleUpload(req, res, next) {
     TODO: Pass the image url to machine learning api
     And get the result of the prediction recipe from ml and save it to the database
     */
+    const formData = new FormData();
+    const fileBlob = new Blob([req.file.buffer], { type: req.file.mimetype });
+    formData.append('image', fileBlob, req.file.originalname);
+  
+      const mlres = await axios.post('https://nutricipe-ml-zyh6a3mnya-et.a.run.app/yolo/predict', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      .then(result => result)
+        .catch(err => err);
+        
+
+      
+  
+      const object = mlres.data.data;
+      console.log(object, 'Result from machine learning');
+  
+
 
 
    if(!resultImage || !req.body.title || !req.body.description) {
@@ -36,7 +56,7 @@ async function handleUpload(req, res, next) {
             owner: req.userId,
             title: req.body.title,
             description: req.body.description,
-            imageUrl: resultImage.imageUrl,
+            imageUrl: resultImage,
             createdAt: new Date().getTime(),
             recipe: {
                 recipe1: 'idRecipe1',
