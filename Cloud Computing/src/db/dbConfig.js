@@ -75,7 +75,6 @@ async function getHistoryUpload(id, res) {
             const temp = snapshot.data();
             temp.id = snapshot.id;
             result = temp;
-            console.log(result, 'ini result')
             return result;
             
         }

@@ -47,7 +47,6 @@ async function handleUpload(req, res, next) {
         if (save == false) {
             throw new Error('Failed to save history');
         }
-        console.log('udah sampe sini lo 52')
         return res.status(200).json({error: false, message: 'success', data: save.id});
 
     } catch (err) {
