@@ -72,11 +72,11 @@ async function getHistoryUpload(id, res) {
     try {
         const snapshot = await db.collection('history').doc(id).get();
         if (snapshot.exists) {
-            const result = [];
             const temp = snapshot.data();
             temp.id = snapshot.id;
-            result.push(temp);
-            return res.status(200).json({error: false, message: 'success', result});
+            result = temp;
+            console.log(result, 'ini result')
+            return result;
             
         }
         return res.status(404).json({ error: true, message: 'Not Found' });
