@@ -21,16 +21,12 @@ async function handleUpload(req, res, next) {
         }
 
         const mlRes = await MlHelp(req);
-        if (mlRes == null || false) {
-            throw new Error('No object can be detected');
+        console.log(mlRes);
+        if (mlRes === false) {   
+            return res.status(400).json({error: true, message: 'No object found'});
         }
         const arr = mlRes.map(item => item);
         const ingredients = arr.join(',');
-        // const recipeUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=bdb2e5f6c7a247aab66251096842af5b&ingredients=${ingredients}&number=2`;
-        // const recipeRes = await getRecipe(recipeUrl);
-        // if (recipeRes == false) {
-        //     throw new Error('No recipe found');
-        // }
         if (!resultImage || !req.body.title || !req.body.description) {
             throw new Error('Bad Request');
           }
@@ -49,10 +45,10 @@ async function handleUpload(req, res, next) {
         }
         return res.status(200).json({error: false, message: 'success', data: save.id});
 
-    } catch (err) {
+    } catch (error) {
         return res.status(400).json({
             error: true,
-            message: err.message
+            message: error.message
         });
     }
 }
