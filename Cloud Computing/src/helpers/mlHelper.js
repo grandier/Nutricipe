@@ -13,6 +13,9 @@ async function MlHelp(req) {
                     'Content-Type': 'multipart/form-data'
                 }
             })
+            if(mlres.data.data.length == 0){
+                return false;
+            }
     } catch (error) {
         return false
     }
