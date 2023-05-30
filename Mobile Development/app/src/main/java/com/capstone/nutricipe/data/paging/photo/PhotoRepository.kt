@@ -1,7 +1,5 @@
-package com.capstone.nutricipe.data.paging
+package com.capstone.nutricipe.data.paging.photo
 
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

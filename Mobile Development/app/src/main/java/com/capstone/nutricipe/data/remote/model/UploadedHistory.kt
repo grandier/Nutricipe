@@ -20,13 +20,6 @@ data class UploadedHistory(
 ) : Parcelable
 
 @Parcelize
-data class Recipe(
-
-	@field:SerializedName("recipe1")
-	val recipe1: String
-) : Parcelable
-
-@Parcelize
 @Entity(tableName = "result")
 data class ResultItem(
 
@@ -39,11 +32,11 @@ data class ResultItem(
 	@field:SerializedName("imageUrl")
 	val imageUrl: String,
 
-	@field:SerializedName("recipe")
-	val recipe: Recipe,
-
 	@field:SerializedName("description")
 	val description: String,
+
+	@field:SerializedName("ingredients")
+	val ingredients: String,
 
 	@PrimaryKey
 	@field:SerializedName("id")

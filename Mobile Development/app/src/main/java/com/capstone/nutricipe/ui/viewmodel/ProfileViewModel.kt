@@ -1,6 +1,5 @@
 package com.capstone.nutricipe.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,9 +7,8 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.bumptech.glide.Glide.init
 import com.capstone.nutricipe.data.local.Session
-import com.capstone.nutricipe.data.paging.PhotoRepository
+import com.capstone.nutricipe.data.paging.photo.PhotoRepository
 import com.capstone.nutricipe.data.remote.api.ApiConfig
 import com.capstone.nutricipe.data.remote.model.Data
 import com.capstone.nutricipe.data.remote.model.Profile
