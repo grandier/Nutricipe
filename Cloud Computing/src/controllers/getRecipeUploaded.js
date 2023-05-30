@@ -18,7 +18,11 @@ async function getRecipeUploaded(req, res) {
         }
         const data = result;
         data.recipe = recipeRes.data;
+        let arr = []
+        arr.push(data);
+        console.log(arr)
         return res.status(200).json({error: false, message: 'success', data: data});
+        
     }
     catch(error) {
         return res.status(500).json({error: true, message: error.message});
