@@ -8,11 +8,16 @@ async function MlHelp(req) {
     formData.append('image', fileBlob, req.file.originalname);
     let mlres = '';
     try {
-        mlres = await axios.post('http://127.0.0.1:8080/yolo/predict', formData, {
+        mlres = await axios.post('https://nutricipe-ml-zyh6a3mnya-et.a.run.app/yolo/predict', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
+            }).then(res => {
+                return res;
             })
+            .catch(err => {
+                return false;
+            });
             if(mlres.data.data.length == 0){
                 return false;
             }
