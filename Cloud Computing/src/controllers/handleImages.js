@@ -1,10 +1,13 @@
 const imgUpload = require('../db/dbStorage');
 const {
-    saveHistory
+    saveHistory,
+    saveRecipe
 } = require('../db/dbConfig');
 const {
     MlHelp
 } = require('../helpers/mlHelper');
+
+const { getRecipe } = require('../helpers/recipe.helper');
 
 
 
@@ -12,7 +15,7 @@ let resultImage = '';
 
 async function handleUpload(req, res) {
     try {
-      if (!req.file) {
+      if (!req.file || !req.body.title || !req.body.description) {
         throw new Error('Bad Request');
       }
   
@@ -22,17 +25,27 @@ async function handleUpload(req, res) {
       }
   
       const mlRes = await MlHelp(req);
-      console.log(mlRes);
       if (mlRes === false) {
         return res.status(400).json({ error: true, message: 'No object found' });
       }
   
       const arr = mlRes.map(item => item);
       const ingredients = arr.join(',');
-  
-      if (!req.body.title || !req.body.description) {
-        throw new Error('Bad Request');
+
+      const recipeUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=bdb2e5f6c7a247aab66251096842af5b&ingredients=${ingredients}&number=2`;
+      const recipeRes = await getRecipe(recipeUrl);
+
+      let recipeArr = [];
+      for (let i = 0; i < recipeRes.data.length; i++) {
+        let recipe = {
+          title: recipeRes.data[i].title,
+          image: recipeRes.data[i].image,
+          usedIngredients: recipeRes.data[i].usedIngredients.map(ingredient => ingredient.name).join(", "),
+          missedIngredients: recipeRes.data[i].missedIngredients.map(ingredient => ingredient.name).join(", ")
+        };
+        recipeArr.push(recipe);
       }
+
   
       const data = {
         owner: req.userId,
@@ -46,6 +59,16 @@ async function handleUpload(req, res) {
       const save = await saveHistory(data);
       if (save === false) {
         throw new Error('Failed to save history');
+      }
+
+      recipeArr[0].owner = req.userId;
+      recipeArr[1].owner = req.userId;
+      recipeArr[0].idHistory = save.id;
+      recipeArr[1].idHistory = save.id;
+
+      const addRecipe = await saveRecipe(recipeArr[0], recipeArr[1]);
+      if (!addRecipe) {
+        throw new Error('Cannot save recipe');
       }
   
       return res.status(200).json({ error: false, message: 'success', data: save.id });

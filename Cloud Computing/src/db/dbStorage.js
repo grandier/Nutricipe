@@ -37,16 +37,11 @@ ImgUpload.uploadToGcs = (req) =>{
 
     stream.on('error', (err) => {
         req.file.cloudStorageError = err
-    })
-
-    stream.on('finish', () => {
-        // req.file.cloudStorageObject = gcsname
-        // req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
+        return false;
     })
 
     stream.end(req.file.buffer)
     {
-        
         return 'https://storage.googleapis.com/nutricipe-bucket/'+gcsname;
     }
 }
