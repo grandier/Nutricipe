@@ -76,7 +76,7 @@ async function getHistoryUpload(id, res) {
             temp.id = snapshot.id;
             result = temp;
             return result;
-            
+
         }
         return res.status(404).json({ error: true, message: 'Not Found' });
     }
@@ -131,11 +131,11 @@ async function readHistory(req) {
 }
 async function deleteHistory(idHistory, res) {
     try {
-            const result = await db.collection('history').doc(idHistory).delete();
-            if(!result){
-                return res.status(400).json({ error: true, message: 'Delete Failed' });
-            }
-            return res.status(200).json({ error: false, message: 'Delete Success' });
+        const result = await db.collection('history').doc(idHistory).delete();
+        if (!result) {
+            return res.status(400).json({ error: true, message: 'Delete Failed' });
+        }
+        return res.status(200).json({ error: false, message: 'Delete Success' });
     }
     catch (error) {
         return error;
@@ -146,12 +146,22 @@ async function cekDataHistory(id, userId) {
     try {
         const snapshot = await db.collection('history').doc(id).get();
         if (snapshot.exists) {
-            if(snapshot.data().owner !== userId){
+            if (snapshot.data().owner !== userId) {
                 return 'unauthorized';
             }
             return snapshot.data();
         }
         return false;
+    }
+    catch (error) {
+        return error;
+    }
+}
+
+async function saveRecipe(data) {
+    try {
+        const res = await db.collection('recipe').add(data);
+        return res;
     }
     catch (error) {
         return error;
@@ -169,5 +179,6 @@ module.exports = {
     editName,
     readHistory,
     deleteHistory,
-    cekDataHistory
+    cekDataHistory,
+    saveRecipe
 }
