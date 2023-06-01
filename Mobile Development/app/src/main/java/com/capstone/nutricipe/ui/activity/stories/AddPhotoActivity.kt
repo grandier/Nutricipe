@@ -23,6 +23,7 @@ import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.data.remote.api.ApiConfig
 import com.capstone.nutricipe.data.remote.model.AddImage
 import com.capstone.nutricipe.databinding.ActivityAddPhotoBinding
+import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.dataStore
 import com.capstone.nutricipe.ui.activity.recipe.RecommendedActivity
 import com.capstone.nutricipe.ui.utils.reduceFileImage
@@ -268,13 +269,14 @@ class AddPhotoActivity : AppCompatActivity() {
                     showLoading(false)
                     if (response.isSuccessful) {
                         val addImage = response.body()
+                        Log.e("AddImage", addImage.toString())
 
                         if (addImage != null && addImage.error == false && addImage.message == "success") {
                             val idHistory = addImage.idHistory
 
                             Toast.makeText(
                                 this@AddPhotoActivity,
-                                getString(R.string.success_upload),
+                                addImage.message,
                                 Toast.LENGTH_SHORT
                             ).show()
 
@@ -289,11 +291,11 @@ class AddPhotoActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                            } else {
+                            } else if (addImage.error == true) {
                                 // Handle the case when idHistory is null
                                 Toast.makeText(
                                     this@AddPhotoActivity,
-                                    "idHistory is null",
+                                    addImage.message,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -307,9 +309,12 @@ class AddPhotoActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             this@AddPhotoActivity,
-                            response.message(),
+                            "No Ingredient Found",
                             Toast.LENGTH_SHORT
                         ).show()
+                        val intent = Intent(this@AddPhotoActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 }
 

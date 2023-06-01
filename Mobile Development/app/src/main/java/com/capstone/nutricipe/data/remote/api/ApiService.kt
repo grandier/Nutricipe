@@ -6,6 +6,7 @@ import com.capstone.nutricipe.data.remote.model.UploadedHistory
 import com.capstone.nutricipe.data.remote.model.Login
 import com.capstone.nutricipe.data.remote.model.Profile
 import com.capstone.nutricipe.data.remote.model.Register
+import com.capstone.nutricipe.data.remote.model.UploadedRecipe
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -69,4 +70,11 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body requestBody: RequestBody
     ): Call<DeleteHistory>
+
+    @FormUrlEncoded
+    @POST("getUploaded")
+    fun getUploadedRecipe(
+        @Header("Authorization") token: String,
+        @Field("idHistory") idHistory: String
+    ): Call<UploadedRecipe>
 }

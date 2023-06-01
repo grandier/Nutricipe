@@ -1,6 +1,5 @@
-package com.capstone.nutricipe.data.paging
+package com.capstone.nutricipe.data.paging.photo
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.capstone.nutricipe.data.remote.api.ApiService

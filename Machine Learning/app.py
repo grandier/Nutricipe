@@ -38,13 +38,13 @@ def predict():
                 if result1 in my_labels:
                     labels.add(result1)
 
-            return jsonify(list(labels))
+            return jsonify(success= True, data=list(labels))
         else:
             return jsonify({"error": "Model not loaded. Please check the model initialization."})
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Flask API exposing YOLOv5 model")
-    parser.add_argument("--port", default=5000, type=int, help="port number")
+    parser.add_argument("--port", default=8080, type=int, help="port number")
     parser.add_argument('--model', default='yolov5s', help='model to run, i.e. --model yolov5s')
     args = parser.parse_args()
 

@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.capstone.nutricipe.data.local.Session
-import com.capstone.nutricipe.data.paging.PhotoRepository
+import com.capstone.nutricipe.data.paging.photo.PhotoRepository
 import com.capstone.nutricipe.data.remote.model.ResultItem
 import kotlinx.coroutines.launch
 

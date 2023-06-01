@@ -1,7 +1,7 @@
 package com.capstone.nutricipe.data.di
 
 import android.content.Context
-import com.capstone.nutricipe.data.paging.PhotoRepository
+import com.capstone.nutricipe.data.paging.photo.PhotoRepository
 import com.capstone.nutricipe.data.remote.api.ApiConfig
 import com.capstone.nutricipe.data.database.PhotoDatabase
 

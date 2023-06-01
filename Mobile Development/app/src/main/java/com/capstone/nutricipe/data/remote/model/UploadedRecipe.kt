@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Parcelize
-data class UploadedHistory(
+data class UploadedRecipe(
 
-	@field:SerializedName("result")
-	val result: List<ResultItem>,
+	@field:SerializedName("dataRecipe")
+	val dataRecipe: List<DataRecipeItem>,
 
 	@field:SerializedName("error")
 	val error: Boolean? = null,
@@ -20,8 +20,34 @@ data class UploadedHistory(
 ) : Parcelable
 
 @Parcelize
-@Entity(tableName = "result")
-data class ResultItem(
+@Entity(tableName = "recipe")
+data class RecipeItem(
+
+	@field:SerializedName("owner")
+	val owner: String,
+
+	@field:SerializedName("image")
+	val image: String,
+
+	@field:SerializedName("usedIngredients")
+	val usedIngredients: String,
+
+	@field:SerializedName("missedIngredients")
+	val missedIngredients: String,
+
+	@field:SerializedName("idHistory")
+	val idHistory: String,
+
+	@PrimaryKey
+	@field:SerializedName("id")
+	val id: String,
+
+	@field:SerializedName("title")
+	val title: String
+) : Parcelable
+
+@Parcelize
+data class DataRecipeItem(
 
 	@field:SerializedName("owner")
 	val owner: String,
@@ -32,13 +58,15 @@ data class ResultItem(
 	@field:SerializedName("imageUrl")
 	val imageUrl: String,
 
+	@field:SerializedName("recipe")
+	val recipe: List<RecipeItem>,
+
 	@field:SerializedName("description")
 	val description: String,
 
 	@field:SerializedName("ingredients")
 	val ingredients: String,
 
-	@PrimaryKey
 	@field:SerializedName("id")
 	val id: String,
 

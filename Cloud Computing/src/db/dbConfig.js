@@ -15,8 +15,7 @@ async function addUser(data) {
     try {
         const res = await db.collection('users').add(data);
         return res;
-    }
-    catch (error) {
+    } catch (error) {
         return error;
     }
 }
@@ -24,9 +23,11 @@ async function addUser(data) {
 async function readUser(data) {
     try {
         const snapshot = await db.collection('users').where('email', '==', data.email).limit(1).get();
+        if(snapshot.empty){
+            return false;
+        }
         return snapshot;
-    }
-    catch (error) {
+    } catch (error) {
         return error;
     }
 }
@@ -39,8 +40,7 @@ async function checkEmail(email) {
             isUsed = true;
         }
         return isUsed;
-    }
-    catch (error) {
+    } catch (error) {
         return error;
     }
 }
@@ -49,11 +49,13 @@ async function checkUser(id) {
     try {
         const result = await db.collection('users').doc(id).get();
         if (result.empty) {
-            return res.status(404).json({ error: true, message: 'User Not Found' });
+            return res.status(404).json({
+                error: true,
+                message: 'User Not Found'
+            });
         }
         return result;
-    }
-    catch (error) {
+    } catch (error) {
         return error;
     }
 }
@@ -62,13 +64,12 @@ async function saveHistory(data) {
     try {
         const res = await db.collection('history').add(data);
         return res;
-    }
-    catch (error) {
+    } catch (error) {
         return error;
     }
 }
 
-async function getHistoryUpload(id, res) {
+async function getHistoryUpload(id) {
     try {
         const snapshot = await db.collection('history').doc(id).get();
         if (snapshot.exists) {
@@ -76,12 +77,11 @@ async function getHistoryUpload(id, res) {
             temp.id = snapshot.id;
             result = temp;
             return result;
-            
         }
-        return res.status(404).json({ error: true, message: 'Not Found' });
-    }
-    catch (error) {
-        return error;
+        return false;
+
+    } catch (error) {
+        return false;
     }
 }
 
@@ -89,11 +89,13 @@ async function editName(id, name) {
     try {
         const res = await db.collection('users').doc(id).update(name);
         if (res.empty) {
-            return res.status(400).json({ error: true, message: 'Update failed, please try again' });
+            return res.status(400).json({
+                error: true,
+                message: 'Update failed, please try again'
+            });
         }
         return res;
-    }
-    catch (error) {
+    } catch (error) {
         return error;
     }
 }
@@ -131,13 +133,18 @@ async function readHistory(req) {
 }
 async function deleteHistory(idHistory, res) {
     try {
-            const result = await db.collection('history').doc(idHistory).delete();
-            if(!result){
-                return res.status(400).json({ error: true, message: 'Delete Failed' });
-            }
-            return res.status(200).json({ error: false, message: 'Delete Success' });
-    }
-    catch (error) {
+        const result = await db.collection('history').doc(idHistory).delete();
+        if (!result) {
+            return res.status(400).json({
+                error: true,
+                message: 'Delete Failed'
+            });
+        }
+        return res.status(200).json({
+            error: false,
+            message: 'Delete Success'
+        });
+    } catch (error) {
         return error;
     }
 }
@@ -146,15 +153,48 @@ async function cekDataHistory(id, userId) {
     try {
         const snapshot = await db.collection('history').doc(id).get();
         if (snapshot.exists) {
-            if(snapshot.data().owner !== userId){
+            if (snapshot.data().owner !== userId) {
                 return 'unauthorized';
             }
             return snapshot.data();
         }
         return false;
-    }
-    catch (error) {
+    } catch (error) {
         return error;
+    }
+}
+
+async function saveRecipe(recipeFirst, recipeSecond) {
+    try {
+        const res = await db.collection('recipe').add(recipeFirst);
+        const res2 = await db.collection('recipe').add(recipeSecond);
+        if(!res || !res2){
+            return false;
+        }
+        return true;
+    } catch (error) {
+        return error;
+    }
+}
+
+async function getRecipe(idHistory) {
+    try {
+        const snapshot = await db.collection('recipe').where('idHistory', '==', idHistory).get();
+        if (!snapshot.empty) {
+            const recipeList = [];
+            snapshot.forEach((doc) => {
+                const recipeData = doc.data();
+                // Add the document ID to the historyData object
+                recipeData.id = doc.id;
+                recipeList.push(recipeData);
+            });
+            return recipeList;
+        }
+        return false;
+
+
+    } catch (error) {
+        return false;
     }
 }
 
@@ -169,5 +209,7 @@ module.exports = {
     editName,
     readHistory,
     deleteHistory,
-    cekDataHistory
+    cekDataHistory,
+    saveRecipe,
+    getRecipe
 }
