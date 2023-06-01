@@ -309,7 +309,7 @@ class AddPhotoActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             this@AddPhotoActivity,
-                            "No Indgredient Found",
+                            "No Ingredient Found",
                             Toast.LENGTH_SHORT
                         ).show()
                         val intent = Intent(this@AddPhotoActivity, MainActivity::class.java)
