@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiConfig {
 
-    const val BASE_URL = "http://10.0.2.2:5000/nutricipe/"
+    const val BASE_URL = "https://nutricipebaru-zyh6a3mnya-et.a.run.app/nutricipe/"
 
     fun getApiService(): ApiService {
         val client = OkHttpClient.Builder().apply {

@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.databinding.ActivityProfileBinding
@@ -128,6 +129,12 @@ class ProfileActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         val alertDialog = alertDialogBuilder.create()
+
+        // Customize the "Yes" button color
+        alertDialog.setOnShowListener {
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(this, R.color.red))
+        }
+
         alertDialog.show()
     }
 

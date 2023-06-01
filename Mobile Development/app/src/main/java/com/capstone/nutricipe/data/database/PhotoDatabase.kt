@@ -6,12 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverter
 import androidx.room.TypeConverters
-import com.capstone.nutricipe.data.remote.model.Recipe
 import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.google.gson.Gson
 
 @Database(entities = [ResultItem::class], version = 1, exportSchema = false)
-@TypeConverters(PhotoDatabase.Converters::class)
 abstract class PhotoDatabase : RoomDatabase() {
 
     companion object {
@@ -28,18 +26,6 @@ abstract class PhotoDatabase : RoomDatabase() {
                     .build()
                     .also { INSTANCE = it }
             }
-        }
-    }
-
-    class Converters {
-        @TypeConverter
-        fun fromRecipe(recipe: Recipe): String {
-            return Gson().toJson(recipe)
-        }
-
-        @TypeConverter
-        fun toRecipe(json: String): Recipe {
-            return Gson().fromJson(json, Recipe::class.java)
         }
     }
 }

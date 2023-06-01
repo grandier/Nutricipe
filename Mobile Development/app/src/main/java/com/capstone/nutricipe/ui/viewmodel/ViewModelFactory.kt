@@ -29,6 +29,9 @@ class ViewModelFactory(private val pref: Session, private val context: Context) 
             modelClass.isAssignableFrom(RecommendedViewModel::class.java) -> {
                 RecommendedViewModel(pref) as T
             }
+            modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
+                DetailViewModel(pref) as T
+            }
             else -> throw IllegalArgumentException("Unknown Viewmodel Class: " + modelClass.name)
         }
     }

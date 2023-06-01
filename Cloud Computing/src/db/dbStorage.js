@@ -18,15 +18,11 @@ const gcs = new Storage({
 const bucketName = 'nutricipe-bucket'
 const bucket = gcs.bucket(bucketName)
 
-function getPublicUrl(filename) {
-    return 'https://storage.googleapis.com/' + bucketName + '/' + filename;
-}
-
 let ImgUpload = {}
 
-ImgUpload.uploadToGcs = (req, res, next) =>{
+ImgUpload.uploadToGcs = (req) =>{
     
-    if (!req.file) return next()
+    if (!req.file) return false;
 
 
     const date = new Date()
@@ -41,22 +37,12 @@ ImgUpload.uploadToGcs = (req, res, next) =>{
 
     stream.on('error', (err) => {
         req.file.cloudStorageError = err
-        next(err)
-    })
-
-    stream.on('finish', () => {
-        // req.file.cloudStorageObject = gcsname
-        // req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
-        next()
+        return false;
     })
 
     stream.end(req.file.buffer)
     {
-        const data = {
-            imageUrl: getPublicUrl(gcsname),
-            cloudStorageObject: gcsname,
-        }
-        return data;
+        return 'https://storage.googleapis.com/nutricipe-bucket/'+gcsname;
     }
 }
 

@@ -9,14 +9,20 @@ import android.util.Log
 import android.view.View
 
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.Coil
 import coil.request.ImageRequest
 import com.bumptech.glide.Glide
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
+import com.capstone.nutricipe.data.paging.adapter.RecipeAdapter
 import com.capstone.nutricipe.data.remote.api.ApiConfig
+import com.capstone.nutricipe.data.remote.model.DataRecipeItem
+import com.capstone.nutricipe.data.remote.model.RecipeItem
 import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.ActivityProfileBinding
 import com.capstone.nutricipe.databinding.ActivityRecommendedBinding
@@ -40,6 +46,7 @@ class RecommendedActivity : AppCompatActivity() {
 
         val idHistory = intent.getStringExtra("idHistory")
         val recommendedHistory = intent.getParcelableExtra<ResultItem>("Photo")
+        Log.e("recommendedHistory", recommendedHistory.toString())
 
 
         binding.btnBack.setOnClickListener {
@@ -59,8 +66,9 @@ class RecommendedActivity : AppCompatActivity() {
         recommendedViewModel.getToken().observe(this) { token ->
             if (token.isNotEmpty()) {
                 if (!idHistory.isNullOrEmpty()) {
-                    recommendedViewModel.getUploaded(token, idHistory)
+                    recommendedViewModel.getUploadedRecipe(token, idHistory)
                 } else if (recommendedHistory != null) {
+                    recommendedViewModel.getUploadedRecipe(token, recommendedHistory.id)
                     binding.tvTitle.text = recommendedHistory.title
                     binding.tvDescription.text = recommendedHistory.description
                     Glide.with(this)
@@ -87,6 +95,10 @@ class RecommendedActivity : AppCompatActivity() {
             showPopupMenu(it, recommendedHistory?.id ?: idHistory ?: "")
         }
 
+        recommendedViewModel.listRecipe.observe(this) { listRecipe ->
+            showRecipes(listRecipe)
+        }
+
         recommendedViewModel.messageDeleted.observe(this) { messageDeleted ->
             if(messageDeleted == "Delete Success"){
                 Toast.makeText(this, messageDeleted, Toast.LENGTH_SHORT).show()
@@ -101,7 +113,7 @@ class RecommendedActivity : AppCompatActivity() {
         }
     }
 
-    private fun bindRecommendedData(recommendedData: ResultItem) {
+    private fun bindRecommendedData(recommendedData: DataRecipeItem) {
         binding.tvTitle.text = recommendedData.title
         binding.tvDescription.text = recommendedData.description
 
@@ -119,22 +131,27 @@ class RecommendedActivity : AppCompatActivity() {
     }
 
     private fun showPopupMenu(view: View, id: String) {
-        val popupMenu = PopupMenu(this, view)
-        popupMenu.inflate(R.menu.popup_menu)
-
-        popupMenu.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.menu_delete -> {
-                    Log.e("yang masuk adalah id:", id)
-                    // Handle delete action
-                    deleteHistory(id)
-                    true
-                }
-                else -> false
-            }
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setTitle("Delete Confirmation")
+        alertDialogBuilder.setMessage("Are you sure you want to delete?")
+        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+            deleteHistory(id)
         }
-        popupMenu.show()
+        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.setOnShowListener {
+            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setTextColor(ContextCompat.getColor(this, R.color.red))
+
+            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+            negativeButton.setTextColor(ContextCompat.getColor(this, R.color.black))
+        }
+        alertDialog.show()
     }
+
 
     private fun deleteHistory(idHistory: String) {
         Log.e("history", idHistory)
@@ -155,6 +172,14 @@ class RecommendedActivity : AppCompatActivity() {
             binding.progressBar2.visibility = View.VISIBLE
         } else {
             binding.progressBar2.visibility = View.GONE
+        }
+    }
+
+    private fun showRecipes(recipes: List<RecipeItem>) {
+        binding.rvRecipe.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@RecommendedActivity)
+            adapter = RecipeAdapter(ArrayList(recipes))
         }
     }
 }

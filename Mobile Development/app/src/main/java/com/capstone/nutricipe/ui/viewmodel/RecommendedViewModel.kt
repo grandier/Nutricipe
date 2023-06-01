@@ -6,13 +6,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.data.remote.api.ApiConfig
+import com.capstone.nutricipe.data.remote.model.DataRecipeItem
 import com.capstone.nutricipe.data.remote.model.DeleteHistory
+import com.capstone.nutricipe.data.remote.model.RecipeItem
 import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.data.remote.model.UploadedHistory
+import com.capstone.nutricipe.data.remote.model.UploadedRecipe
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -35,8 +39,11 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
     private val _isDeleted = MutableLiveData<Boolean>()
     val isDeleted: LiveData<Boolean> = _isDeleted
 
-    private val _uploaded = MutableLiveData<ResultItem?>()
-    val uploaded: LiveData<ResultItem?> = _uploaded
+    private val _uploaded = MutableLiveData<DataRecipeItem>()
+    val uploaded: LiveData<DataRecipeItem> = _uploaded
+
+    private val _listRecipe = MutableLiveData<List<RecipeItem>>()
+    val listRecipe: LiveData<List<RecipeItem>> = _listRecipe
 
     init {
         _acceptance.value = false
@@ -70,7 +77,7 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
                         if (uploadedData != null) {
                             _message.value = response.body()?.message.toString()
                             _acceptance.value = true
-                            _uploaded.value = uploadedData[0]
+//                            _uploaded.value = uploadedData[0]
                             _isLoading.value = false
                         } else {
                             _message.value = "Invalid data"
@@ -138,5 +145,34 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
                     _messageDeleted.value = "Failed to retrieve data: $error"
                 }
             })
+    }
+
+    fun getUploadedRecipe(token: String, idHistory: String){
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getUploadedRecipe("Bearer $token", idHistory)
+        client.enqueue(object : Callback<UploadedRecipe> {
+            override fun onResponse(
+                call: Call<UploadedRecipe>,
+                response: Response<UploadedRecipe>
+            ) {
+                val uploadedData = response.body()?.dataRecipe
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    if(uploadedData != null){
+                            _message.value = response.body()?.message as String
+                            _listRecipe.value = response.body()?.dataRecipe?.flatMap { it.recipe } ?: emptyList()
+                            _uploaded.value = uploadedData[0]
+                            _isLoading.value = false
+                        }
+                } else {
+                    _message.value = response.message()
+                }
+            }
+
+            override fun onFailure(call: Call<UploadedRecipe>, t: Throwable) {
+                _isLoading.value = false
+                _message.value = "Failure"
+            }
+        })
     }
 }
