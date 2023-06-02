@@ -71,7 +71,7 @@ async function handleUpload(req, res) {
         throw new Error('Cannot save recipe');
       }
   
-      return res.status(200).json({ error: false, message: 'success', data: save.id });
+      return res.status(200).json({ error: false, message: 'success', idHistory: save.id });
     } catch (error) {
       return res.status(400).json({ error: true, message: error.message });
     }
