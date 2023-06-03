@@ -8,6 +8,7 @@ const {
 } = require('../helpers/mlHelper');
 
 const { getRecipe } = require('../helpers/recipe.helper');
+const { getDetailRecipe } = require('../helpers/detail.recipe'	)
 
 
 
@@ -38,6 +39,7 @@ async function handleUpload(req, res) {
       let recipeArr = [];
       for (let i = 0; i < recipeRes.data.length; i++) {
         let recipe = {
+          recipeId : recipeRes.data[i].id,
           title: recipeRes.data[i].title,
           image: recipeRes.data[i].image,
           usedIngredients: recipeRes.data[i].usedIngredients.map(ingredient => ingredient.name).join(", "),
@@ -46,7 +48,18 @@ async function handleUpload(req, res) {
         recipeArr.push(recipe);
       }
 
-  
+      const detailRecipe1 = await getDetailRecipe(recipeArr[0].recipeId);
+      const detailRecipe2 = await getDetailRecipe(recipeArr[1].recipeId);
+
+      recipeArr[0].amount = detailRecipe1.extendedIngredients.map(ingredient => ingredient.original);
+      recipeArr[1].amount = detailRecipe2.extendedIngredients.map(ingredients => ingredients.original);
+      recipeArr[0].instruction = detailRecipe1.instructions;;
+      recipeArr[1].instruction = detailRecipe2.instructions;
+
+      if(detailRecipe1 === false || detailRecipe2 === false){
+        return res.status(400).json({ error: true, message: 'No recipe found' });
+      }
+
       const data = {
         owner: req.userId,
         title: req.body.title,
