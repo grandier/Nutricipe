@@ -10,6 +10,7 @@ const { getRecipeUploaded } = require('../controllers/getRecipeUploaded');
 const { updateName } = require('../controllers/updateName');
 const { listHistory } = require('../controllers/listHistory');
 const { DeleteHistory } = require('../controllers/DeleteHistory');
+const { searchGoogleCustom } = require('../controllers/getRecipeUploaded')
 
 const multer = Multer({
     storage: Multer.MemoryStorage,
@@ -20,6 +21,7 @@ router.post('/register', register.registerUser);
 router.post('/login', login.loginUser);
 router.post('/uploadImage', authMiddleware.authMiddleware, multer.single('image'), handleImages.handleUpload);
 router.post('/getUploaded', authMiddleware.authMiddleware, getRecipeUploaded);
+router.post('/test', authMiddleware.authMiddleware, searchGoogleCustom);
 
 router.get('/profile', authMiddleware.authMiddleware, getProfile);
 router.get('/history', authMiddleware.authMiddleware, listHistory)
