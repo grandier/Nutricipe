@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
             android:textAlignment="center"
-            android:text="Let’s Go..."
+            android:text="@string/slide4_title"
             android:textColor="@color/mint"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_light"
             android:textAlignment="center"
-            android:text="Login now and find healthy recipes \nbased on the ingredients \nyou have"
+            android:text="@string/slide4_subtitle"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="GET STARTED"/>
+            android:text="@string/get_started"/>
 
     </LinearLayout>
 

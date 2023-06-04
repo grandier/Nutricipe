@@ -20,6 +20,7 @@ import com.capstone.nutricipe.ui.viewmodel.ProfileViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.paging.adapter.LoadingStateAdapter
 import com.capstone.nutricipe.data.paging.adapter.PhotoAdapter
@@ -140,8 +141,8 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun getPhotoPage(token: String) {
         val adapter = PhotoAdapter()
-        binding.rvHistory.layoutManager =
-            LinearLayoutManager(this@ProfileActivity) // Set the LinearLayoutManager
+        binding.rvHistory.setHasFixedSize(true)
+        binding.rvHistory.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.rvHistory.adapter = adapter.withLoadStateFooter(
             footer = LoadingStateAdapter {
                 adapter.retry()

@@ -35,11 +35,10 @@ class PhotoAdapter :
             holder.bind(data)
         }
     }
-
-    inner class ListViewHolder(private val binding: CardHistoryBinding) :
+    inner class ListViewHolder(binding: CardHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private val photoView: ImageView = binding.storyImage
-        private val name: TextView = binding.storyTitle
+        private val photoView: ImageView = binding.ivHistory
+        private val name: TextView = binding.tvHistory
 
         fun bind(photo: ResultItem) {
             name.text = photo.title

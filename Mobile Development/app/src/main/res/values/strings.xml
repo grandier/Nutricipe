@@ -48,7 +48,7 @@
     <string name="recommended_recipe">Recommended Recipe</string>
     <string name="breakfast">Breakfast</string>
     <string name="simple_explanation">Simple Explanation</string>
-    <string name="foodstuff">Foodstuff</string>
+    <string name="foodstuff">Based on photos</string>
     <string name="food_recommendation">Food Recipe Recommendation</string>
     <string name="recipe_detail">Recipe Detail</string>
     <string name="ingredient_recipe">Ingredient &amp; Recipe</string>
@@ -64,6 +64,15 @@
     <string name="success_upload">Success Upload</string>
 
     <!-- OnBoarding -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="subtitle">Find delicious and nutritious recipes based on the fruits and vegetables you have!</string>
+    <string name="slide1_title">What is Nutricipe?</string>
+    <string name="slide1_subtitle">Nutricipe is a food app that turns fruit and vegetable photos into delicious and nutritious recipes.</string>
+    <string name="slide2_title">Take Picture!</string>
+    <string name="slide2_subtitle">Upload or take pictures of the fruits and vegetables you have</string>
+    <string name="slide3_title">Based on Your Photos</string>
+    <string name="silde3_subtitle">The Technology in this application will recommend dishes and recipes for you</string>
+    <string name="slide4_title">Let’s Go...</string>
+    <string name="slide4_subtitle">Login now and find recipes based on the fruits and vegetables you have</string>
+    <string name="get_started">GET STARTED</string>
 
 </resources>

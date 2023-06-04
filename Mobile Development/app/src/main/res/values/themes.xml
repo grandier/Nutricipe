@@ -17,10 +17,16 @@
 
     <style name="roundedImageStyle" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">5dp</item>
-        <item name="cornerSizeTopRight">5dp</item>
-        <item name="cornerSizeBottomLeft">5dp</item>
-        <item name="cornerSizeBottomRight">5dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+    </style>
+
+    <style name="roundedImageStyleRecipe" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
     </style>
 
     <style name="Theme.Nutricipe.Splash" parent="Theme.Material3.DayNight.NoActionBar">

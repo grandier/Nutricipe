@@ -4,42 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="10dp"
     android:elevation="4dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_rectangle_rd5"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/story_image"
-            android:layout_width="160dp"
-            android:layout_height="75dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/roundedImageStyle"
-            tools:ignore="ImageContrastCheck,MissingClass"
-            tools:srcCompat="@drawable/preview_image"/>
-
-        <TextView
-            android:id="@+id/story_title"
+        <ImageView
+            android:id="@+id/iv_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:fontFamily="@font/montserrat_semi_bold"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:src="@drawable/preview_image"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/story_image"
-            android:text="@string/title_ingredient" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_history"
+            android:paddingStart="8dp"
+            android:paddingEnd="24dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tv_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:maxLines="1"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:textSize="14dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_regular"
+                tools:text="aiwdajodoapjajwad,mayguygugftuyuuuyybuyguyygufoiohhohihwpdodkad" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

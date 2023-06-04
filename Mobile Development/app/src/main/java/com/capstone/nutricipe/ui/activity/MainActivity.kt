@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.data.paging.adapter.LoadingStateAdapter
@@ -94,8 +95,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getPhotoPage(token: String) {
         val adapter = PhotoAdapter()
-        binding.rvHistory.layoutManager =
-            LinearLayoutManager(this@MainActivity) // Set the LinearLayoutManager
+        binding.rvHistory.setHasFixedSize(true)
+        binding.rvHistory.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.rvHistory.adapter = adapter.withLoadStateFooter(
             footer = LoadingStateAdapter {
                 adapter.retry()

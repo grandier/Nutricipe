@@ -17,6 +17,7 @@ import com.capstone.nutricipe.ui.activity.dataStore
 import com.capstone.nutricipe.ui.viewmodel.DetailViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
 
+@Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
@@ -49,7 +50,7 @@ class DetailActivity : AppCompatActivity() {
                     binding.tvTitle.text = recipe.title
                     Glide.with(this)
                         .load(recipe.image)
-                        .into(binding.previewImageView)
+                        .into(binding.ivPreview)
 
                     val usedIngredients = "<b>Used Ingredients:</b> ${recipe.usedIngredients}<br><br>"
                     val missedIngredients = "<b>Missed Ingredients:</b> ${recipe.missedIngredients}<br><br>"

@@ -14,6 +14,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.Coil
 import coil.request.ImageRequest
 import com.bumptech.glide.Glide
@@ -73,7 +74,7 @@ class RecommendedActivity : AppCompatActivity() {
                     binding.tvDescription.text = recommendedHistory.description
                     Glide.with(this)
                         .load(recommendedHistory.imageUrl)
-                        .into(binding.previewImageView)
+                        .into(binding.ivPreview)
                 } else {
                     // Handle the case where both idHistory and recommendedHistory are not available
                     Toast.makeText(this, "No data available", Toast.LENGTH_SHORT).show()
@@ -122,7 +123,7 @@ class RecommendedActivity : AppCompatActivity() {
         val request = ImageRequest.Builder(this)
             .data(recommendedData.imageUrl)
             .target { drawable ->
-                binding.previewImageView.setImageDrawable(drawable)
+                binding.ivPreview.setImageDrawable(drawable)
                 showLoading(false) // Set isLoading to false when image loading is completed
             }
             .build()
@@ -166,7 +167,6 @@ class RecommendedActivity : AppCompatActivity() {
         }
     }
 
-
     private fun showLoading(state: Boolean) {
         if (state) {
             binding.progressBar2.visibility = View.VISIBLE
@@ -178,7 +178,7 @@ class RecommendedActivity : AppCompatActivity() {
     private fun showRecipes(recipes: List<RecipeItem>) {
         binding.rvRecipe.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@RecommendedActivity)
+            layoutManager = LinearLayoutManager(this@RecommendedActivity, RecyclerView.HORIZONTAL, false)
             adapter = RecipeAdapter(ArrayList(recipes))
         }
     }

@@ -29,7 +29,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/title_add_new_photo"
             android:textColor="@color/mint"
-            android:textSize="28sp"
+            android:textSize="22sp"
             app:layout_constraintStart_toEndOf="@+id/btn_back"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,7 +92,7 @@
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
             android:src="@drawable/baseline_placeholder"
-            android:foreground="@drawable/edt_bg"
+            android:background="@color/silver_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edDescription"
