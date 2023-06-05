@@ -60,10 +60,15 @@ class AddPhotoActivity : AppCompatActivity() {
 
                 val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true) as? Boolean
                 val resultBitmap = isBackCamera?.let {
-                    rotateBitmap(
-                        BitmapFactory.decodeFile(myFile.path), it
-                    )
+                    BitmapFactory.decodeFile(myFile.path)
                 }
+
+//                val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true) as? Boolean
+//                val resultBitmap = isBackCamera?.let {
+//                    rotateBitmap(
+//                        BitmapFactory.decodeFile(myFile.path), it
+//                    )
+//                }
 
                 // Set the captured image bitmap to the shapeableImageView
                 binding.shapeableImageView.setImageBitmap(resultBitmap)
@@ -252,7 +257,7 @@ class AddPhotoActivity : AppCompatActivity() {
         val description = text.toRequestBody("text/plain".toMediaType())
 
         // Rotate the file before uploading
-        rotateFile(file, isBackCamera = true)
+    //    rotateFile(file, isBackCamera = true)
 
         // Create a MultipartBody.Part for uploading the image
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
