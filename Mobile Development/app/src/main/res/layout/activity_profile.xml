@@ -42,12 +42,20 @@
                 android:textSize="22sp"/>
 
             <ImageView
+                android:id="@+id/lenguage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@+id/logout"
+                android:src="@drawable/ic_lenguage" />
+
+            <ImageView
                 android:id="@+id/logout"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/baseline_exit_to_app_24"
-                android:contentDescription="@string/profile" />
+                android:contentDescription="@string/logout" />
         </RelativeLayout>
 
         <RelativeLayout

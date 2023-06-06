@@ -1,12 +1,16 @@
 package com.capstone.nutricipe.ui.activity.recipe
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -28,6 +32,7 @@ import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.ActivityProfileBinding
 import com.capstone.nutricipe.databinding.ActivityRecommendedBinding
 import com.capstone.nutricipe.databinding.ActivitySplashBinding
+import com.capstone.nutricipe.databinding.CardDialogBinding
 import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 import com.capstone.nutricipe.ui.activity.dataStore
@@ -93,7 +98,8 @@ class RecommendedActivity : AppCompatActivity() {
         }
 
         binding.ivSetting.setOnClickListener {
-            showPopupMenu(it, recommendedHistory?.id ?: idHistory ?: "")
+            //showPopupMenu(it, recommendedHistory?.id ?: idHistory ?: "")
+            deleteDialog(recommendedHistory?.id ?: idHistory ?: "")
         }
 
         recommendedViewModel.listRecipe.observe(this) { listRecipe ->
@@ -131,26 +137,50 @@ class RecommendedActivity : AppCompatActivity() {
         Coil.imageLoader(this).enqueue(request)
     }
 
-    private fun showPopupMenu(view: View, id: String) {
-        val alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialogBuilder.setTitle("Delete Confirmation")
-        alertDialogBuilder.setMessage("Are you sure you want to delete?")
-        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+//    private fun showPopupMenu(view: View, id: String) {
+//        val alertDialogBuilder = AlertDialog.Builder(this)
+//        alertDialogBuilder.setTitle("Delete Confirmation")
+//        alertDialogBuilder.setMessage("Are you sure you want to delete?")
+//        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+//            deleteHistory(id)
+//        }
+//        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+//            dialog.dismiss()
+//        }
+//
+//        val alertDialog = alertDialogBuilder.create()
+//        alertDialog.setOnShowListener {
+//            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+//            positiveButton.setTextColor(ContextCompat.getColor(this, R.color.red))
+//
+//            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+//            negativeButton.setTextColor(ContextCompat.getColor(this, R.color.black))
+//        }
+//        alertDialog.show()
+//    }
+
+    private fun deleteDialog(id: String) {
+        val dialogBinding = CardDialogBinding.inflate(layoutInflater)
+        val dialogView = dialogBinding.root
+
+        dialogBinding.tvTitleDialog.text = getString(R.string.title_delete)
+        dialogBinding.tvTextDialog.text = getString(R.string.text_delete)
+        dialogBinding.btnNo.text = getString(R.string.no)
+        dialogBinding.btnYes.text = getString(R.string.yes)
+
+        val dialogBuilder = Dialog(this)
+        dialogBuilder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogBuilder.setCancelable(false)
+        dialogBuilder.setContentView(dialogView)
+        dialogBuilder.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogBuilder.show()
+
+        dialogBinding.btnYes.setOnClickListener {
             deleteHistory(id)
         }
-        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
-            dialog.dismiss()
+        dialogBinding.btnNo.setOnClickListener {
+            dialogBuilder.dismiss()
         }
-
-        val alertDialog = alertDialogBuilder.create()
-        alertDialog.setOnShowListener {
-            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            positiveButton.setTextColor(ContextCompat.getColor(this, R.color.red))
-
-            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-            negativeButton.setTextColor(ContextCompat.getColor(this, R.color.black))
-        }
-        alertDialog.show()
     }
 
 

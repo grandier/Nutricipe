@@ -38,13 +38,21 @@
     <string name="title_name">Nama Judul...</string>
     <string name="back">Kembali</string>
     <string name="title_add_new_photo">Tambahkan Foto Baru</string>
-    <string name="add_your_ingredient_photo">Tambahkan Foto Bahan Kamu</string>
+    <string name="add_your_ingredient_photo">Tambahkan Foto Buah atau Sayur</string>
     <string name="title_exceeded">Batas Maksimal 20</string>
 
     <!-- Profile -->
     <string name="title_profile">Profil</string>
     <string name="profile">Profil</string>
     <string name="logout">Keluar</string>
+
+    <!-- Dialog -->
+    <string name="title_logout">Konfirmasi Keluar</string>
+    <string name="text_logout">Anda yakin ingin keluar?</string>
+    <string name="no">Tidak</string>
+    <string name="yes">Iya</string>
+    <string name="title_delete">Konfirmasi Hapus Item</string>
+    <string name="text_delete">Anda yakin ingin menghapus item ini?</string>
 
     <!-- Recommended Recipe -->
     <string name="recommended_recipe">Rekomendasi Resep</string>

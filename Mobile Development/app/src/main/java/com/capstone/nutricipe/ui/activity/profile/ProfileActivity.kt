@@ -1,11 +1,16 @@
 package com.capstone.nutricipe.ui.activity.profile
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
@@ -27,6 +32,7 @@ import com.capstone.nutricipe.data.paging.adapter.PhotoAdapter
 import com.capstone.nutricipe.data.remote.api.ApiConfig
 import com.capstone.nutricipe.data.remote.model.AddImage
 import com.capstone.nutricipe.data.remote.model.Profile
+import com.capstone.nutricipe.databinding.CardDialogBinding
 import com.capstone.nutricipe.databinding.DialogRenameBinding
 import com.capstone.nutricipe.ui.activity.dataStore
 import retrofit2.Call
@@ -56,9 +62,12 @@ class ProfileActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
+        binding.lenguage.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+        }
 
         binding.logout.setOnClickListener {
-            showLogoutConfirmationDialog()
+            logoutDialog()
         }
 
         profileViewModel.getToken().observe(this) { token ->
@@ -119,24 +128,48 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
-    private fun showLogoutConfirmationDialog() {
-        val alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialogBuilder.setTitle("Logout")
-        alertDialogBuilder.setMessage("Are you sure you want to logout?")
-        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+//    private fun showLogoutConfirmationDialog() {
+//        val alertDialogBuilder = AlertDialog.Builder(this)
+//        alertDialogBuilder.setTitle("Logout")
+//        alertDialogBuilder.setMessage("Are you sure you want to logout?")
+//        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+//            logout()
+//        }
+//        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+//            dialog.dismiss()
+//        }
+//        val alertDialog = alertDialogBuilder.create()
+//
+//        // Customize the "Yes" button color
+//        alertDialog.setOnShowListener {
+//            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(this, R.color.red))
+//        }
+//
+//        alertDialog.show()
+//    }
+
+    private fun logoutDialog() {
+        val dialogBinding = CardDialogBinding.inflate(layoutInflater)
+        val dialogView = dialogBinding.root
+
+        dialogBinding.tvTitleDialog.text = getString(R.string.title_logout)
+        dialogBinding.tvTextDialog.text = getString(R.string.text_logout)
+        dialogBinding.btnNo.text = getString(R.string.no)
+        dialogBinding.btnYes.text = getString(R.string.yes)
+
+        val dialogBuilder = Dialog(this)
+        dialogBuilder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogBuilder.setCancelable(false)
+        dialogBuilder.setContentView(dialogView)
+        dialogBuilder.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogBuilder.show()
+
+        dialogBinding.btnYes.setOnClickListener {
             logout()
         }
-        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
-            dialog.dismiss()
+        dialogBinding.btnNo.setOnClickListener {
+            dialogBuilder.dismiss()
         }
-        val alertDialog = alertDialogBuilder.create()
-
-        // Customize the "Yes" button color
-        alertDialog.setOnShowListener {
-            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(this, R.color.red))
-        }
-
-        alertDialog.show()
     }
 
     private fun getPhotoPage(token: String) {

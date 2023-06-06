@@ -67,46 +67,52 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/bg_rectangle_rd5"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout2"
-                tools:layout_editor_absoluteX="16dp"
-                android:contentDescription="@string/todo" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="UseCompoundDrawables">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/add_your_ingredient_photo"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit ="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scrollHorizontally="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/add_your_ingredient_photo"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toStartOf="@+id/btn_add_photo"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
-                <ImageView
-                    android:id="@+id/btn_add_photo"
-                    android:layout_width="74dp"
-                    android:layout_height="74dp"
-                    android:layout_marginStart="16dp"
-                    android:contentDescription="@string/add_photo"
-                    android:src="@drawable/ic_circle_add_photo" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/btn_add_photo"
+                android:layout_width="74dp"
+                android:layout_height="74dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/add_photo"
+                android:src="@drawable/ic_circle_add_photo"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
