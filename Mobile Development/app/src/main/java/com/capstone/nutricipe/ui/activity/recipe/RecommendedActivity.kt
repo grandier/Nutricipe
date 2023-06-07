@@ -129,6 +129,7 @@ class RecommendedActivity : AppCompatActivity() {
         val request = ImageRequest.Builder(this)
             .data(recommendedData.imageUrl)
             .target { drawable ->
+                binding.ivPreview.background = ColorDrawable(Color.TRANSPARENT)
                 binding.ivPreview.setImageDrawable(drawable)
                 showLoading(false) // Set isLoading to false when image loading is completed
             }
@@ -199,9 +200,9 @@ class RecommendedActivity : AppCompatActivity() {
 
     private fun showLoading(state: Boolean) {
         if (state) {
-            binding.progressBar2.visibility = View.VISIBLE
+            binding.loadingShimmer.visibility = View.VISIBLE
         } else {
-            binding.progressBar2.visibility = View.GONE
+            binding.loadingShimmer.visibility = View.GONE
         }
     }
 
@@ -212,5 +213,7 @@ class RecommendedActivity : AppCompatActivity() {
             adapter = RecipeAdapter(ArrayList(recipes))
         }
     }
+
+    fun showPopupMenu(view: View) {}
 }
 

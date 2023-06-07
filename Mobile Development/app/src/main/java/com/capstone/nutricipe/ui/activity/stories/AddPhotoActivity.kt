@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -71,6 +73,7 @@ class AddPhotoActivity : AppCompatActivity() {
 //                }
 
                 // Set the captured image bitmap to the shapeableImageView
+                binding.shapeableImageView.background = ColorDrawable(Color.TRANSPARENT)
                 binding.shapeableImageView.setImageBitmap(resultBitmap)
                 binding.shapeableImageView.visibility = View.VISIBLE
             } else {
@@ -208,8 +211,6 @@ class AddPhotoActivity : AppCompatActivity() {
                 }
             }
         })
-
-
 
         binding.btnTakePicture.setOnClickListener {
             startCameraX()

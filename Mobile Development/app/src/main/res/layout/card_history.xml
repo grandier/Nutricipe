@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
-    android:layout_margin="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="10dp"
     android:elevation="4dp">
 
     <RelativeLayout
@@ -35,13 +36,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_text"
-                android:maxLines="1"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit ="marquee_forever"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
                 android:textSize="14dp"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_regular"
-                tools:text="aiwdajodoapjajwad,mayguygugftuyuuuyybuyguyygufoiohhohihwpdodkad" />
+                tools:text="aiwdajodoapjajwadmayguygugftuyuuuyybuyguyygufoiohhohihwpdodkad" />
         </LinearLayout>
 
     </RelativeLayout>
