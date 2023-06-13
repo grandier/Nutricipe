@@ -177,26 +177,29 @@ async function saveRecipe(recipeFirst, recipeSecond) {
     }
 }
 
-async function getRecipe(idHistory) {
+async function getRecipe(idHistory, userId) {
     try {
-        const snapshot = await db.collection('recipe').where('idHistory', '==', idHistory).get();
-        if (!snapshot.empty) {
-            const recipeList = [];
-            snapshot.forEach((doc) => {
-                const recipeData = doc.data();
-                // Add the document ID to the historyData object
-                recipeData.id = doc.id;
-                recipeList.push(recipeData);
-            });
-            return recipeList;
-        }
-        return false;
-
-
+      const snapshot = await db.collection('recipe').where('idHistory', '==', idHistory).get();
+      if (!snapshot.empty) {
+        const recipeList = [];
+        snapshot.forEach((doc) => {
+          const recipeData = doc.data();
+          if (recipeData.owner !== userId) {
+            recipeData.error = true;// Throw an error for unauthorized access
+          }
+          recipeData.error = false;
+          // Add the document ID to the recipeData object
+          recipeData.id = doc.id;
+          recipeList.push(recipeData);
+        });
+        return recipeList;
+      }
+      return false;
     } catch (error) {
-        return false;
+      return false;
     }
-}
+  }
+  
 
 
 module.exports = {
@@ -211,5 +214,5 @@ module.exports = {
     deleteHistory,
     cekDataHistory,
     saveRecipe,
-    getRecipe
+    getRecipe,
 }
