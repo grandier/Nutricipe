@@ -33,7 +33,7 @@ async function getRecipeUploaded(req, res) {
 
 async function searchGoogleCustom(title) {
   const query = 'recipe ' + title;
-  const numResults = 2;
+  const numResults = 5;
   try {
     const cx = '503c8675914a94324';
     const apiKey = 'AIzaSyDzrOfz-IcdhgxrxJanrSc1DnnFBDOq8JQ';
