@@ -33,7 +33,7 @@ async function handleUpload(req, res) {
       const arr = mlRes.map(item => item);
       const ingredients = arr.join(',');
 
-      const recipeUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=bdb2e5f6c7a247aab66251096842af5b&ingredients=${ingredients}&number=2`;
+      const recipeUrl = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=bdb2e5f6c7a247aab66251096842af5b&ingredients=${ingredients}&number=5`;
       const recipeRes = await getRecipe(recipeUrl);
 
       let recipeArr = [];
