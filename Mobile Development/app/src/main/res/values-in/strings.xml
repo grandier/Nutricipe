@@ -2,6 +2,7 @@
 <resources>
     <!-- App -->
     <string name="app_name">Nutricipe</string>
+    <string name="subtitle_intro">Membantu kamu menemukan resep sehat</string>
     <string name="welcome">Selamat Datang!</string>
     <string name="tittle_about_app">Apa itu Nutricipe?</string>
     <string name="subtitle">Temukan resep enak dan bernutrisi berdasarkan buah dan sayuran yang kamu miliki!</string>
@@ -32,20 +33,24 @@
     <!-- Add Photo -->
     <string name="add_photo">Tambahkan Foto</string>
     <string name="title_description">Deskripsi</string>
-    <string name="type_here">Tulis disini...</string>
+    <string name="type_here">Tulis disini…</string>
     <string name="take_picture">Ambil Gambar</string>
     <string name="open_gallery">Buka Galeri</string>
-    <string name="title_name">Nama Judul...</string>
+    <string name="title_name">Nama Judul…</string>
     <string name="back">Kembali</string>
     <string name="title_add_new_photo">Tambahkan Foto Baru</string>
     <string name="add_your_ingredient_photo">Tambahkan Foto Buah atau Sayur</string>
     <string name="title_exceeded">Batas Maksimal 20</string>
     <string name="set_img_error">Gagal mengambil gambar</string>
+    <string name="find_recipe">Cari Resep</string>
+    <string name="photo">Foto</string>
 
     <!-- Profile -->
     <string name="title_profile">Profil</string>
     <string name="profile">Profil</string>
     <string name="logout">Keluar</string>
+    <string name="lenguage">Bahasa</string>
+    <string name="edit">Sunting</string>
 
     <!-- Dialog -->
     <string name="title_logout">Konfirmasi Keluar</string>
@@ -76,13 +81,13 @@
 
     <!-- OnBoarding -->
     <string name="slide1_title">Apa itu Nutricipe?</string>
-    <string name="slide1_subtitle">
-Nutricipe adalah aplikasi makanan yang mengubah foto buah dan sayur menjadi resep lezat dan bergizi.</string>
+    <string name="slide1_subtitle">Nutricipe adalah aplikasi makanan yang mengubah foto buah dan sayur menjadi resep lezat dan bergizi.</string>
     <string name="slide2_title">Mengambil Gambar!</string>
     <string name="slide2_subtitle">Unggah atau ambil gambar buah dan sayuran yang Anda miliki</string>
     <string name="slide3_title">Berdasarkan Foto Anda</string>
     <string name="silde3_subtitle">Teknologi dalam aplikasi ini akan merekomendasikan hidangan dan resep untuk Anda</string>
-    <string name="slide4_title">Ayoo...</string>
+    <string name="slide4_title">Ayoo…</string>
     <string name="slide4_subtitle">Login sekarang dan temukan resep berdasarkan buah dan sayuran yang Anda miliki.</string>
     <string name="get_started">MULAI</string>
+
 </resources>

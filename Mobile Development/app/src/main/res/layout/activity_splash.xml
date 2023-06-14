@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/montserrat_regular"
-            android:text="Helping you find healthy recipes"
+            android:text="@string/subtitle_intro"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -30,6 +30,7 @@ class HistoryAdapter :
             holder.bind(data)
         }
     }
+
     inner class ListViewHolder(binding: CardHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val photoView: ImageView = binding.ivHistory
@@ -53,7 +54,6 @@ class HistoryAdapter :
             }
         }
     }
-
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ResultItem>() {

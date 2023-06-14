@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="Photo"
+            android:text="@string/photo"
             android:textColor="@color/mint"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"

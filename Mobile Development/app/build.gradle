@@ -81,7 +81,8 @@ dependencies {
 
     // Paging for handling large data sets
     implementation 'androidx.room:room-paging:2.5.0-alpha01'
-    implementation "androidx.paging:paging-runtime-ktx:3.1.0"
+    implementation 'androidx.paging:paging-runtime-ktx:3.1.0'
+    implementation 'androidx.paging:paging-common-ktx:3.1.1'
 
     // Dots Indicator for page marker in onboarding screen
     implementation 'com.tbuonomo:dotsindicator:4.3'
