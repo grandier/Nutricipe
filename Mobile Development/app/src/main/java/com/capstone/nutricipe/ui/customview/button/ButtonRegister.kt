@@ -22,9 +22,9 @@ class ButtonRegister @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         background = if (isEnabled) {
-            ContextCompat.getDrawable(context, R.drawable.button_bg)
+            ContextCompat.getDrawable(context, R.drawable.btn_bg)
         } else {
-            ContextCompat.getDrawable(context, R.drawable.button_bg_disable)
+            ContextCompat.getDrawable(context, R.drawable.btn_bg_disable)
         }
         setTextColor(ContextCompat.getColor(context, android.R.color.background_light))
         textSize = 18f

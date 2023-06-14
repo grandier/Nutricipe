@@ -11,7 +11,7 @@
         android:layout_height="50dp"
         android:layout_margin="20dp"
         android:background="@drawable/edt_bg"
-        android:drawableStart="@drawable/baseline_person_24"
+        android:drawableStart="@drawable/ic_person_24"
         android:drawablePadding="5dp"
         android:gravity="start|center_vertical"
         android:paddingStart="15dp"

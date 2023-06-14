@@ -40,6 +40,7 @@
     <string name="title_add_new_photo">Tambahkan Foto Baru</string>
     <string name="add_your_ingredient_photo">Tambahkan Foto Buah atau Sayur</string>
     <string name="title_exceeded">Batas Maksimal 20</string>
+    <string name="set_img_error">Gagal mengambil gambar</string>
 
     <!-- Profile -->
     <string name="title_profile">Profil</string>

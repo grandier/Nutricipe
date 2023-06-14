@@ -19,6 +19,7 @@ import com.capstone.nutricipe.data.remote.model.UploadedRecipe
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,16 +29,13 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     private val _acceptance = MutableLiveData<Boolean>()
-    val acceptance: LiveData<Boolean> = _acceptance
 
     private val _message = MutableLiveData<String>()
-    val message: LiveData<String> = _message
 
     private val _messageDeleted = MutableLiveData<String>()
     val messageDeleted: LiveData<String> = _messageDeleted
 
     private val _isDeleted = MutableLiveData<Boolean>()
-    val isDeleted: LiveData<Boolean> = _isDeleted
 
     private val _uploaded = MutableLiveData<DataRecipeItem>()
     val uploaded: LiveData<DataRecipeItem> = _uploaded
@@ -56,57 +54,12 @@ class RecommendedViewModel(private val pref: Session) : ViewModel() {
         return pref.getToken().asLiveData()
     }
 
-    fun saveToken(token: String) {
-        viewModelScope.launch {
-            pref.saveToken(token)
-        }
-    }
-
-    fun getUploaded(token: String, idHistory: String) {
-        _isLoading.value = true
-
-        // Example: Making an API call using Retrofit
-        val service = ApiConfig.getApiService().getUploaded("Bearer $token", idHistory)
-        service.enqueue(object : Callback<UploadedHistory> {
-            override fun onResponse(call: Call<UploadedHistory>, response: Response<UploadedHistory>) {
-
-                if (response.isSuccessful) {
-                    if (response.body()?.message.equals("success")){
-                        // Handle the successful response
-                        val uploadedData = response.body()?.result
-                        if (uploadedData != null) {
-                            _message.value = response.body()?.message.toString()
-                            _acceptance.value = true
-//                            _uploaded.value = uploadedData[0]
-                            _isLoading.value = false
-                        } else {
-                            _message.value = "Invalid data"
-                            _acceptance.value = false
-                        }
-                        _message.value = "Data retrieved successfully"
-                    }
-                } else {
-                    // Handle the error response
-                    val errorMessage = response.message()
-
-                    _message.value = "Failed to retrieve data: $errorMessage"
-                }
-            }
-
-            override fun onFailure(call: Call<UploadedHistory>, t: Throwable) {
-                _isLoading.value = false
-                // Handle the failure
-                val error = t.message
-                _message.value = "Failed to retrieve data: $error"
-            }
-        })
-    }
-
     fun deleteHistory(token: String, idHistory: String) {
         _isDeleted.value = false
         _isLoading.value = false
 
-        val requestBody = RequestBody.create("application/x-www-form-urlencoded".toMediaTypeOrNull(), "idHistory=$idHistory")
+        val requestBody =
+            "idHistory=$idHistory".toRequestBody("application/x-www-form-urlencoded".toMediaTypeOrNull())
 
         // Example: Making an API call using Retrofit
         ApiConfig.getApiService().deleteHistory("Bearer $token", requestBody)

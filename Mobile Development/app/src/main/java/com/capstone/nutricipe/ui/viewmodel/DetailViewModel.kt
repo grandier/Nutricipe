@@ -16,7 +16,6 @@ class DetailViewModel(private val pref: Session) : ViewModel(){
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-
     init {
         _acceptance.value = false
         if (pref.getToken().asLiveData().value != null) {

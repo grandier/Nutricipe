@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.stories.AddPhotoActivity">
+    tools:context=".ui.activity.add.AddPhotoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
             android:layout_height="235dp"
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/baseline_placeholder"
+            android:src="@drawable/ic_placeholder"
             android:background="@color/silver_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

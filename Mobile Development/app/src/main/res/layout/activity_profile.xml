@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.stories.AddPhotoActivity">
+    tools:context=".ui.activity.add.AddPhotoActivity">
 
     <LinearLayout
         android:id="@+id/container"
@@ -54,7 +54,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/baseline_exit_to_app_24"
+                android:src="@drawable/ic_exit_to_app_24"
                 android:contentDescription="@string/logout" />
         </RelativeLayout>
 
@@ -109,7 +109,7 @@
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/baseline_edit_24" />
+                android:src="@drawable/ic_edit_24" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -132,6 +132,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="6dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

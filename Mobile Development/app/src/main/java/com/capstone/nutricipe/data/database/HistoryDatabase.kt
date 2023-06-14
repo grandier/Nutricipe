@@ -4,23 +4,20 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import com.capstone.nutricipe.data.remote.model.ResultItem
-import com.google.gson.Gson
 
 @Database(entities = [ResultItem::class], version = 1, exportSchema = false)
-abstract class PhotoDatabase : RoomDatabase() {
+abstract class HistoryDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANCE: PhotoDatabase? = null
+        private var INSTANCE: HistoryDatabase? = null
 
-        fun getDatabase(context: Context): PhotoDatabase {
+        fun getDatabase(context: Context): HistoryDatabase {
             return INSTANCE ?: synchronized(this) {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
-                    PhotoDatabase::class.java, "result_database"
+                    HistoryDatabase::class.java, "result_database"
                 )
                     .fallbackToDestructiveMigration()
                     .build()

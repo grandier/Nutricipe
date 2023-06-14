@@ -38,6 +38,7 @@
     <string name="title_add_new_photo">Add New Photo</string>
     <string name="add_your_ingredient_photo">Add Fruit or Vegetable Photo</string>
     <string name="title_exceeded">Limit Exceeded 20</string>
+    <string name="set_img_error">Failed to take picture</string>
 
     <!-- Profile -->
     <string name="title_profile">Profile</string>

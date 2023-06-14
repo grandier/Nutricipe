@@ -48,16 +48,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/app_title" />
 
             <ImageView
-                android:id="@+id/iv_setting"
+                android:id="@+id/iv_delete"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:contentDescription="@string/title_delete"
-                android:onClick="showPopupMenu"
                 android:src="@drawable/ic_delete_outline_24"
                 app:layout_constraintBottom_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/view"
-                tools:ignore="OnClick,UsingOnClickInXml" />
+                app:layout_constraintTop_toTopOf="@+id/view"/>
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -70,7 +68,7 @@
                 android:paddingEnd="36dp"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintEnd_toStartOf="@+id/iv_setting"
+                app:layout_constraintEnd_toStartOf="@+id/iv_delete"
                 app:layout_constraintStart_toEndOf="@+id/view"
                 app:layout_constraintTop_toTopOf="@+id/view"
                 tools:ignore="Autofill,LabelFor,TextFields" />
@@ -108,7 +106,7 @@
                 android:layout_height="235dp"
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/baseline_placeholder"
+                android:src="@drawable/ic_placeholder"
                 android:background="@color/silver_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

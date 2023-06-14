@@ -22,12 +22,6 @@ class RegisterViewModel(private val pref: Session) : ViewModel() {
         return pref.getToken().asLiveData()
     }
 
-    fun saveToken(token: String) {
-        viewModelScope.launch {
-            pref.saveToken(token)
-        }
-    }
-
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
     private val _acceptance = MutableLiveData<Boolean>()
@@ -37,9 +31,6 @@ class RegisterViewModel(private val pref: Session) : ViewModel() {
 
     init {
         _acceptance.value = false
-//        if (pref.getToken().asLiveData().value != null) {
-//            _acceptance.value = true
-//        }
     }
 
     fun register(name: String, email: String, password: String) {

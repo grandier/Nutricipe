@@ -60,6 +60,7 @@ class RecommendedActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+
         val pref = Session.getInstance(dataStore)
         recommendedViewModel = ViewModelProvider(
             this, ViewModelFactory(pref, this)
@@ -97,8 +98,7 @@ class RecommendedActivity : AppCompatActivity() {
             }
         }
 
-        binding.ivSetting.setOnClickListener {
-            //showPopupMenu(it, recommendedHistory?.id ?: idHistory ?: "")
+        binding.ivDelete.setOnClickListener {
             deleteDialog(recommendedHistory?.id ?: idHistory ?: "")
         }
 
@@ -124,41 +124,19 @@ class RecommendedActivity : AppCompatActivity() {
         binding.tvTitle.text = recommendedData.title
         binding.tvDescription.text = recommendedData.description
 
-        showLoading(true) // Set isLoading to true before starting image loading
+        showLoading(true)
 
         val request = ImageRequest.Builder(this)
             .data(recommendedData.imageUrl)
             .target { drawable ->
                 binding.ivPreview.background = ColorDrawable(Color.TRANSPARENT)
                 binding.ivPreview.setImageDrawable(drawable)
-                showLoading(false) // Set isLoading to false when image loading is completed
+                showLoading(false)
             }
             .build()
 
         Coil.imageLoader(this).enqueue(request)
     }
-
-//    private fun showPopupMenu(view: View, id: String) {
-//        val alertDialogBuilder = AlertDialog.Builder(this)
-//        alertDialogBuilder.setTitle("Delete Confirmation")
-//        alertDialogBuilder.setMessage("Are you sure you want to delete?")
-//        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
-//            deleteHistory(id)
-//        }
-//        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
-//            dialog.dismiss()
-//        }
-//
-//        val alertDialog = alertDialogBuilder.create()
-//        alertDialog.setOnShowListener {
-//            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-//            positiveButton.setTextColor(ContextCompat.getColor(this, R.color.red))
-//
-//            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-//            negativeButton.setTextColor(ContextCompat.getColor(this, R.color.black))
-//        }
-//        alertDialog.show()
-//    }
 
     private fun deleteDialog(id: String) {
         val dialogBinding = CardDialogBinding.inflate(layoutInflater)
@@ -213,7 +191,5 @@ class RecommendedActivity : AppCompatActivity() {
             adapter = RecipeAdapter(ArrayList(recipes))
         }
     }
-
-    fun showPopupMenu(view: View) {}
 }
 

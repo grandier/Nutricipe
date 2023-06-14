@@ -18,13 +18,12 @@ class PhotoPagingSource(private val apiService: ApiService, private val token: S
             LoadResult.Page(
                 data = responseData.result,
                 prevKey = if (position == INITIAL_PAGE_INDEX) null else position - 1,
-                nextKey = if (responseData.result.isNullOrEmpty()) null else position + 1
+                nextKey = if (responseData.result.isEmpty()) null else position + 1
             )
         } catch (exception: Exception) {
             return LoadResult.Error(exception)
         }
     }
-
 
     override fun getRefreshKey(state: PagingState<Int, ResultItem>): Int? {
         return state.anchorPosition?.let { anchorPosition ->

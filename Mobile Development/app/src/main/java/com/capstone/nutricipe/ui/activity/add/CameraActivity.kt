@@ -1,4 +1,4 @@
-package com.capstone.nutricipe.ui.activity.stories
+package com.capstone.nutricipe.ui.activity.add
 
 import android.content.Intent
 import android.os.Build
@@ -89,7 +89,7 @@ class CameraActivity : AppCompatActivity() {
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
                         this@CameraActivity,
-                        "Gagal mengambil gambar.",
+                        R.string.set_img_error,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -34,7 +34,7 @@
             android:name=".ui.activity.intro.OnboardingActivity"
             android:exported="false"/>
         <activity
-            android:name=".ui.activity.stories.CameraActivity"
+            android:name=".ui.activity.add.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.recipe.DetailActivity"
@@ -46,7 +46,7 @@
             android:name=".ui.activity.profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.stories.AddPhotoActivity"
+            android:name=".ui.activity.add.AddPhotoActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.authentication.RegisterActivity"
