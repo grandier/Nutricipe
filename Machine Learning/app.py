@@ -21,10 +21,9 @@ def predict():
     if not request.method == "POST":
         return
 
-    if request.form.get("url"):
-        image_url = request.form["url"]
-        response = requests.get(image_url)
-        image_bytes = response.content
+    if request.files.get("image"):
+        image_file = request.files["image"]
+        image_bytes = image_file.read()
         img = Image.open(io.BytesIO(image_bytes))
 
         if model is not None or model1 is not None or model2 is not None:
@@ -38,13 +37,13 @@ def predict():
             for result2 in filtered_results2["name"]:
                 if result2 in my_labels:
                     labels.add(result2)
-            return jsonify(list(labels))
+            return jsonify(success= True, data=list(labels))
         else:
             return jsonify({"error": "Model not loaded. Please check the model initialization."})
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Flask API exposing YOLOv5 model")
-    parser.add_argument("--port", default=5000, type=int, help="port number")
+    parser.add_argument("--port", default=8080, type=int, help="port number")
     parser.add_argument('--model', default='yolov5s', help='model to run, i.e. --model yolov5s')
     args = parser.parse_args()
 
