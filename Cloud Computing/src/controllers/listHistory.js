@@ -6,6 +6,7 @@ async function listHistory(req, res) {
         if(result.empty) {
             return res.status(404).json({error: true, message: 'Not Found'});
         }
+        
         return res.status(200).json({error: false, message: 'success', result});
     }
     catch(error) {
