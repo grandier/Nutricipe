@@ -2,36 +2,35 @@
 <br />
 <p align="center">
   <a href="https://github.com/grandier/Nutricipe">
-    <img src="https://github.com/grandier/Nutricipe/blob/main/Mobile%20Development/app/src/main/res/drawable/logo_app.png" width='250dp' alt="Logo" >
+    <img src="https://www.linkpicture.com/q/img_ilustrasi_4.png" width='250dp' alt="Logo" >
   </a>
 
   <h1 align="center">Nutricipe</h1>
   <h2 align="center">
-  Application that helps you to find the best healthy Recipes
+  Application that helps you to find the best healthy Recipes</h2> 
   
-  <p align="center" style="font-size: 5px;">
-  This is a project to fulfill the 
-  <a href="https://grow.google/intl/id_id/bangkit/"><strong>Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</strong></a>
-  Program.
+<p align="center">
+  This is a project to fulfill the  <a href="https://grow.google/intl/id_id/bangkit/"><strong>Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</strong></a>
+   Program.
   <br />
-  <a href="https://github.com/grandier/Nutricipe"><strong>Explore the docs »</strong></a>
-  <br />
-  <br />
-  <a href="https://docs.google.com/document/d/1npJJuspqjWDtG6pWSPVhmbHB614CbpCGWlmkAmNxyPY/edit?usp=sharing">Project Brief</a>
+    <a href="https://github.com/grandier/Nutricipe"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://docs.google.com/document/d/1npJJuspqjWDtG6pWSPVhmbHB614CbpCGWlmkAmNxyPY/edit?usp=sharing">Project Brief</a>
   ·
   <a href="https://github.com/grandier/Nutricipe/releases">APK Link</a>
   ·
   <a href="https://youtu.be/QrIgG2bFTN4">Video Presentation</a>
   ·
   <a href="https://www.canva.com/design/DAFlkkPGUqk/p9rbo6J-qypnhQWOCgSWIQ/view?utm_content=DAFlkkPGUqk&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">Presentation Slide</a>
-  <br />
-  © C23 - PS346 Bangkit Capstone Team
+    <br />
+    © C23 - PS346 Bangkit Capstone Team
   </p>
 </p>
 
 # Team Members
 
-## Team ID : C23 - PS346
+## Team ID : C22 - PS099
 
 <br>
 
