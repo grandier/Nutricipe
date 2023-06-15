@@ -39,6 +39,7 @@ needs on the cloud side to process all requests and data services.
 
 ### Cloud Run
 <a href='https://www.linkpicture.com/view.php?img=LPic648b411b4f3531818415528'><img src='https://www.linkpicture.com/q/LPic648b411b4f3531818415528.png' type='image' width="50" height="50"></a>
+
 This Cloud Run service **`has been deployed`** on devevelopment environment.
 
 Service details:
@@ -65,6 +66,7 @@ Docs: [cloud-storage-docs](https://cloud.google.com/storage/docs)
 
 ### Firestore
 <a href='https://www.linkpicture.com/view.php?img=LPic648b493130cc0986850708'><img src='https://www.linkpicture.com/q/google-cloud-firestore.png' type='image' width="75" height="50"></a>
+
 This Firestore service **`has been deployed`** on development environment.
 
 Service details:
