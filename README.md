@@ -82,7 +82,7 @@ Our project is grounded on the growing problem of chronic diseases resulting fro
 
 - **Register**
 
-  1.  Open Volunteer or Helpseeker Applications
+  1.  Open the app and Register yourself
   2.  Register your email address
 
 - **Screenshot**
