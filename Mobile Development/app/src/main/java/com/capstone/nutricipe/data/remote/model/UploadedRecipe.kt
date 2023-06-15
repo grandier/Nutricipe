@@ -47,10 +47,10 @@ data class DataRecipeItem(
 
 @Parcelize
 data class LinkItem(
-
 	@field:SerializedName("link")
-	val link: String
+	val link: String?
 ) : Parcelable
+
 
 @Parcelize
 data class RecipeItem(
@@ -77,7 +77,7 @@ data class RecipeItem(
 	val idHistory: String,
 
 	@field:SerializedName("link")
-	val link: List<LinkItem>,
+	val link: List<LinkItem>? = null,
 
 	@field:SerializedName("id")
 	val id: String,
