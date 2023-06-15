@@ -9,8 +9,7 @@
   <h2 align="center">
   Application which helps you to find the best health Recipes
   
-  <p align="center">
-  <small>
+  <p align="center" style="font-size: 12px;">
     This is a project to fulfill the 
     <a href="https://grow.google/intl/id_id/bangkit/"><strong>Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</strong></a>
     Program.
@@ -27,7 +26,6 @@
     <a href="https://www.canva.com/design/DAFlkkPGUqk/p9rbo6J-qypnhQWOCgSWIQ/view?utm_content=DAFlkkPGUqk&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">Presentation Slide</a>
     <br />
     © C23 - PS346 Bangkit Capstone Team
-  </small>
   </p>
 </p>
 
