@@ -2,15 +2,10 @@
 Product Based Capstone Bangkit 2023
 
 ## Screenshots
-### Relasia Helper App
-<img src="https://github.com/junaediakbar/Capstone-Bangkit-2022-Relasia/blob/c5821947e88b29625c7baff520af974a4eebcbcd/Mobile%20Development/assets/volunteer-1.jpg" width="1000"/>
+### User Interface
+<img src="https://github.com/grandier/Nutricipe/blob/main/Mobile%20Development/UI1.jpg" width="1000"/>
 
-<img src="https://github.com/junaediakbar/Capstone-Bangkit-2022-Relasia/blob/c5821947e88b29625c7baff520af974a4eebcbcd/Mobile%20Development/assets/volunteer-2.jpg" width="1000"/>
-
-### Relasia Helpseeker App
-<img src="https://github.com/junaediakbar/Capstone-Bangkit-2022-Relasia/blob/c5821947e88b29625c7baff520af974a4eebcbcd/Mobile%20Development/assets/helpseeker-1.jpg" width="1000"/>
-
-<img src="https://github.com/junaediakbar/Capstone-Bangkit-2022-Relasia/blob/c5821947e88b29625c7baff520af974a4eebcbcd/Mobile%20Development/assets/helpseeker-2.jpeg" width="1000"/>
+<img src="https://github.com/grandier/Nutricipe/blob/main/Mobile%20Development/UI2.jpg" width="1000"/>
 
 ## Features
 
