@@ -9,7 +9,7 @@
   <h2 align="center">
   Application that helps you to find the best healthy Recipes
   
-  <p align="center" style="font-size: 10px;">
+  <p align="center" style="font-size: 5px;">
   This is a project to fulfill the 
   <a href="https://grow.google/intl/id_id/bangkit/"><strong>Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</strong></a>
   Program.
