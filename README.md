@@ -10,8 +10,10 @@
   Application which helps you to find the best health Recipes
   
   <p align="center">
-  This is a project to fulfill the  <a href="https://grow.google/intl/id_id/bangkit/"><strong>Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</strong></a>
-   Program.
+  <small>
+    This is a project to fulfill the 
+    <a href="https://grow.google/intl/id_id/bangkit/"><strong>Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</strong></a>
+    Program.
     <br />
     <a href="https://github.com/grandier/Nutricipe"><strong>Explore the docs »</strong></a>
     <br />
@@ -25,6 +27,7 @@
     <a href="https://www.canva.com/design/DAFlkkPGUqk/p9rbo6J-qypnhQWOCgSWIQ/view?utm_content=DAFlkkPGUqk&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">Presentation Slide</a>
     <br />
     © C23 - PS346 Bangkit Capstone Team
+  </small>
   </p>
 </p>
 
@@ -96,15 +99,15 @@ https://github.com/grandier/Nutricipe/assets/75106952/eca9394d-fa55-49cf-b60f-2a
 
 ## Machine Learning Development Documentation
 
-<a href="https://github.com/junaediakbar/Capstone-Bangkit-2022-Relasia/tree/machine-learning/Machine%20Learning">Link for Machine Learning Documentation
+<a href="https://github.com/grandier/Nutricipe/tree/main/Machine%20Learning">Link for Machine Learning Documentation
 
 ## Mobile Development Documentation
   
-<a href="https://github.com/junaediakbar/Capstone-Bangkit-2022-Relasia/tree/master/Mobile%20Development">Link for Mobile Development Documentation
+<a href="https://github.com/grandier/Nutricipe/tree/main/Mobile%20Development">Link for Mobile Development Documentation
 
 ## Cloud Computing Documentation
 
-<a href="https://github.com/junaediakbar/Capstone-Bangkit-2022-Relasia/tree/cc/Cloud%20Computing">Link for Cloud Computing Documentation
+<a href="https://github.com/grandier/Nutricipe/tree/main/Cloud%20Computing">Link for Cloud Computing Documentation
   
   ### REST API Documentation
 
