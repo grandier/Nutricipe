@@ -8,6 +8,7 @@ import com.capstone.nutricipe.data.local.Session
 
 class ViewModelFactory(private val pref: Session, private val context: Context) :
     ViewModelProvider.NewInstanceFactory() {
+
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {

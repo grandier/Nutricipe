@@ -10,16 +10,15 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.local.Session
 import com.capstone.nutricipe.data.paging.adapter.LoadingStateAdapter
-import com.capstone.nutricipe.data.paging.adapter.PhotoAdapter
+import com.capstone.nutricipe.data.paging.adapter.HistoryAdapter
 import com.capstone.nutricipe.databinding.ActivityMainBinding
 import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 import com.capstone.nutricipe.ui.activity.profile.ProfileActivity
-import com.capstone.nutricipe.ui.activity.stories.AddPhotoActivity
+import com.capstone.nutricipe.ui.activity.add.AddPhotoActivity
 import com.capstone.nutricipe.ui.viewmodel.MainViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
 
@@ -94,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPhotoPage(token: String) {
-        val adapter = PhotoAdapter()
+        val adapter = HistoryAdapter()
         binding.rvHistory.setHasFixedSize(true)
         binding.rvHistory.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.rvHistory.adapter = adapter.withLoadStateFooter(
@@ -102,12 +101,22 @@ class MainActivity : AppCompatActivity() {
                 adapter.retry()
             }
         )
+
+        val swipeRefreshLayout = binding.swipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener {
+            // Refresh data when swipe gesture is detected
+            adapter.refresh()
+        }
+
         mainViewModel.getPhoto(token)
             .observe(this) { photoData ->
                 adapter.submitData(lifecycle, photoData)
+                swipeRefreshLayout.isRefreshing = false // Stop the refreshing animation
             }
     }
 
+
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val homeIntent = Intent(Intent.ACTION_MAIN)
         homeIntent.addCategory(Intent.CATEGORY_HOME)

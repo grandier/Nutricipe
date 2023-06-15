@@ -26,12 +26,6 @@ class ProfileViewModel(private val pref: Session, private val photoRepository: P
         return pref.getToken().asLiveData()
     }
 
-    fun saveToken(token: String) {
-        viewModelScope.launch {
-            pref.saveToken(token)
-        }
-    }
-
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -39,7 +33,6 @@ class ProfileViewModel(private val pref: Session, private val photoRepository: P
     val message: LiveData<String> = _message
 
     private val _acceptance = MutableLiveData<Boolean>()
-    val acceptance: LiveData<Boolean> = _acceptance
 
     private val _profile = MutableLiveData<Data?>()
     val profile: LiveData<Data?> = _profile
@@ -63,8 +56,6 @@ class ProfileViewModel(private val pref: Session, private val photoRepository: P
                         if (response.body()?.message.equals("Success")) {
                             val profileData = response.body()?.data
                             if (profileData != null) {
-                                val name = profileData.name
-                                val email = profileData.email
                                 _message.value = response.body()?.message.toString()
                                 _acceptance.value = true
                                 _profile.value = profileData
@@ -124,7 +115,6 @@ class ProfileViewModel(private val pref: Session, private val photoRepository: P
     fun getPhoto(token: String): LiveData<PagingData<ResultItem>> {
         return photoRepository.getPhoto(token).cachedIn(viewModelScope)
     }
-
 
     private fun clearToken() {
         viewModelScope.launch {

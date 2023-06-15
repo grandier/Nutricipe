@@ -1,6 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- App -->
     <string name="app_name">Nutricipe</string>
+    <string name="subtitle_intro">Helping you find healthy recipes</string>
     <string name="welcome">Welcome!</string>
     <string name="tittle_about_app">What is Nutricipe?</string>
     <string name="text_about_app">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
@@ -30,19 +31,24 @@
     <!-- Add Photo -->
     <string name="add_photo">Add Photo</string>
     <string name="title_description">Description</string>
-    <string name="type_here">Type here...</string>
+    <string name="type_here">Type here…</string>
     <string name="take_picture">Take Picture</string>
     <string name="open_gallery">Open Gallery</string>
-    <string name="title_name">Title Name...</string>
+    <string name="title_name">Title Name…</string>
     <string name="back">Back</string>
     <string name="title_add_new_photo">Add New Photo</string>
     <string name="add_your_ingredient_photo">Add Fruit or Vegetable Photo</string>
     <string name="title_exceeded">Limit Exceeded 20</string>
+    <string name="set_img_error">Failed to take picture</string>
+    <string name="find_recipe">Find Recipe</string>
+    <string name="photo">Photo</string>
 
     <!-- Profile -->
     <string name="title_profile">Profile</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
+    <string name="lenguage">Lenguage</string>
+    <string name="edit">Edit</string>
 
     <!-- Dialog Logout -->
     <string name="title_logout">Logout Confirmation</string>
@@ -79,7 +85,7 @@
     <string name="slide2_subtitle">Upload or take pictures of the fruits and vegetables you have</string>
     <string name="slide3_title">Based on Your Photos</string>
     <string name="silde3_subtitle">The Technology in this application will recommend dishes and recipes for you</string>
-    <string name="slide4_title">Let’s Go...</string>
+    <string name="slide4_title">Let’s Go…</string>
     <string name="slide4_subtitle">Login now and find recipes based on the fruits and vegetables you have</string>
     <string name="get_started">GET STARTED</string>
 

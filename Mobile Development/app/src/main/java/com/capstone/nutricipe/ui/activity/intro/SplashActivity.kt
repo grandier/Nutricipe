@@ -51,6 +51,7 @@ class SplashActivity : AppCompatActivity() {
         }, 3000)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun hideSystemUI() {
         window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_FULLSCREEN
