@@ -57,7 +57,7 @@ class AddPhotoActivity : AppCompatActivity() {
             if (myFile != null) {
                 getFile = myFile
 
-                val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true) as? Boolean
+                val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true)
                 val resultBitmap = isBackCamera?.let {
                     BitmapFactory.decodeFile(myFile.path)
                 }

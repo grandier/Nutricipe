@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 class DetailViewModel(private val pref: Session) : ViewModel(){
 
     private val _acceptance = MutableLiveData<Boolean>()
-    val acceptance: LiveData<Boolean> = _acceptance
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -27,9 +26,4 @@ class DetailViewModel(private val pref: Session) : ViewModel(){
         return pref.getToken().asLiveData()
     }
 
-    fun saveToken(token: String) {
-        viewModelScope.launch {
-            pref.saveToken(token)
-        }
-    }
 }
