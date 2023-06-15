@@ -9,31 +9,16 @@ Product Based Capstone Bangkit 2023
 
 ## Features
 
-### Relasia Helper App
+### Nutricipe App
 - Splash Screen
-- Support Indonesia & English Language
-- Email & Gmail Authentication
+- Authentication
+- Regristration
+- Home Screen with List History
 - Profile Customization
-- Search Missions
-- Bookmark Missions
-- Filter Applied Missions History
-- Mission Details
-- Apply Missions
-- Recommendation System
-- Volunteer Registration
-
-### Relasia Helpseeker App
-- Splash screen
-- Support Indonesia & English Language
-- Email & Gmail Authentication
-- Profile customization
-- Bookmark Volunteer
-- Posting Mission
-- Volunteer details
-- Accept or Reject Volunteers from mission
-- Applied Missions History Filter
-- Posting Missions History
-- Mission Details
+- Add Photo using CameraX or Gallery
+- Recommendation Recipe System
+- Recipe Details
+- Support Indonesian & English
 
 ## Build With
 - [Kotlin](https://kotlinlang.org/)
@@ -48,12 +33,6 @@ Product Based Capstone Bangkit 2023
 - [OkHttp3](https://square.github.io/okhttp/)
 - [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
 - [Glide](https://github.com/bumptech/glide)
-- [Google Maps Services, Place API](https://developers.google.com/maps/documentation)
-- [Smart Material Spinner](https://github.com/Chivorns/SmartMaterialSpinner)
-- [Authentication Firebase Service](https://firebase.google.com/docs/auth)
-- [Storage Firebase Service](https://firebase.google.com/docs/storage)
-- [Cloud Messaging Firebase](https://firebase.google.com/docs/cloud-messaging)
-- [Firestore Firebase Service](https://firebase.google.com/docs/firestore)
 
 ## Package Structure
 
