@@ -51,7 +51,7 @@ CPU             : 2
 Docs: [cloud-Run-docs](https://cloud.google.com/run/docs)
 ### Cloud Storage
 
-<a href='https://www.linkpicture.com/view.php?img=LPic648b4a0e559031057961724'><img src='https://www.linkpicture.com/q/storage_1.png' type='image' width="50" height="50></a>
+<a href='https://www.linkpicture.com/view.php?img=LPic648b4a0e559031057961724'><img src='https://www.linkpicture.com/q/storage_1.png' type='image' width="50" height="50"></a>
 
 This storage service **`has been deployed`**.
 
@@ -64,7 +64,7 @@ Storage Class   : Standard
 Docs: [cloud-storage-docs](https://cloud.google.com/storage/docs)
 
 ### Firestore
-<a href='https://www.linkpicture.com/view.php?img=LPic648b493130cc0986850708'><img src='https://www.linkpicture.com/q/google-cloud-firestore.png' type='image' width="50" height="50"></a>
+<a href='https://www.linkpicture.com/view.php?img=LPic648b493130cc0986850708'><img src='https://www.linkpicture.com/q/google-cloud-firestore.png' type='image' width="75" height="50"></a>
 This Firestore service **`has been deployed`** on development environment.
 
 Service details:
