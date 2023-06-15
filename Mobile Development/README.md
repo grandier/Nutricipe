@@ -8,7 +8,6 @@ Product Based Capstone Bangkit 2023
 <img src="https://github.com/grandier/Nutricipe/blob/main/Mobile%20Development/UI2.jpg" width="1000"/>
 
 ## Features
-
 ### Nutricipe App
 - Splash Screen
 - Authentication
@@ -36,8 +35,8 @@ Product Based Capstone Bangkit 2023
 
 ## Package Structure
 
-### Relasia Helper App
-    .com.c22ps099.relasiahelperapp  # Roor Package
+### Nutricipe App
+    .com.capstone.nutricipe         # Root Package
     ├── adapter                     # Adapter for RecyclerView
     │
     ├── data                        # For data handling
@@ -52,26 +51,11 @@ Product Based Capstone Bangkit 2023
     │
     ├── ui                          # Activity/View layer
     │   ├── custom-view             # Text validation handlers
-    │   ├── fragment                # View for Navigation
+    │   ├── fragment                # View for Onboarding
     │   ├── activity                # View for Splash and Main
     │   └── view-model              # ViewHolder for RecyclerView
     |
     └── utils                       # Utility Classes / Kotlin extensions
-    
-### Relasia Helpseeker App
-    .com.c22ps099.relasiahelpseekerapp  # Roor Package
-    ├── data                            # For data handling
-    │   ├── adapter                     # Adapter for RecyclerView
-    │   ├── api                         # For data from/to Rest API     
-    │   │   ├── response                # For response from Rest API   
-    |   └── repository                  # Single source of data     
-    |
-    ├── di                          # For Injecting Dependency
-    ├── misc                        # Utility Classes / Kotlin extensions
-    ├── models                      # Define Model for Transfer Data
-    ├── services                    # For Service from Firebase
-    ├── ui                          # Activity/View layer
-    └── view                        # For Custom view handlers
     
 ## Architecture
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
