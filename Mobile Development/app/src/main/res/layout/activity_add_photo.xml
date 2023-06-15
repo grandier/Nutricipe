@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.AddPhotoActivity">
+    tools:context=".ui.activity.add.AddPhotoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/title_add_new_photo"
             android:textColor="@color/mint"
-            android:textSize="28sp"
+            android:textSize="22sp"
             app:layout_constraintStart_toEndOf="@+id/btn_back"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,13 +43,14 @@
             app:layout_constraintTop_toBottomOf="@+id/app_title" />
 
         <EditText
+            android:id="@+id/edTitle"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:background="@drawable/bg_transparant_et"
+            android:fontFamily="@font/montserrat_bold"
+            android:hint="@string/title_name"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:background="@drawable/bg_transparant_et"
-            android:hint="@string/title_name"
-            android:fontFamily="@font/montserrat_regular"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +71,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/edDescription"
             android:layout_width="match_parent"
             android:layout_height="122dp"
             android:layout_marginTop="8dp"
@@ -82,17 +83,20 @@
             android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:ignore="Autofill,TextFields" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/shapeableImageView"
             android:layout_width="match_parent"
             android:layout_height="235dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/preview_image"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_placeholder"
+            android:background="@color/silver_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/edDescription"
             app:shapeAppearanceOverlay="@style/roundedImageStyle" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -143,14 +147,27 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
+            android:id="@+id/find_recipe"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_rectangle_rd15"
-            android:text="Find Recipe"
+            android:text="@string/find_recipe"
             android:textAllCaps="false"
             app:layout_constraintTop_toBottomOf="@+id/container_btn"
             tools:layout_editor_absoluteX="16dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

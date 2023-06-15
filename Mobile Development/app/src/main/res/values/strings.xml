@@ -1,11 +1,15 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- App -->
     <string name="app_name">Nutricipe</string>
+    <string name="subtitle_intro">Helping you find healthy recipes</string>
     <string name="welcome">Welcome!</string>
     <string name="tittle_about_app">What is Nutricipe?</string>
     <string name="text_about_app">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="title_history">History</string>
     <string name="logo">this is logo</string>
+    <string name="success">Success</string>
+    <string name="error">Error</string>
+    <string name="failed_retrofit">Failed Retrofit</string>
 
     <!-- Authentication -->
     <string name="register">Register</string>
@@ -27,27 +31,62 @@
     <!-- Add Photo -->
     <string name="add_photo">Add Photo</string>
     <string name="title_description">Description</string>
-    <string name="type_here">Type here...</string>
+    <string name="type_here">Type here…</string>
     <string name="take_picture">Take Picture</string>
     <string name="open_gallery">Open Gallery</string>
-    <string name="title_name">Title Name...</string>
+    <string name="title_name">Title Name…</string>
     <string name="back">Back</string>
     <string name="title_add_new_photo">Add New Photo</string>
-    <string name="add_your_ingredient_photo">Add Your Ingredient Photo</string>
+    <string name="add_your_ingredient_photo">Add Fruit or Vegetable Photo</string>
+    <string name="title_exceeded">Limit Exceeded 20</string>
+    <string name="set_img_error">Failed to take picture</string>
+    <string name="find_recipe">Find Recipe</string>
+    <string name="photo">Photo</string>
 
     <!-- Profile -->
     <string name="title_profile">Profile</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
+    <string name="lenguage">Lenguage</string>
+    <string name="edit">Edit</string>
+
+    <!-- Dialog Logout -->
+    <string name="title_logout">Logout Confirmation</string>
+    <string name="text_logout">Are you sure you want to logout?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="title_delete">Delete Confirmation</string>
+    <string name="text_delete">Are you sure you want to delete this item?</string>
 
     <!-- Recommended Recipe -->
     <string name="recommended_recipe">Recommended Recipe</string>
     <string name="breakfast">Breakfast</string>
     <string name="simple_explanation">Simple Explanation</string>
-    <string name="foodstuff">Foodstuff</string>
+    <string name="foodstuff">Based on photos</string>
     <string name="food_recommendation">Food Recipe Recommendation</string>
     <string name="recipe_detail">Recipe Detail</string>
     <string name="ingredient_recipe">Ingredient &amp; Recipe</string>
     <string name="todo">TODO</string>
     <string name="title_ingredient">Title</string>
+
+    <!-- Camera -->
+    <string name="camera_x">Camera X</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="failed_camera">Failed Camera</string>
+    <string name="choose_picture">Choose Picture</string>
+    <string name="fill_in">Fill In</string>
+    <string name="success_upload">Success Upload</string>
+
+    <!-- OnBoarding -->
+    <string name="subtitle">Find delicious and nutritious recipes based on the fruits and vegetables you have!</string>
+    <string name="slide1_title">What is Nutricipe?</string>
+    <string name="slide1_subtitle">Nutricipe is a food app that turns fruit and vegetable photos into delicious and nutritious recipes.</string>
+    <string name="slide2_title">Take Picture!</string>
+    <string name="slide2_subtitle">Upload or take pictures of the fruits and vegetables you have</string>
+    <string name="slide3_title">Based on Your Photos</string>
+    <string name="silde3_subtitle">The Technology in this application will recommend dishes and recipes for you</string>
+    <string name="slide4_title">Let’s Go…</string>
+    <string name="slide4_subtitle">Login now and find recipes based on the fruits and vegetables you have</string>
+    <string name="get_started">GET STARTED</string>
+
 </resources>

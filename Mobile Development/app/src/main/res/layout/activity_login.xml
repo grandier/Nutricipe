@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.activity.authentication.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,13 +61,14 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <com.capstone.nutricipe.ui.customview.EmailEditText
+            <com.capstone.nutricipe.ui.customview.text.EmailEditText
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
+                android:maxLines="1"
                 android:background="@drawable/edt_bg"
-                android:drawableStart="@drawable/baseline_email_24"
+                android:drawableStart="@drawable/ic_email_24"
                 android:drawablePadding="5dp"
                 android:gravity="start|center_vertical"
                 android:paddingStart="15dp"
@@ -88,13 +90,14 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <com.capstone.nutricipe.ui.customview.PasswordEditText
+            <com.capstone.nutricipe.ui.customview.text.PasswordEditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
+                android:maxLines="1"
                 android:background="@drawable/edt_bg"
-                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawableStart="@drawable/ic_lock_24"
                 android:drawablePadding="5dp"
                 android:gravity="start|center_vertical"
                 android:paddingStart="15dp"
@@ -105,7 +108,7 @@
                 android:textColor="@color/black" />
         </LinearLayout>
 
-        <com.capstone.nutricipe.ui.customview.ButtonLogin
+        <com.capstone.nutricipe.ui.customview.button.ButtonLogin
             android:id="@+id/login_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
