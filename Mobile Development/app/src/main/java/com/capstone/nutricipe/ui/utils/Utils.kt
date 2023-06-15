@@ -33,17 +33,6 @@ fun createFile(context: Context): File {
     return File(outputDirectory, "${generateTimeStamp()}.jpg")
 }
 
-fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
-    val matrix = Matrix()
-    val rotation = if (isBackCamera) 90f else -90f
-    matrix.postRotate(rotation)
-    if (!isBackCamera) {
-        matrix.postScale(-1f, 1f, bitmap.width / 2f, bitmap.height / 2f)
-    }
-    return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-}
-
-
 fun uriToFile(selectedImg: Uri, context: Context): File {
     val contentResolver: ContentResolver = context.contentResolver
     val myFile = createTempFile(context)
@@ -76,25 +65,4 @@ fun reduceFileImage(file: File): File {
     bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
 
     return file
-}
-
-fun rotateFile(file: File, isBackCamera: Boolean = false) {
-    val matrix = Matrix()
-    val bitmap = BitmapFactory.decodeFile(file.path)
-
-    // Apply rotation and scaling transformations to the bitmap
-    val rotation = if (isBackCamera) 90f else -90f
-    matrix.postRotate(rotation)
-    if (!isBackCamera) {
-        matrix.postScale(-1f, 1f, bitmap.width / 2f, bitmap.height / 2f)
-    }
-
-    // Create a new rotated bitmap without modifying the original file
-    val rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
-
-    // Save the rotated bitmap to the original file
-    val fileOutputStream = FileOutputStream(file)
-    rotatedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
-    fileOutputStream.flush()
-    fileOutputStream.close()
 }

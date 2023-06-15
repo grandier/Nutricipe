@@ -1,12 +1,16 @@
 package com.capstone.nutricipe.ui.activity.recipe
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
 
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -14,6 +18,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.Coil
 import coil.request.ImageRequest
 import com.bumptech.glide.Glide
@@ -27,6 +32,7 @@ import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.ActivityProfileBinding
 import com.capstone.nutricipe.databinding.ActivityRecommendedBinding
 import com.capstone.nutricipe.databinding.ActivitySplashBinding
+import com.capstone.nutricipe.databinding.CardDialogBinding
 import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.authentication.LoginActivity
 import com.capstone.nutricipe.ui.activity.dataStore
@@ -54,6 +60,7 @@ class RecommendedActivity : AppCompatActivity() {
             finish()
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
+
         val pref = Session.getInstance(dataStore)
         recommendedViewModel = ViewModelProvider(
             this, ViewModelFactory(pref, this)
@@ -73,7 +80,7 @@ class RecommendedActivity : AppCompatActivity() {
                     binding.tvDescription.text = recommendedHistory.description
                     Glide.with(this)
                         .load(recommendedHistory.imageUrl)
-                        .into(binding.previewImageView)
+                        .into(binding.ivPreview)
                 } else {
                     // Handle the case where both idHistory and recommendedHistory are not available
                     Toast.makeText(this, "No data available", Toast.LENGTH_SHORT).show()
@@ -91,8 +98,8 @@ class RecommendedActivity : AppCompatActivity() {
             }
         }
 
-        binding.ivSetting.setOnClickListener {
-            showPopupMenu(it, recommendedHistory?.id ?: idHistory ?: "")
+        binding.ivDelete.setOnClickListener {
+            deleteDialog(recommendedHistory?.id ?: idHistory ?: "")
         }
 
         recommendedViewModel.listRecipe.observe(this) { listRecipe ->
@@ -117,39 +124,42 @@ class RecommendedActivity : AppCompatActivity() {
         binding.tvTitle.text = recommendedData.title
         binding.tvDescription.text = recommendedData.description
 
-        showLoading(true) // Set isLoading to true before starting image loading
+        showLoading(true)
 
         val request = ImageRequest.Builder(this)
             .data(recommendedData.imageUrl)
             .target { drawable ->
-                binding.previewImageView.setImageDrawable(drawable)
-                showLoading(false) // Set isLoading to false when image loading is completed
+                binding.ivPreview.background = ColorDrawable(Color.TRANSPARENT)
+                binding.ivPreview.setImageDrawable(drawable)
+                showLoading(false)
             }
             .build()
 
         Coil.imageLoader(this).enqueue(request)
     }
 
-    private fun showPopupMenu(view: View, id: String) {
-        val alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialogBuilder.setTitle("Delete Confirmation")
-        alertDialogBuilder.setMessage("Are you sure you want to delete?")
-        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+    private fun deleteDialog(id: String) {
+        val dialogBinding = CardDialogBinding.inflate(layoutInflater)
+        val dialogView = dialogBinding.root
+
+        dialogBinding.tvTitleDialog.text = getString(R.string.title_delete)
+        dialogBinding.tvTextDialog.text = getString(R.string.text_delete)
+        dialogBinding.btnNo.text = getString(R.string.no)
+        dialogBinding.btnYes.text = getString(R.string.yes)
+
+        val dialogBuilder = Dialog(this)
+        dialogBuilder.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogBuilder.setCancelable(false)
+        dialogBuilder.setContentView(dialogView)
+        dialogBuilder.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogBuilder.show()
+
+        dialogBinding.btnYes.setOnClickListener {
             deleteHistory(id)
         }
-        alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
-            dialog.dismiss()
+        dialogBinding.btnNo.setOnClickListener {
+            dialogBuilder.dismiss()
         }
-
-        val alertDialog = alertDialogBuilder.create()
-        alertDialog.setOnShowListener {
-            val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            positiveButton.setTextColor(ContextCompat.getColor(this, R.color.red))
-
-            val negativeButton = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-            negativeButton.setTextColor(ContextCompat.getColor(this, R.color.black))
-        }
-        alertDialog.show()
     }
 
 
@@ -166,19 +176,18 @@ class RecommendedActivity : AppCompatActivity() {
         }
     }
 
-
     private fun showLoading(state: Boolean) {
         if (state) {
-            binding.progressBar2.visibility = View.VISIBLE
+            binding.loadingShimmer.visibility = View.VISIBLE
         } else {
-            binding.progressBar2.visibility = View.GONE
+            binding.loadingShimmer.visibility = View.GONE
         }
     }
 
     private fun showRecipes(recipes: List<RecipeItem>) {
         binding.rvRecipe.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@RecommendedActivity)
+            layoutManager = LinearLayoutManager(this@RecommendedActivity, RecyclerView.HORIZONTAL, false)
             adapter = RecipeAdapter(ArrayList(recipes))
         }
     }

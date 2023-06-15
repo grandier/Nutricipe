@@ -1,10 +1,12 @@
-package com.capstone.nutricipe.ui.activity.stories
+package com.capstone.nutricipe.ui.activity.add
 
 import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,8 +29,6 @@ import com.capstone.nutricipe.ui.activity.MainActivity
 import com.capstone.nutricipe.ui.activity.dataStore
 import com.capstone.nutricipe.ui.activity.recipe.RecommendedActivity
 import com.capstone.nutricipe.ui.utils.reduceFileImage
-import com.capstone.nutricipe.ui.utils.rotateBitmap
-import com.capstone.nutricipe.ui.utils.rotateFile
 import com.capstone.nutricipe.ui.utils.uriToFile
 import com.capstone.nutricipe.ui.viewmodel.AddPhotoViewModel
 import com.capstone.nutricipe.ui.viewmodel.ViewModelFactory
@@ -37,13 +37,12 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.ResponseBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
+@Suppress("DEPRECATION")
 class AddPhotoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddPhotoBinding
@@ -58,14 +57,13 @@ class AddPhotoActivity : AppCompatActivity() {
             if (myFile != null) {
                 getFile = myFile
 
-                val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true) as? Boolean
+                val isBackCamera = result.data?.getBooleanExtra("isBackCamera", true)
                 val resultBitmap = isBackCamera?.let {
-                    rotateBitmap(
-                        BitmapFactory.decodeFile(myFile.path), it
-                    )
+                    BitmapFactory.decodeFile(myFile.path)
                 }
 
                 // Set the captured image bitmap to the shapeableImageView
+                binding.shapeableImageView.background = ColorDrawable(Color.TRANSPARENT)
                 binding.shapeableImageView.setImageBitmap(resultBitmap)
                 binding.shapeableImageView.visibility = View.VISIBLE
             } else {
@@ -204,8 +202,6 @@ class AddPhotoActivity : AppCompatActivity() {
             }
         })
 
-
-
         binding.btnTakePicture.setOnClickListener {
             startCameraX()
         }
@@ -250,9 +246,6 @@ class AddPhotoActivity : AppCompatActivity() {
         val text = binding.edDescription.text.toString().takeIf { it.isNotEmpty() } ?: " "
         val title = text1.toRequestBody("text/plain".toMediaType())
         val description = text.toRequestBody("text/plain".toMediaType())
-
-        // Rotate the file before uploading
-        rotateFile(file, isBackCamera = true)
 
         // Create a MultipartBody.Part for uploading the image
         val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())

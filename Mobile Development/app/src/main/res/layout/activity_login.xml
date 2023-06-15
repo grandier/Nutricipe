@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.activity.authentication.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,8 +66,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
+                android:maxLines="1"
                 android:background="@drawable/edt_bg"
-                android:drawableStart="@drawable/baseline_email_24"
+                android:drawableStart="@drawable/ic_email_24"
                 android:drawablePadding="5dp"
                 android:gravity="start|center_vertical"
                 android:paddingStart="15dp"
@@ -93,8 +95,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
+                android:maxLines="1"
                 android:background="@drawable/edt_bg"
-                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawableStart="@drawable/ic_lock_24"
                 android:drawablePadding="5dp"
                 android:gravity="start|center_vertical"
                 android:paddingStart="15dp"

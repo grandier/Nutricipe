@@ -3,7 +3,6 @@ package com.capstone.nutricipe.ui.customview.text
 import android.content.Context
 import android.graphics.Canvas
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -55,13 +54,13 @@ class NameEditText : AppCompatEditText, View.OnTouchListener {
         if (!s.isNullOrBlank() && s.length < 4) {
             error = resources.getString(R.string.min_name)
             setCompoundDrawablesRelativeWithIntrinsicBounds(
-                R.drawable.baseline_person_24_error, 0, 0, 0
+                R.drawable.ic_person_24_error, 0, 0, 0
             )
             setBackgroundResource(R.drawable.edt_bg_error)
         } else {
             error = null
             setCompoundDrawablesRelativeWithIntrinsicBounds(
-                R.drawable.baseline_person_24, 0, 0, 0
+                R.drawable.ic_person_24, 0, 0, 0
             )
             setBackgroundResource(R.drawable.edt_bg)
         }

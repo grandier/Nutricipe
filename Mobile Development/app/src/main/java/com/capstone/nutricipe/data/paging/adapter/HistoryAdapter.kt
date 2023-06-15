@@ -1,15 +1,11 @@
 package com.capstone.nutricipe.data.paging.adapter
 
-import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -17,11 +13,10 @@ import com.bumptech.glide.Glide
 import com.capstone.nutricipe.R
 import com.capstone.nutricipe.data.remote.model.ResultItem
 import com.capstone.nutricipe.databinding.CardHistoryBinding
-import com.capstone.nutricipe.ui.activity.profile.ProfileActivity
 import com.capstone.nutricipe.ui.activity.recipe.RecommendedActivity
 
-class PhotoAdapter :
-    PagingDataAdapter<ResultItem, PhotoAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class HistoryAdapter :
+    PagingDataAdapter<ResultItem, HistoryAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val binding =
@@ -36,10 +31,10 @@ class PhotoAdapter :
         }
     }
 
-    inner class ListViewHolder(private val binding: CardHistoryBinding) :
+    inner class ListViewHolder(binding: CardHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private val photoView: ImageView = binding.storyImage
-        private val name: TextView = binding.storyTitle
+        private val photoView: ImageView = binding.ivHistory
+        private val name: TextView = binding.tvHistory
 
         fun bind(photo: ResultItem) {
             name.text = photo.title
@@ -51,15 +46,14 @@ class PhotoAdapter :
 
                 val options = ActivityOptionsCompat.makeCustomAnimation(
                     itemView.context,
-                    R.anim.slide_in_right, // Enter animation (slide from right)
-                    R.anim.slide_out_left // Exit animation (slide to left)
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left
                 ).toBundle()
 
                 itemView.context.startActivity(intent, options)
             }
         }
     }
-
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ResultItem>() {

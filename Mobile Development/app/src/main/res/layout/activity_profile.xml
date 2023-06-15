@@ -4,160 +4,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="16dp"
-    android:paddingTop="16dp"
-    android:paddingEnd="16dp"
-    tools:context=".ui.activity.stories.AddPhotoActivity">
+    tools:context=".ui.activity.add.AddPhotoActivity">
 
-    <ImageView
-        android:id="@+id/btn_back"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_back"
-        android:contentDescription="@string/back"
-        app:layout_constraintBottom_toBottomOf="@+id/app_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/app_title" />
-
-    <TextView
-        android:id="@+id/app_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/title_profile"
-        android:textColor="@color/mint"
-        android:textSize="28sp"
-        app:layout_constraintStart_toEndOf="@+id/btn_back"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/logout"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/baseline_exit_to_app_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/profile" />
-
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linearLayout2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="24dp"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/app_title">-->
-
-<!--        <de.hdodenhof.circleimageview.CircleImageView-->
-<!--            android:id="@+id/iv_profile"-->
-<!--            android:layout_width="88dp"-->
-<!--            android:layout_height="88dp"-->
-<!--            android:contentDescription="@string/profile"-->
-<!--            android:src="@drawable/ic_profile" />-->
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:orientation="vertical">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_name"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/name"-->
-<!--                android:fontFamily="@font/montserrat_semi_bold"-->
-<!--                android:textSize="22sp"/>-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/tv_email"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="4dp"-->
-<!--                android:text="@string/email_hint"-->
-<!--                android:fontFamily="@font/montserrat_regular"-->
-<!--                android:textSize="18sp"/>-->
-<!--            -->
-<!--        </LinearLayout>-->
-<!--        -->
-<!--    </LinearLayout>-->
-
-    <RelativeLayout
-        android:id="@+id/linearLayout2"
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:paddingStart="16dp"
+        android:paddingTop="16dp"
         android:paddingEnd="16dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_title">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentStart="true"
-            android:contentDescription="@string/profile"
-            android:src="@drawable/ic_profile" />
+        <RelativeLayout
+            android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_name"
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="@string/back"/>
+
+            <TextView
+                android:id="@+id/app_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/btn_back"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/title_profile"
+                android:textColor="@color/mint"
+                android:textSize="22sp"
+                tools:ignore="RelativeOverlap" />
+
+            <ImageView
+                android:id="@+id/lenguage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@+id/logout"
+                android:src="@drawable/ic_lenguage"
+                android:contentDescription="@string/lenguage" />
+
+            <ImageView
+                android:id="@+id/logout"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_exit_to_app_24"
+                android:contentDescription="@string/logout" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@id/iv_profile"
-            android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/name"
-            android:textSize="22sp" />
+            android:layout_marginTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_name"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_toEndOf="@id/iv_profile"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="@string/email_hint"
-            android:textSize="18sp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/profile"
+                android:src="@drawable/ic_profile" />
 
-        <ImageView
-            android:id="@+id/editButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/baseline_edit_24" />
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toStartOf="@+id/editButton"
+                android:layout_toEndOf="@id/iv_profile"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:maxLines="1"
+                android:text="@string/name"
+                android:textSize="18sp" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_toStartOf="@+id/editButton"
+                android:layout_toEndOf="@id/iv_profile"
+                android:fontFamily="@font/montserrat_regular"
+                android:maxLines="1"
+                android:text="@string/email_hint"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/editButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_edit_24"
+                android:contentDescription="@string/edit" />
+
+        </RelativeLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/title_history"
         android:textColor="@color/mint"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/container" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_history"
-        android:layout_width="match_parent"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        tools:listitem="@layout/card_history"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6dp"
+            android:paddingTop="10dp"
+            android:paddingStart="10dp"
+            tools:listitem="@layout/card_history"
+            tools:ignore="RtlSymmetry" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar"

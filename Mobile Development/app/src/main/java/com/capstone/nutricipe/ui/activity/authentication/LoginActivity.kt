@@ -129,8 +129,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val ANIMATION_DURATION = 100L
-        private const val ALPHA_FULL = 1.0f
         val emailRegex: Regex = Regex("^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+\$")
     }
 }
