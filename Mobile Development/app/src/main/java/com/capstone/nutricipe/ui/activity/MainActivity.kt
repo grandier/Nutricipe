@@ -101,11 +101,20 @@ class MainActivity : AppCompatActivity() {
                 adapter.retry()
             }
         )
+
+        val swipeRefreshLayout = binding.swipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener {
+            // Refresh data when swipe gesture is detected
+            adapter.refresh()
+        }
+
         mainViewModel.getPhoto(token)
             .observe(this) { photoData ->
                 adapter.submitData(lifecycle, photoData)
+                swipeRefreshLayout.isRefreshing = false // Stop the refreshing animation
             }
     }
+
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {

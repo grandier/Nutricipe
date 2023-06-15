@@ -146,11 +146,22 @@ class ProfileActivity : AppCompatActivity() {
                 adapter.retry()
             }
         )
+
+        // Initialize SwipeRefreshLayout
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            // Clear the current data and fetch new data
+            adapter.refresh()
+        }
+
         profileViewModel.getPhoto(token)
             .observe(this) { photoData ->
                 adapter.submitData(lifecycle, photoData)
+
+                // Stop the swipe refresh animation
+                binding.swipeRefreshLayout.isRefreshing = false
             }
     }
+
 
 
     fun logout() {
