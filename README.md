@@ -20,7 +20,7 @@
   ·
   <a href="https://github.com/grandier/Nutricipe/releases">APK Link</a>
   ·
-  <a href="https://youtu.be/QrIgG2bFTN4">Video Presentation</a>
+  <a href="https://youtu.be/BFyJz6KoZGQ">Video Presentation</a>
   ·
   <a href="https://www.canva.com/design/DAFlkkPGUqk/p9rbo6J-qypnhQWOCgSWIQ/view?utm_content=DAFlkkPGUqk&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink">Presentation Slide</a>
     <br />
