@@ -43,8 +43,8 @@ Product Based Capstone Bangkit 2023
     │   ├── di                      # for di  
     |   ├── local                   # Store data entity locally     
     │   ├── paging                  # For paging3 handling
-    |       ├── adapter             # For adapter of recyclerview
-    |       └── photo               # for handling photo repository
+    |   |   ├── adapter             # For adapter of recyclerview
+    |   |   └── photo               # for handling photo repository
     │   └── local                   # For paging3 handling
     │       ├── api                 # For api network calls
     |       └── model               # For model from api
