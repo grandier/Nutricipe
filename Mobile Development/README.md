@@ -37,17 +37,17 @@ Product Based Capstone Bangkit 2023
 
 ### Nutricipe App
     .com.capstone.nutricipe         # Root Package
-    ├── adapter                     # Adapter for RecyclerView
     │
     ├── data                        # For data handling
-    │   ├── dao                     # For local bookmark feature
-    │   ├── database                # Store data entity locally     
-    |   ├── repository              # Single source of data     
-    │   └── paging-source           # For paging3 handling
-    |
-    ├── network                     # Remote Data Handlers
-    │   ├── api                     # Retrofit API for remote endpoint
-    │   └── responses               # Store data entity remote
+    │   ├── database                # to have local database
+    │   ├── di                      # for di  
+    |   ├── local                   # Store data entity locally     
+    │   ├── paging                  # For paging3 handling
+    |       ├── adapter             # For adapter of recyclerview
+    |       └── photo               # for handling photo repository
+    │   └── local                   # For paging3 handling
+    │       ├── api                 # For api network calls
+    |       └── model               # For model from api
     │
     ├── ui                          # Activity/View layer
     │   ├── custom-view             # Text validation handlers
@@ -59,5 +59,3 @@ Product Based Capstone Bangkit 2023
     
 ## Architecture
 This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
-
-<img src="https://github.com/junaediakbar/Capstone-Bangkit-2022-Relasia/blob/4fe9956e2d916815f1868e370bb6aa1347077906/Mobile%20Development/assets/mvvm.jpg" width="700"/>
